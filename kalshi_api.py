@@ -13,6 +13,7 @@ class KalshiAPI:
         "KXNBAGAME", "KXNBA",  # Basketball
         "KXNFLGAME", "KXNFL",  # Football
         "KXNHLGAME", "KXNHL",  # Hockey
+        "KXSOCCER", "KXEPLGAME", "KXUCLGAME", "KXUELGAME", "KXSOCCERGAME",  # Football/Soccer
         "KXCS2", "KXDOTA2", "KXOVERWATCH", "KXCSGO",  # Esports
         "KXESPORTS", "KXLOL", "KXDOTA", "KXVALORANT"
     ]

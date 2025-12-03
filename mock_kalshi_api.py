@@ -77,6 +77,12 @@ class MockKalshiAPI(KalshiAPI):
                 'Golden Knights', 'Lightning', 'Avalanche', 'Hurricanes', 'Rangers',
                 'Bruins', 'Maple Leafs', 'Oilers', 'Canucks', 'Kraken'
             ]
+        elif any(keyword in series_ticker for keyword in ['SOCCER', 'EPL', 'UCL', 'UEL']):
+            return [
+                'Manchester United', 'Manchester City', 'Liverpool', 'Arsenal', 'Chelsea',
+                'Barcelona', 'Real Madrid', 'Bayern Munich', 'PSG', 'Juventus',
+                'Inter Milan', 'AC Milan', 'Ajax', 'Porto', 'Benfica', 'Atletico Madrid'
+            ]
         elif any(keyword in series_ticker for keyword in ['CS2', 'CSGO']):
             return [
                 'NAVI', 'FaZe', 'G2', 'Vitality', 'Astralis', 'Heroic',
