@@ -580,6 +580,10 @@ def fetch_all_sports_data(force_refresh=False):
         'success': True,
         'timestamp': now.isoformat(),
         'stats': {
+            'total_games': matched_count,  # 比赛总数应该是两个平台匹配上的总数
+            'poly_total': len(poly_games),  # Polymarket总数
+            'kalshi_total': len(kalshi_games),  # Kalshi总数（全部Kalshi比赛的总数）
+            'matched': matched_count,  # 匹配数量
             'total_polymarket_games': len(poly_games),
             'total_kalshi_games': len(kalshi_games),
             'matched_games': matched_count,

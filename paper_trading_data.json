@@ -1,5 +1,5 @@
 {
-    "balance": 9838.925000000001,
+    "balance": 9656.237500000001,
     "initial_balance": 10000.0,
     "bets": [
         {
@@ -98,6 +98,104 @@
             "slippage_total_usd": 0.3825,
             "arb_type": "perfect",
             "total_cost_per_unit": 79.71249999999999,
+            "bet_amount_config": 100.0
+        },
+        {
+            "id": "MEM@SAS",
+            "game": "Grizzlies vs Spurs",
+            "sport": "other",
+            "timestamp": "2025-12-03T01:58:22.799190",
+            "legs": [
+                {
+                    "platform": "Kalshi",
+                    "price": 35,
+                    "eff": 37.625,
+                    "team": "Grizzlies",
+                    "code": "MEM",
+                    "market_id": null,
+                    "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MEMSAS-MEM",
+                    "fee_rate": 0.07,
+                    "cost_usd": 37.625,
+                    "fee_usd": 2.625,
+                    "payout_usd": 100.0,
+                    "slippage_usd": 0.175
+                },
+                {
+                    "platform": "Polymarket",
+                    "price": 51.0,
+                    "eff": 52.275,
+                    "team": "Spurs",
+                    "code": "SAS",
+                    "market_id": "705409",
+                    "url": "https://polymarket.com/event/nba-mem-sas-2025-12-02",
+                    "fee_rate": 0.02,
+                    "cost_usd": 52.275,
+                    "fee_usd": 1.275,
+                    "payout_usd": 100.0,
+                    "slippage_usd": 0.255
+                }
+            ],
+            "quantity": 100.0,
+            "cost": 89.9,
+            "payout": 100.0,
+            "profit": 10.099999999999994,
+            "roi_percent": 11.234705228031139,
+            "status": "pending",
+            "settled_amount": 0.0,
+            "realized_profit": 0.0,
+            "fees_total_usd": 3.9,
+            "slippage_total_usd": 0.43,
+            "arb_type": "perfect",
+            "total_cost_per_unit": 89.9,
+            "bet_amount_config": 100.0
+        },
+        {
+            "id": "NYK@BOS",
+            "game": "Knicks vs Celtics",
+            "sport": "other",
+            "timestamp": "2025-12-03T01:58:43.585179",
+            "legs": [
+                {
+                    "platform": "Kalshi",
+                    "price": 62,
+                    "eff": 66.64999999999999,
+                    "team": "Knicks",
+                    "code": "NYK",
+                    "market_id": null,
+                    "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02NYKBOS-NYK",
+                    "fee_rate": 0.07,
+                    "cost_usd": 66.64999999999999,
+                    "fee_usd": 4.649999999999991,
+                    "payout_usd": 100.0,
+                    "slippage_usd": 0.31
+                },
+                {
+                    "platform": "Polymarket",
+                    "price": 25.5,
+                    "eff": 26.1375,
+                    "team": "Celtics",
+                    "code": "BOS",
+                    "market_id": "705404",
+                    "url": "https://polymarket.com/event/nba-nyk-bos-2025-12-02",
+                    "fee_rate": 0.02,
+                    "cost_usd": 26.1375,
+                    "fee_usd": 0.6375,
+                    "payout_usd": 100.0,
+                    "slippage_usd": 0.1275
+                }
+            ],
+            "quantity": 100.0,
+            "cost": 92.7875,
+            "payout": 100.0,
+            "profit": 7.212500000000005,
+            "roi_percent": 7.773137545466797,
+            "status": "pending",
+            "settled_amount": 0.0,
+            "realized_profit": 0.0,
+            "fees_total_usd": 5.287499999999991,
+            "slippage_total_usd": 0.4375,
+            "arb_type": "perfect",
+            "total_cost_per_unit": 92.7875,
             "bet_amount_config": 100.0
         }
     ],

@@ -880,12 +880,8 @@ function createGameCard(game) {
                 if (url === '/api/odds/all-sports') {
                     // 使用后端提供的homepage格式数据
                     allGames = data.homepage_games || [];
-                    stats = {
-                        total_games: allGames.length,
-                        poly_total: data.stats.total_polymarket_games,
-                        kalshi_total: data.stats.total_kalshi_games,
-                        matched: data.stats.matched_games
-                    };
+                    // 直接使用后端提供的统计数据，已经包含正确的字段
+                    stats = data.stats || {};
                 } else {
                     // 单个体育项目的数据保持原有逻辑
                     stats = data.stats || {};
