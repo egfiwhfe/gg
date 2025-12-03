@@ -187,6 +187,40 @@ def _calculate_risk_free_details(poly_game, kalshi_game):
     }
 
 
+def _format_risk_free_details(details):
+    """Create a frontend-friendly camelCase copy of risk-free arb details."""
+    if not details:
+        return None
+
+    if 'bestAwayEffective' in details and 'bestAwayFrom' in details:
+        normalized = details.copy()
+        roi_percent = normalized.get('roiPercent')
+        if roi_percent is None and normalized.get('roi') is not None:
+            normalized['roiPercent'] = round(normalized['roi'] * 100, 4)
+        elif roi_percent is not None and normalized.get('roi') is None:
+            normalized['roi'] = round(roi_percent / 100, 6)
+        return normalized
+
+    roi_percent = details.get('roi_percent')
+    roi_ratio = round(roi_percent / 100, 6) if roi_percent is not None else None
+
+    return {
+        'bestAwayFrom': details.get('best_away_platform'),
+        'bestHomeFrom': details.get('best_home_platform'),
+        'bestAwayPrice': details.get('best_away_price'),
+        'bestHomePrice': details.get('best_home_price'),
+        'bestAwayEffective': details.get('best_away_effective'),
+        'bestHomeEffective': details.get('best_home_effective'),
+        'totalCost': details.get('total_cost'),
+        'edge': details.get('net_edge'),
+        'grossCost': details.get('gross_cost'),
+        'grossEdge': details.get('gross_edge'),
+        'roiPercent': roi_percent,
+        'roi': roi_ratio,
+        'fees': details.get('fees', {})
+    }
+
+
 def _get_cached_data(cache_obj, now, force_refresh=False):
     if not force_refresh and cache_obj['data'] and cache_obj['timestamp']:
         elapsed = (now - cache_obj['timestamp']).seconds
@@ -548,11 +582,13 @@ def fetch_all_sports_data(force_refresh=False):
                 'kalshi': kalshi,
                 'match_type': match['match_type'],
                 'arb_score': arb_details['roi_percent'],
-                'risk_free_arb': arb_details
+                'risk_free_arb': arb_details,
+                'riskFreeArb': _format_risk_free_details(arb_details)
             })
     
     # Transform data to homepage format for consistency
     homepage_games = []
+    homepage_arb_games = []  # Games with arbitrage opportunities
     
     # Process matched games for homepage format
     for match in matched_games:
@@ -608,10 +644,15 @@ def fetch_all_sports_data(force_refresh=False):
             'arbitrage_score': round(arb_score, 2) if arb_score > 0 else 0,
             'game_time': game_time,
             'match_type': match['match_type'],
-            'risk_free_arb': arb_details
+            'risk_free_arb': arb_details,
+            'riskFreeArb': _format_risk_free_details(arb_details)
         }
         
         homepage_games.append(homepage_game)
+        
+        # Track games with positive arbitrage
+        if arb_details:
+            homepage_arb_games.append(homepage_game)
     
     # Process unmatched polymarket games for homepage format
     for poly_game in poly_games:
@@ -665,6 +706,8 @@ def fetch_all_sports_data(force_refresh=False):
             'total_kalshi_games': len(kalshi_games),
             'matched_games': matched_count,
             'arb_opportunities': len(arb_opportunities),
+            'arb_homepage_games': len(homepage_arb_games),
+            'homepage_games': len(homepage_games),
             'match_rate': (matched_count / min(len(poly_games), len(kalshi_games)) * 100) if min(len(poly_games), len(kalshi_games)) > 0 else 0,
         },
         'matched_games': matched_games,
@@ -672,7 +715,8 @@ def fetch_all_sports_data(force_refresh=False):
         'unmatched_polymarket': [g for g in poly_games if not any(g['away_code'] == m['polymarket']['away_code'] and g['home_code'] == m['polymarket']['home_code'] for m in matched_games)][:50],  # Limit for performance
         'unmatched_kalshi': [g for g in kalshi_games if not any(g['away_code'] == m['kalshi']['away_code'] and g['home_code'] == m['kalshi']['home_code'] for m in matched_games)][:50],
         # Add homepage format for consistency
-        'homepage_games': homepage_games
+        'homepage_games': homepage_games,
+        'homepage_arb_games': homepage_arb_games
     }
     
     # Cache the result
@@ -1142,80 +1186,110 @@ def monitor_job():
             all_games.extend(extract_games(nhl, 'nhl'))
             all_games.extend(extract_games(football, 'football'))
         else:
-            # Use the comprehensive data
+            # Use the comprehensive data - prioritize homepage_games for consistency with frontend
             all_games = []
             
-            # Convert matched games to the expected format for paper trading
-            for match in all_sports_data.get('matched_games', []):
-                poly = match['polymarket']
-                kalshi = match['kalshi']
-                
-                game = {
-                    'away_team': poly['away_team'],
-                    'home_team': poly['home_team'],
-                    'away_code': poly['away_code'],
-                    'home_code': poly['home_code'],
-                    'sport': poly.get('sport', 'unknown'),
-                    'polymarket': {
-                        'away': poly['away_prob'],
-                        'home': poly['home_prob'],
-                        'raw_away': poly['away_raw_price'],
-                        'raw_home': poly['home_raw_price'],
-                        'market_id': poly['market_id'],
-                        'url': poly['url']
-                    },
-                    'kalshi': {
-                        'away': kalshi['away_prob'],
-                        'home': kalshi['home_prob'],
-                        'raw_away': kalshi['away_raw_price'],
-                        'raw_home': kalshi['home_raw_price'],
-                        'away_ticker': kalshi.get('ticker'),
-                        'home_ticker': kalshi.get('ticker'),
-                        'url': kalshi['url']
-                    }
-                }
-                all_games.append(game)
-            
-            # Also include unmatched games that might have arbitrage opportunities within the same platform
-            for poly_game in all_sports_data.get('unmatched_polymarket', []):
-                # Skip games without proper data
-                if not all([poly_game.get('away_prob'), poly_game.get('home_prob'), 
-                           poly_game.get('away_raw_price'), poly_game.get('home_raw_price')]):
-                    continue
+            # Use homepage_games directly - these are pre-formatted and include arb calculations
+            homepage_games = all_sports_data.get('homepage_games', [])
+            if homepage_games:
+                print(f"✅ Using {len(homepage_games)} homepage_games from all_sports_data")
+                all_games = homepage_games
+            else:
+                # Fallback: Convert matched games to the expected format for paper trading
+                print("⚠️ No homepage_games found, falling back to matched_games conversion")
+                for match in all_sports_data.get('matched_games', []):
+                    poly = match['polymarket']
+                    kalshi = match['kalshi']
                     
-                game = {
-                    'away_team': poly_game['away_team'],
-                    'home_team': poly_game['home_team'],
-                    'away_code': poly_game['away_code'],
-                    'home_code': poly_game['home_code'],
-                    'sport': poly_game.get('sport', 'unknown'),
-                    'polymarket': {
-                        'away': poly_game['away_prob'],
-                        'home': poly_game['home_prob'],
-                        'raw_away': poly_game['away_raw_price'],
-                        'raw_home': poly_game['home_raw_price'],
-                        'market_id': poly_game['market_id'],
-                        'url': poly_game['url']
-                    },
-                    'kalshi': {}  # Empty kalshi data
-                }
-                all_games.append(game)
+                    game = {
+                        'away_team': poly['away_team'],
+                        'home_team': poly['home_team'],
+                        'away_code': poly['away_code'],
+                        'home_code': poly['home_code'],
+                        'sport': poly.get('sport', 'unknown'),
+                        'polymarket': {
+                            'away': poly['away_prob'],
+                            'home': poly['home_prob'],
+                            'raw_away': poly['away_raw_price'],
+                            'raw_home': poly['home_raw_price'],
+                            'market_id': poly['market_id'],
+                            'url': poly['url']
+                        },
+                        'kalshi': {
+                            'away': kalshi['away_prob'],
+                            'home': kalshi['home_prob'],
+                            'raw_away': kalshi['away_raw_price'],
+                            'raw_home': kalshi['home_raw_price'],
+                            'away_ticker': kalshi.get('ticker'),
+                            'home_ticker': kalshi.get('ticker'),
+                            'url': kalshi['url']
+                        }
+                    }
+                    all_games.append(game)
+                
+                # Also include unmatched games that might have arbitrage opportunities within the same platform
+                for poly_game in all_sports_data.get('unmatched_polymarket', []):
+                    # Skip games without proper data
+                    if not all([poly_game.get('away_prob'), poly_game.get('home_prob'), 
+                               poly_game.get('away_raw_price'), poly_game.get('home_raw_price')]):
+                        continue
+                        
+                    game = {
+                        'away_team': poly_game['away_team'],
+                        'home_team': poly_game['home_team'],
+                        'away_code': poly_game['away_code'],
+                        'home_code': poly_game['home_code'],
+                        'sport': poly_game.get('sport', 'unknown'),
+                        'polymarket': {
+                            'away': poly_game['away_prob'],
+                            'home': poly_game['home_prob'],
+                            'raw_away': poly_game['away_raw_price'],
+                            'raw_home': poly_game['home_raw_price'],
+                            'market_id': poly_game['market_id'],
+                            'url': poly_game['url']
+                        },
+                        'kalshi': {}  # Empty kalshi data
+                    }
+                    all_games.append(game)
         
         print(f"Processing {len(all_games)} games for arbitrage opportunities...")
         
         # 添加调试信息：显示每个体育项目的游戏数量
         sport_counts = {}
         for game in all_games:
-            sport = game.get('sport', 'unknown')
+            sport = (game.get('sport') or 'unknown').upper()
             sport_counts[sport] = sport_counts.get(sport, 0) + 1
         print(f"Games by sport: {sport_counts}")
         
-        # Check for arbs
+        # 筛选出真正满足无风险套利条件的市场
+        tradable_games = []
+        filtered_games = []
+        for game in all_games:
+            risk_detail = game.get('riskFreeArb')
+            if not risk_detail and game.get('risk_free_arb'):
+                risk_detail = _format_risk_free_details(game.get('risk_free_arb'))
+                if risk_detail:
+                    game['riskFreeArb'] = risk_detail
+            if risk_detail and risk_detail.get('edge') is not None and risk_detail.get('edge') > 0:
+                tradable_games.append(game)
+            else:
+                filtered_games.append(game)
+        
+        print(f"Tradable markets (ROI>0 after fees): {len(tradable_games)} / {len(all_games)}")
+        if filtered_games:
+            sample = filtered_games[:5]
+            sample_descriptions = [
+                f"{g.get('away_team', '?')}@{g.get('home_team', '?')}[{g.get('sport', '?')}]"
+                for g in sample
+            ]
+            print(f"Filtered markets (first {len(sample)}): {sample_descriptions}")
+        
+        # Check for arbs only on tradable markets
         arb_count = 0
         failed_count = 0
         failure_reasons = {}
         
-        for game in all_games:
+        for game in tradable_games:
             success, result = paper_trader.execute_arb(game)
             if success:
                 arb_count += 1
@@ -1246,7 +1320,7 @@ def monitor_job():
             print(f"🎯 Found {arb_count} arbitrage opportunities in this cycle")
         
         if failed_count > 0:
-            print(f"📊 Checked {failed_count} games without arbs. Reasons: {failure_reasons}")
+            print(f"📊 Checked {failed_count} tradable games without execution. Reasons: {failure_reasons}")
                 
     except Exception as e:
         print(f"Error in monitor job: {e}")

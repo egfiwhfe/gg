@@ -574,16 +574,24 @@
 
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-label">比赛总数</div>
-                    <div class="stat-value" id="total-games">-</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-label">Polymarket</div>
+                    <div class="stat-label">Polymarket 市场</div>
                     <div class="stat-value" id="poly-count">-</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">Kalshi</div>
+                    <div class="stat-label">Kalshi 市场</div>
                     <div class="stat-value" id="kalshi-count">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">匹配市场</div>
+                    <div class="stat-value" id="matched-count">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">套利机会</div>
+                    <div class="stat-value" id="arb-count" style="color: #4caf50;">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">显示市场</div>
+                    <div class="stat-value" id="displayed-count" style="color: #667eea;">-</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">最大差异</div>
@@ -898,10 +906,11 @@ function createGameCard(game) {
                     // 使用后端提供的homepage格式数据
                     allGames = data.homepage_games || [];
                     stats = {
-                        total_games: data.stats.matched_games,  // 修正：比赛总数应该是两个平台匹配上的总数
                         poly_total: data.stats.total_polymarket_games,
                         kalshi_total: data.stats.total_kalshi_games,
-                        matched: data.stats.matched_games
+                        matched: data.stats.matched_games,
+                        arb_games: data.stats.arb_homepage_games,
+                        homepage_games: data.stats.homepage_games
                     };
                 } else {
                     // 单个体育项目的数据保持原有逻辑
@@ -918,17 +927,21 @@ function createGameCard(game) {
                     }
                 }
 
+                const updateValue = (id, value) => {
+                    const el = document.getElementById(id);
+                    if (!el) return;
+                    if (value === undefined || value === null || Number.isNaN(value)) {
+                        el.textContent = '-';
+                    } else {
+                        el.textContent = typeof value === 'number' ? value : value;
+                    }
+                };
+
                 // 更新通用统计
                 if (stats) {
-                    if (document.getElementById('total-games')) {
-                        document.getElementById('total-games').textContent = stats.total_games;
-                    }
-                    if (document.getElementById('poly-count')) {
-                        document.getElementById('poly-count').textContent = stats.poly_total;
-                    }
-                    if (document.getElementById('kalshi-count')) {
-                        document.getElementById('kalshi-count').textContent = stats.kalshi_total;
-                    }
+                    updateValue('poly-count', stats.poly_total);
+                    updateValue('kalshi-count', stats.kalshi_total);
+                    updateValue('matched-count', stats.matched);
                 }
 
                 // 更新NBA特定统计
@@ -970,6 +983,49 @@ function createGameCard(game) {
 
                 const arbGames = normalizedGames.filter(g => g.riskFreeArb);
 
+                console.log('📊 数据处理统计:');
+                console.log(`  - 总市场数: ${allGames.length}`);
+                console.log(`  - 有套利机会: ${arbGames.length}`);
+                console.log(`  - 被过滤市场: ${allGames.length - arbGames.length}`);
+                
+                // 打印前几个被过滤的市场及原因
+                const filteredGames = normalizedGames.filter(g => !g.riskFreeArb);
+                if (filteredGames.length > 0) {
+                    console.log(`\n🔍 被过滤的市场示例 (前10个):`);
+                    filteredGames.slice(0, 10).forEach((game, i) => {
+                        const poly = game.polymarket || {};
+                        const kalshi = game.kalshi || {};
+                        const reason = !kalshi.away ? '缺少Kalshi数据' : 
+                                      !poly.raw_away ? '缺少Polymarket raw价格' : 
+                                      'ROI <= 0%';
+                        console.log(`  ${i + 1}. ${game.away_team} @ ${game.home_team} (${game.sport}) - ${reason}`);
+                        if (poly.raw_away && kalshi.away) {
+                            console.log(`     Poly: away=${poly.raw_away}, home=${poly.raw_home}`);
+                            console.log(`     Kalshi: away=${kalshi.raw_away || kalshi.away}, home=${kalshi.raw_home || kalshi.home}`);
+                        }
+                    });
+                }
+                
+                // 按体育类型分组统计
+                const sportStats = {};
+                allGames.forEach(g => {
+                    const sport = g.sport || 'unknown';
+                    if (!sportStats[sport]) sportStats[sport] = { total: 0, arb: 0 };
+                    sportStats[sport].total++;
+                });
+                arbGames.forEach(g => {
+                    const sport = g.sport || 'unknown';
+                    if (sportStats[sport]) sportStats[sport].arb++;
+                });
+                
+                console.log('\n📈 按体育类型统计:');
+                Object.entries(sportStats).forEach(([sport, counts]) => {
+                    console.log(`  - ${sport}: ${counts.arb}/${counts.total} 有套利机会`);
+                });
+
+                updateValue('arb-count', arbGames.length);
+                updateValue('displayed-count', arbGames.length);
+
                 const container = document.getElementById('games-container');
 
                 if (!container) return;
@@ -978,6 +1034,9 @@ function createGameCard(game) {
                     container.innerHTML = `
                         <div class="loading">
                             <div>当前 ${currentSport.toUpperCase()} 没有达到条件的净套利机会（含手续费后）</div>
+                            <div style="margin-top: 10px; font-size: 14px; color: #888;">
+                                共检查了 ${allGames.length} 个市场，请查看console获取详细信息
+                            </div>
                         </div>
                     `;
                     return;
