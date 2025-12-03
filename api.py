@@ -42,6 +42,11 @@ paper_trader = PaperTradingSystem()
 notifier = PushPlusNotifier()
 scheduler = BackgroundScheduler()
 
+# Shared fee/slippage assumptions so every consumer evaluates
+# opportunities with identical math
+POLYMARKET_FEE = 0.02  # 2% Polymarket fee
+KALSHI_FEE = 0.07      # 7% Kalshi fee
+SLIPPAGE_ESTIMATE = 0.005  # 0.5% slippage allowance
 
 # Cache data to avoid too frequent API calls
 nba_cache = {
@@ -97,6 +102,89 @@ football_game_history = defaultdict(lambda: {
     'kalshi_history': deque(maxlen=60),
     'timestamps': deque(maxlen=60)
 })
+
+
+def _extract_price_value(game, side):
+    """Extract the most precise available price for a given side."""
+    if not game:
+        return None
+    candidates = [
+        f"{side}_raw_price",
+        f"raw_{side}",
+        f"{side}_raw",
+        f"{side}_prob",
+        side
+    ]
+    for key in candidates:
+        value = game.get(key)
+        if value is None:
+            continue
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            continue
+    return None
+
+
+def _pick_best_leg(poly_price, kalshi_price):
+    poly_eff = poly_price * (1 + POLYMARKET_FEE + SLIPPAGE_ESTIMATE)
+    kalshi_eff = kalshi_price * (1 + KALSHI_FEE + SLIPPAGE_ESTIMATE)
+    if poly_eff <= kalshi_eff:
+        return {
+            'platform': 'Polymarket',
+            'price': poly_price,
+            'effective': poly_eff
+        }
+    return {
+        'platform': 'Kalshi',
+        'price': kalshi_price,
+        'effective': kalshi_eff
+    }
+
+
+def _calculate_risk_free_details(poly_game, kalshi_game):
+    """Return arbitrage metrics with identical math to paper trading."""
+    poly_away = _extract_price_value(poly_game, 'away')
+    poly_home = _extract_price_value(poly_game, 'home')
+    kalshi_away = _extract_price_value(kalshi_game, 'away')
+    kalshi_home = _extract_price_value(kalshi_game, 'home')
+
+    if None in [poly_away, poly_home, kalshi_away, kalshi_home]:
+        return None
+
+    away_leg = _pick_best_leg(poly_away, kalshi_away)
+    home_leg = _pick_best_leg(poly_home, kalshi_home)
+
+    gross_cost = away_leg['price'] + home_leg['price']
+    gross_edge = 100 - gross_cost
+
+    total_cost = away_leg['effective'] + home_leg['effective']
+    if total_cost <= 0:
+        return None
+
+    net_edge = 100 - total_cost
+    roi = net_edge / total_cost
+    if roi <= 0:
+        return None
+
+    return {
+        'best_away_platform': away_leg['platform'],
+        'best_home_platform': home_leg['platform'],
+        'best_away_price': round(away_leg['price'], 4),
+        'best_home_price': round(home_leg['price'], 4),
+        'best_away_effective': round(away_leg['effective'], 4),
+        'best_home_effective': round(home_leg['effective'], 4),
+        'gross_cost': round(gross_cost, 4),
+        'gross_edge': round(gross_edge, 4),
+        'total_cost': round(total_cost, 4),
+        'net_edge': round(net_edge, 4),
+        'roi_percent': round(roi * 100, 4),
+        'fees': {
+            'polymarket': POLYMARKET_FEE,
+            'kalshi': KALSHI_FEE,
+            'slippage': SLIPPAGE_ESTIMATE
+        }
+    }
 
 
 def _get_cached_data(cache_obj, now, force_refresh=False):
@@ -450,13 +538,17 @@ def fetch_all_sports_data(force_refresh=False):
     # Calculate arbitrage opportunities
     arb_opportunities = []
     for match in matched_games:
-        arb_score = _calculate_arb_score(match['polymarket'], match['kalshi'])
-        if arb_score > 0:
+        poly = match['polymarket']
+        kalshi = match['kalshi']
+        arb_details = _calculate_risk_free_details(poly, kalshi)
+        match['risk_free_arb'] = arb_details
+        if arb_details:
             arb_opportunities.append({
-                'polymarket': match['polymarket'],
-                'kalshi': match['kalshi'],
+                'polymarket': poly,
+                'kalshi': kalshi,
                 'match_type': match['match_type'],
-                'arb_score': arb_score
+                'arb_score': arb_details['roi_percent'],
+                'risk_free_arb': arb_details
             })
     
     # Transform data to homepage format for consistency
@@ -466,6 +558,8 @@ def fetch_all_sports_data(force_refresh=False):
     for match in matched_games:
         poly = match['polymarket']
         kalshi = match['kalshi']
+        arb_details = match.get('risk_free_arb')
+        arb_score = arb_details['roi_percent'] if arb_details else 0
         
         # Calculate differences
         away_diff = abs(poly['away_prob'] - kalshi['away_prob'])
@@ -511,9 +605,10 @@ def fetch_all_sports_data(force_refresh=False):
                 'home': round(home_diff, 1),
                 'max': round(max_diff, 1)
             },
-            'arbitrage_score': min(round(arb_score), 100) if arb_score > 0 else 0,
+            'arbitrage_score': round(arb_score, 2) if arb_score > 0 else 0,
             'game_time': game_time,
-            'match_type': match['match_type']
+            'match_type': match['match_type'],
+            'risk_free_arb': arb_details
         }
         
         homepage_games.append(homepage_game)
@@ -553,7 +648,8 @@ def fetch_all_sports_data(force_refresh=False):
             },
             'arbitrage_score': 0,
             'game_time': game_time,
-            'match_type': 'unmatched'
+            'match_type': 'unmatched',
+            'risk_free_arb': None
         }
         
         homepage_games.append(homepage_game)
@@ -645,30 +741,10 @@ def _calculate_arb_score(poly_game, kalshi_game):
     """
     Calculate arbitrage opportunity score
     """
-    # Get raw prices
-    poly_away = poly_game.get('away_raw_price', poly_game.get('away_prob', 0))
-    poly_home = poly_game.get('home_raw_price', poly_game.get('home_prob', 0))
-    kalshi_away = kalshi_game.get('away_raw_price', kalshi_game.get('away_prob', 0))
-    kalshi_home = kalshi_game.get('home_raw_price', kalshi_game.get('home_prob', 0))
-    
-    # Validate prices
-    if any(price <= 0 for price in [poly_away, poly_home, kalshi_away, kalshi_home]):
+    details = _calculate_risk_free_details(poly_game, kalshi_game)
+    if not details:
         return 0
-    
-    # Calculate best prices with fees
-    POLY_FEE = 0.02
-    KALSHI_FEE = 0.07
-    
-    best_away_cost = min(poly_away * (1 + POLY_FEE), kalshi_away * (1 + KALSHI_FEE))
-    best_home_cost = min(poly_home * (1 + POLY_FEE), kalshi_home * (1 + KALSHI_FEE))
-    
-    total_cost = best_away_cost + best_home_cost
-    
-    # Calculate arbitrage profit
-    if total_cost > 0 and total_cost < 100:
-        return (100 - total_cost) / total_cost * 100  # ROI percentage
-    else:
-        return 0
+    return details['roi_percent']
 
 
 @app.route('/api/odds')

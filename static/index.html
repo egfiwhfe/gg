@@ -611,18 +611,40 @@
         // 费用假设（与后端 ArbitrageDetector 保持一致）
         const POLY_FEE = 0.02;   // Polymarket ~2%
         const KALSHI_FEE = 0.07; // Kalshi ~7%
+        const SLIPPAGE_ESTIMATE = 0.005; // 额外 0.5% 滑点容忍
+
+        function extractPrice(source, key) {
+            if (!source) return null;
+            const rawKey = key === 'away' ? 'raw_away' : 'raw_home';
+            const candidates = [rawKey, key];
+            for (const candidate of candidates) {
+                const value = source[candidate];
+                if (value === undefined || value === null || value === '') continue;
+                const parsed = typeof value === 'number' ? value : parseFloat(value);
+                if (Number.isFinite(parsed)) {
+                    return parsed;
+                }
+            }
+            return null;
+        }
+
+        function formatPrice(value) {
+            if (!Number.isFinite(value)) return '-';
+            const rounded = Math.round(value * 100) / 100;
+            return Number.isInteger(rounded) ? rounded.toString() : rounded.toFixed(2);
+        }
 
         // 计算一场比赛在扣除双边手续费后的无风险套利情况
-        // 思路：在 Polymarket / Kalshi 中为每个队伍选择「含手续费后最便宜」的一边，
+
         //       如果两边合计成本 < 100，则存在无风险套利，edge 为净收益百分比
         function calcRiskFreeArb(game) {
             const poly = game.polymarket || {};
             const kalshi = game.kalshi || {};
 
-            const polyAway = poly.away;
-            const polyHome = poly.home;
-            const kalshiAway = kalshi.away;
-            const kalshiHome = kalshi.home;
+            const polyAway = extractPrice(poly, 'away');
+            const polyHome = extractPrice(poly, 'home');
+            const kalshiAway = extractPrice(kalshi, 'away');
+            const kalshiHome = extractPrice(kalshi, 'home');
 
             // 任意一边缺失价格则无法判断这种套利
             if (
@@ -633,8 +655,8 @@
             }
 
             function pickBestSide(polyPrice, kalshiPrice) {
-                const polyEffective = polyPrice * (1 + POLY_FEE);
-                const kalshiEffective = kalshiPrice * (1 + KALSHI_FEE);
+                const polyEffective = polyPrice * (1 + POLY_FEE + SLIPPAGE_ESTIMATE);
+                const kalshiEffective = kalshiPrice * (1 + KALSHI_FEE + SLIPPAGE_ESTIMATE);
 
                 if (polyEffective <= kalshiEffective) {
                     return {
@@ -642,13 +664,13 @@
                         price: polyPrice,
                         effectivePrice: polyEffective
                     };
-                } else {
-                    return {
-                        platform: 'Kalshi',
-                        price: kalshiPrice,
-                        effectivePrice: kalshiEffective
-                    };
                 }
+
+                return {
+                    platform: 'Kalshi',
+                    price: kalshiPrice,
+                    effectivePrice: kalshiEffective
+                };
             }
 
             const away = pickBestSide(polyAway, kalshiAway);
@@ -658,9 +680,8 @@
             const grossEdge = 100 - grossCost;                        // 未扣手续费理论毛利
 
             const totalEffectiveCost = away.effectivePrice + home.effectivePrice; // 含手续费成本
-            const netEdge = 100 - totalEffectiveCost;                 // 含手续费净收益
-
             if (totalEffectiveCost <= 0) return null;
+            const netEdge = 100 - totalEffectiveCost;                 // 含手续费净收益
 
             // ROI Check: Require Net Yield > 0%
             const roi = netEdge / totalEffectiveCost;
@@ -677,7 +698,7 @@
                 bestHomeFrom: home.platform,
                 totalCost: totalEffectiveCost,
                 edge: netEdge,
-                roi: roi,
+                roi,
                 grossCost,
                 grossEdge
             };
@@ -685,7 +706,7 @@
 
 
 function createGameCard(game) {
-            const arb = game.riskFreeArb || calcRiskFreeArb(game);
+            const arb = game.riskFreeArb || game.risk_free_arb || calcRiskFreeArb(game);
             if (!arb) {
                 return '';
             }
@@ -748,7 +769,7 @@ function createGameCard(game) {
                                     <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; color: #fff;">投入: ${investAway.toFixed(2)}</span>
                                 </div>
                                 <div style="font-size: 12px; color: #aaa; margin-bottom: 8px; margin-left: 15px;">
-                                    ↳ 价格: ${arb.bestAwayPrice}¢ | 预期赔付: ${payoutAway.toFixed(2)}
+                                    ↳ 价格: ${formatPrice(arb.bestAwayPrice)}¢ | 预期赔付: ${payoutAway.toFixed(2)}
                                 </div>
                                 
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 4px; align-items:center;">
@@ -756,7 +777,7 @@ function createGameCard(game) {
                                     <span style="background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; color: #fff;">投入: ${investHome.toFixed(2)}</span>
                                 </div>
                                  <div style="font-size: 12px; color: #aaa; margin-bottom: 8px; margin-left: 15px;">
-                                    ↳ 价格: ${arb.bestHomePrice}¢ | 预期赔付: ${payoutHome.toFixed(2)}
+                                    ↳ 价格: ${formatPrice(arb.bestHomePrice)}¢ | 预期赔付: ${payoutHome.toFixed(2)}
                                 </div>
 
                                 <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 8px; padding-top: 8px; display: flex; justify-content: space-between; font-weight: bold; font-size: 15px;">
@@ -937,13 +958,17 @@ function createGameCard(game) {
                     document.getElementById('max-diff').textContent = maxDiff.toFixed(1) + '%';
                 }
 
-                // ✅ 只保留「扣掉双边手续费后仍为正」的无风险净套利
-                const arbGames = allGames
-                    .map(g => ({
-                        ...g,
-                        riskFreeArb: calcRiskFreeArb(g)
-                    }))
-                    .filter(g => g.riskFreeArb);
+                // ✅ 只保留「扣掉双边手续费+滑点后仍为正」的无风险净套利
+                const normalizedGames = (allGames || []).map(game => {
+                    const serverArb = game.risk_free_arb || game.riskFreeArb;
+                    const computedArb = serverArb || calcRiskFreeArb(game);
+                    return {
+                        ...game,
+                        riskFreeArb: computedArb
+                    };
+                });
+
+                const arbGames = normalizedGames.filter(g => g.riskFreeArb);
 
                 const container = document.getElementById('games-container');
 
