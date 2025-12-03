@@ -1,12 +1,14 @@
 {
   "success": true,
-  "timestamp": "2025-12-03T02:41:22.235499",
+  "timestamp": "2025-12-03T03:25:30.693729",
   "stats": {
     "total_polymarket_games": 340,
-    "total_kalshi_games": 20,
-    "matched_games": 23,
-    "arb_opportunities": 6,
-    "match_rate": 114.99999999999999
+    "total_kalshi_games": 18,
+    "matched_games": 22,
+    "arb_opportunities": 4,
+    "arb_homepage_games": 4,
+    "homepage_games": 340,
+    "match_rate": 122.22222222222223
   },
   "matched_games": [
     {
@@ -34,17 +36,18 @@
         "home_code": "NOP",
         "close_time": "2025-12-19T01:00:00Z",
         "sport": "basketball",
-        "home_prob": 30,
+        "home_prob": 26,
         "home_raw_price": 29,
         "home_ticker": "KXNBAGAME-25DEC04MINNOP-NOP",
-        "away_prob": 70,
-        "away_raw_price": 69,
+        "away_prob": 74,
+        "away_raw_price": 85,
         "away_ticker": "KXNBAGAME-25DEC04MINNOP-MIN",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04MINNOP-MIN",
         "market_id": "KXNBAGAME-25DEC04MINNOP-MIN",
         "end_date": "2025-12-19T01:00:00Z"
       },
-      "match_type": "fuzzy"
+      "match_type": "fuzzy",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -71,17 +74,18 @@
         "home_code": "NOP",
         "close_time": "2025-12-19T01:00:00Z",
         "sport": "basketball",
-        "home_prob": 30,
+        "home_prob": 26,
         "home_raw_price": 29,
         "home_ticker": "KXNBAGAME-25DEC04MINNOP-NOP",
-        "away_prob": 70,
-        "away_raw_price": 69,
+        "away_prob": 74,
+        "away_raw_price": 85,
         "away_ticker": "KXNBAGAME-25DEC04MINNOP-MIN",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04MINNOP-MIN",
         "market_id": "KXNBAGAME-25DEC04MINNOP-MIN",
         "end_date": "2025-12-19T01:00:00Z"
       },
-      "match_type": "fuzzy"
+      "match_type": "fuzzy",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -108,54 +112,18 @@
         "home_code": "NOP",
         "close_time": "2025-12-19T01:00:00Z",
         "sport": "basketball",
-        "home_prob": 30,
+        "home_prob": 26,
         "home_raw_price": 29,
         "home_ticker": "KXNBAGAME-25DEC04MINNOP-NOP",
-        "away_prob": 70,
-        "away_raw_price": 69,
+        "away_prob": 74,
+        "away_raw_price": 85,
         "away_ticker": "KXNBAGAME-25DEC04MINNOP-MIN",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04MINNOP-MIN",
         "market_id": "KXNBAGAME-25DEC04MINNOP-MIN",
         "end_date": "2025-12-19T01:00:00Z"
       },
-      "match_type": "fuzzy"
-    },
-    {
-      "polymarket": {
-        "platform": "Polymarket",
-        "market_id": "705401",
-        "away_team": "Trail Blazers",
-        "home_team": "Raptors",
-        "away_code": "POR",
-        "home_code": "TOR",
-        "away_prob": 6,
-        "home_prob": 94,
-        "away_raw_price": 5.5,
-        "home_raw_price": 94.5,
-        "slug": "nba-por-tor-2025-12-02",
-        "end_date": "2025-12-03T00:30:00Z",
-        "url": "https://polymarket.com/event/nba-por-tor-2025-12-02",
-        "sport": "other"
-      },
-      "kalshi": {
-        "platform": "Kalshi",
-        "away_team": "Portland",
-        "home_team": "Toronto",
-        "away_code": "POR",
-        "home_code": "TOR",
-        "close_time": "2025-12-17T00:30:00Z",
-        "sport": "basketball",
-        "home_prob": 80,
-        "home_raw_price": 80,
-        "home_ticker": "KXNBAGAME-25DEC02PORTOR-TOR",
-        "away_prob": 20,
-        "away_raw_price": 20,
-        "away_ticker": "KXNBAGAME-25DEC02PORTOR-POR",
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02PORTOR-POR",
-        "market_id": "KXNBAGAME-25DEC02PORTOR-POR",
-        "end_date": "2025-12-17T00:30:00Z"
-      },
-      "match_type": "exact"
+      "match_type": "fuzzy",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -165,10 +133,10 @@
         "home_team": "Celtics",
         "away_code": "NYK",
         "home_code": "BOS",
-        "away_prob": 38,
-        "home_prob": 62,
-        "away_raw_price": 37.5,
-        "home_raw_price": 62.5,
+        "away_prob": 12,
+        "home_prob": 88,
+        "away_raw_price": 11.5,
+        "home_raw_price": 88.5,
         "slug": "nba-nyk-bos-2025-12-02",
         "end_date": "2025-12-03T01:00:00Z",
         "url": "https://polymarket.com/event/nba-nyk-bos-2025-12-02",
@@ -182,17 +150,18 @@
         "home_code": "BOS",
         "close_time": "2025-12-17T01:00:00Z",
         "sport": "basketball",
-        "away_prob": 29,
-        "away_raw_price": 29,
+        "away_prob": 19,
+        "away_raw_price": 19,
         "away_ticker": "KXNBAGAME-25DEC02NYKBOS-NYK",
-        "home_prob": 71,
-        "home_raw_price": 72,
+        "home_prob": 81,
+        "home_raw_price": 83,
         "home_ticker": "KXNBAGAME-25DEC02NYKBOS-BOS",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02NYKBOS-NYK",
         "market_id": "KXNBAGAME-25DEC02NYKBOS-NYK",
         "end_date": "2025-12-17T01:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -202,10 +171,10 @@
         "home_team": "Pelicans",
         "away_code": "MIN",
         "home_code": "NOP",
-        "away_prob": 54,
-        "home_prob": 46,
-        "away_raw_price": 54.50000000000001,
-        "home_raw_price": 45.5,
+        "away_prob": 37,
+        "home_prob": 63,
+        "away_raw_price": 36.5,
+        "home_raw_price": 63.5,
         "slug": "nba-min-nop-2025-12-02",
         "end_date": "2025-12-03T01:00:00Z",
         "url": "https://polymarket.com/event/nba-min-nop-2025-12-02",
@@ -219,17 +188,35 @@
         "home_code": "NOP",
         "close_time": "2025-12-17T01:00:00Z",
         "sport": "basketball",
-        "home_prob": 50,
-        "home_raw_price": 51,
+        "home_prob": 85,
+        "home_raw_price": 84,
         "home_ticker": "KXNBAGAME-25DEC02MINNOP-NOP",
-        "away_prob": 50,
-        "away_raw_price": 50,
+        "away_prob": 15,
+        "away_raw_price": 14,
         "away_ticker": "KXNBAGAME-25DEC02MINNOP-MIN",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MINNOP-MIN",
         "market_id": "KXNBAGAME-25DEC02MINNOP-MIN",
         "end_date": "2025-12-17T01:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 14.0,
+        "best_home_price": 63.5,
+        "best_away_effective": 15.05,
+        "best_home_effective": 65.0875,
+        "gross_cost": 77.5,
+        "gross_edge": 22.5,
+        "total_cost": 80.1375,
+        "net_edge": 19.8625,
+        "roi_percent": 24.7855,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
     },
     {
       "polymarket": {
@@ -239,10 +226,10 @@
         "home_team": "Spurs",
         "away_code": "MEM",
         "home_code": "SAS",
-        "away_prob": 33,
-        "home_prob": 67,
-        "away_raw_price": 33.0,
-        "home_raw_price": 67.0,
+        "away_prob": 71,
+        "home_prob": 29,
+        "away_raw_price": 71.5,
+        "home_raw_price": 28.499999999999996,
         "slug": "nba-mem-sas-2025-12-02",
         "end_date": "2025-12-03T01:00:00Z",
         "url": "https://polymarket.com/event/nba-mem-sas-2025-12-02",
@@ -257,16 +244,34 @@
         "close_time": "2025-12-17T01:00:00Z",
         "sport": "basketball",
         "home_prob": 77,
-        "home_raw_price": 78,
+        "home_raw_price": 76,
         "home_ticker": "KXNBAGAME-25DEC02MEMSAS-SAS",
         "away_prob": 23,
-        "away_raw_price": 23,
+        "away_raw_price": 22,
         "away_ticker": "KXNBAGAME-25DEC02MEMSAS-MEM",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MEMSAS-MEM",
         "market_id": "KXNBAGAME-25DEC02MEMSAS-MEM",
         "end_date": "2025-12-17T01:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 22.0,
+        "best_home_price": 28.5,
+        "best_away_effective": 23.65,
+        "best_home_effective": 29.2125,
+        "gross_cost": 50.5,
+        "gross_edge": 49.5,
+        "total_cost": 52.8625,
+        "net_edge": 47.1375,
+        "roi_percent": 89.17,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
     },
     {
       "polymarket": {
@@ -293,17 +298,18 @@
         "home_code": "GSW",
         "close_time": "2025-12-17T04:00:00Z",
         "sport": "basketball",
-        "away_prob": 83,
+        "away_prob": 81,
         "away_raw_price": 83,
         "away_ticker": "KXNBAGAME-25DEC02OKCGSW-OKC",
-        "home_prob": 17,
-        "home_raw_price": 17,
+        "home_prob": 19,
+        "home_raw_price": 19,
         "home_ticker": "KXNBAGAME-25DEC02OKCGSW-GSW",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02OKCGSW-OKC",
         "market_id": "KXNBAGAME-25DEC02OKCGSW-OKC",
         "end_date": "2025-12-17T04:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -313,10 +319,10 @@
         "home_team": "Cavaliers",
         "away_code": "POR",
         "home_code": "CLE",
-        "away_prob": 24,
-        "home_prob": 76,
-        "away_raw_price": 23.5,
-        "home_raw_price": 76.5,
+        "away_prob": 22,
+        "home_prob": 78,
+        "away_raw_price": 22.0,
+        "home_raw_price": 78.0,
         "slug": "nba-por-cle-2025-12-03",
         "end_date": "2025-12-04T00:00:00Z",
         "url": "https://polymarket.com/event/nba-por-cle-2025-12-03",
@@ -340,7 +346,8 @@
         "market_id": "KXNBAGAME-25DEC03PORCLE-POR",
         "end_date": "2025-12-18T00:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -350,10 +357,10 @@
         "home_team": "Pacers",
         "away_code": "DEN",
         "home_code": "IND",
-        "away_prob": 76,
-        "home_prob": 24,
-        "away_raw_price": 76.5,
-        "home_raw_price": 23.5,
+        "away_prob": 75,
+        "home_prob": 25,
+        "away_raw_price": 75.0,
+        "home_raw_price": 25.0,
         "slug": "nba-den-ind-2025-12-03",
         "end_date": "2025-12-04T00:00:00Z",
         "url": "https://polymarket.com/event/nba-den-ind-2025-12-03",
@@ -371,13 +378,14 @@
         "home_raw_price": 24,
         "home_ticker": "KXNBAGAME-25DEC03DENIND-IND",
         "away_prob": 76,
-        "away_raw_price": 77,
+        "away_raw_price": 76,
         "away_ticker": "KXNBAGAME-25DEC03DENIND-DEN",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03DENIND-DEN",
         "market_id": "KXNBAGAME-25DEC03DENIND-DEN",
         "end_date": "2025-12-18T00:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -389,8 +397,8 @@
         "home_code": "ORL",
         "away_prob": 30,
         "home_prob": 70,
-        "away_raw_price": 29.5,
-        "home_raw_price": 70.5,
+        "away_raw_price": 30.0,
+        "home_raw_price": 70.0,
         "slug": "nba-sas-orl-2025-12-03",
         "end_date": "2025-12-04T00:00:00Z",
         "url": "https://polymarket.com/event/nba-sas-orl-2025-12-03",
@@ -414,7 +422,8 @@
         "market_id": "KXNBAGAME-25DEC03SASORL-SAS",
         "end_date": "2025-12-18T00:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -424,10 +433,10 @@
         "home_team": "Hawks",
         "away_code": "LAC",
         "home_code": "ATL",
-        "away_prob": 36,
-        "home_prob": 64,
-        "away_raw_price": 35.5,
-        "home_raw_price": 64.5,
+        "away_prob": 37,
+        "home_prob": 63,
+        "away_raw_price": 36.5,
+        "home_raw_price": 63.5,
         "slug": "nba-lac-atl-2025-12-03",
         "end_date": "2025-12-04T00:30:00Z",
         "url": "https://polymarket.com/event/nba-lac-atl-2025-12-03",
@@ -441,17 +450,18 @@
         "home_code": "ATL",
         "close_time": "2025-12-18T00:30:00Z",
         "sport": "basketball",
-        "away_prob": 36,
-        "away_raw_price": 36,
+        "away_prob": 37,
+        "away_raw_price": 38,
         "away_ticker": "KXNBAGAME-25DEC03LACATL-LAC",
-        "home_prob": 64,
-        "home_raw_price": 66,
+        "home_prob": 63,
+        "home_raw_price": 65,
         "home_ticker": "KXNBAGAME-25DEC03LACATL-ATL",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03LACATL-LAC",
         "market_id": "KXNBAGAME-25DEC03LACATL-LAC",
         "end_date": "2025-12-18T00:30:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -488,7 +498,8 @@
         "market_id": "KXNBAGAME-25DEC03CHANYK-CHA",
         "end_date": "2025-12-18T00:30:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -525,7 +536,8 @@
         "market_id": "KXNBAGAME-25DEC03BKNCHI-BKN",
         "end_date": "2025-12-18T01:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -552,17 +564,18 @@
         "home_code": "HOU",
         "close_time": "2025-12-18T01:00:00Z",
         "sport": "basketball",
-        "away_prob": 12,
-        "away_raw_price": 12,
+        "away_prob": 13,
+        "away_raw_price": 13,
         "away_ticker": "KXNBAGAME-25DEC03SACHOU-SAC",
-        "home_prob": 88,
+        "home_prob": 87,
         "home_raw_price": 89,
         "home_ticker": "KXNBAGAME-25DEC03SACHOU-HOU",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03SACHOU-SAC",
         "market_id": "KXNBAGAME-25DEC03SACHOU-SAC",
         "end_date": "2025-12-18T01:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -572,10 +585,10 @@
         "home_team": "Bucks",
         "away_code": "DET",
         "home_code": "MIL",
-        "away_prob": 60,
-        "home_prob": 40,
-        "away_raw_price": 60.5,
-        "home_raw_price": 39.5,
+        "away_prob": 57,
+        "home_prob": 43,
+        "away_raw_price": 57.49999999999999,
+        "home_raw_price": 42.5,
         "slug": "nba-det-mil-2025-12-03",
         "end_date": "2025-12-04T01:00:00Z",
         "url": "https://polymarket.com/event/nba-det-mil-2025-12-03",
@@ -589,17 +602,18 @@
         "home_code": "MIL",
         "close_time": "2025-12-18T01:00:00Z",
         "sport": "basketball",
-        "home_prob": 41,
-        "home_raw_price": 41,
+        "home_prob": 43,
+        "home_raw_price": 43,
         "home_ticker": "KXNBAGAME-25DEC03DETMIL-MIL",
-        "away_prob": 59,
-        "away_raw_price": 60,
+        "away_prob": 57,
+        "away_raw_price": 58,
         "away_ticker": "KXNBAGAME-25DEC03DETMIL-DET",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03DETMIL-DET",
         "market_id": "KXNBAGAME-25DEC03DETMIL-DET",
         "end_date": "2025-12-18T01:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -609,10 +623,10 @@
         "home_team": "Mavericks",
         "away_code": "MIA",
         "home_code": "DAL",
-        "away_prob": 63,
-        "home_prob": 37,
-        "away_raw_price": 63.0,
-        "home_raw_price": 37.0,
+        "away_prob": 61,
+        "home_prob": 39,
+        "away_raw_price": 61.5,
+        "home_raw_price": 38.5,
         "slug": "nba-mia-dal-2025-12-03",
         "end_date": "2025-12-04T01:30:00Z",
         "url": "https://polymarket.com/event/nba-mia-dal-2025-12-03",
@@ -626,17 +640,18 @@
         "home_code": "DAL",
         "close_time": "2025-12-18T01:30:00Z",
         "sport": "basketball",
-        "away_prob": 62,
+        "away_prob": 61,
         "away_raw_price": 63,
         "away_ticker": "KXNBAGAME-25DEC03MIADAL-MIA",
-        "home_prob": 38,
-        "home_raw_price": 38,
+        "home_prob": 39,
+        "home_raw_price": 39,
         "home_ticker": "KXNBAGAME-25DEC03MIADAL-DAL",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03MIADAL-MIA",
         "market_id": "KXNBAGAME-25DEC03MIADAL-MIA",
         "end_date": "2025-12-18T01:30:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -673,7 +688,8 @@
         "market_id": "KXNBAGAME-25DEC04GSWPHI-GSW",
         "end_date": "2025-12-19T00:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -683,10 +699,10 @@
         "home_team": "Wizards",
         "away_code": "BOS",
         "home_code": "WAS",
-        "away_prob": 79,
-        "home_prob": 21,
-        "away_raw_price": 79.5,
-        "home_raw_price": 20.5,
+        "away_prob": 80,
+        "home_prob": 20,
+        "away_raw_price": 80.5,
+        "home_raw_price": 19.5,
         "slug": "nba-bos-was-2025-12-04",
         "end_date": "2025-12-05T00:00:00Z",
         "url": "https://polymarket.com/event/nba-bos-was-2025-12-04",
@@ -700,17 +716,18 @@
         "home_code": "WAS",
         "close_time": "2025-12-19T00:00:00Z",
         "sport": "basketball",
-        "home_prob": 23,
-        "home_raw_price": 24,
+        "home_prob": 17,
+        "home_raw_price": 17,
         "home_ticker": "KXNBAGAME-25DEC04BOSWAS-WAS",
-        "away_prob": 77,
-        "away_raw_price": 82,
+        "away_prob": 83,
+        "away_raw_price": 83,
         "away_ticker": "KXNBAGAME-25DEC04BOSWAS-BOS",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04BOSWAS-BOS",
         "market_id": "KXNBAGAME-25DEC04BOSWAS-BOS",
         "end_date": "2025-12-19T00:00:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -720,10 +737,10 @@
         "home_team": "Nets",
         "away_code": "UTA",
         "home_code": "BKN",
-        "away_prob": 60,
-        "home_prob": 40,
-        "away_raw_price": 60.0,
-        "home_raw_price": 40.0,
+        "away_prob": 62,
+        "home_prob": 38,
+        "away_raw_price": 62.0,
+        "home_raw_price": 38.0,
         "slug": "nba-uta-bkn-2025-12-04",
         "end_date": "2025-12-05T00:30:00Z",
         "url": "https://polymarket.com/event/nba-uta-bkn-2025-12-04",
@@ -747,7 +764,8 @@
         "market_id": "KXNBAGAME-25DEC04UTABKN-UTA",
         "end_date": "2025-12-19T00:30:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -759,8 +777,8 @@
         "home_code": "TOR",
         "away_prob": 55,
         "home_prob": 45,
-        "away_raw_price": 55.50000000000001,
-        "home_raw_price": 44.5,
+        "away_raw_price": 55.00000000000001,
+        "home_raw_price": 45.0,
         "slug": "nba-lal-tor-2025-12-04",
         "end_date": "2025-12-05T00:30:00Z",
         "url": "https://polymarket.com/event/nba-lal-tor-2025-12-04",
@@ -774,17 +792,18 @@
         "home_code": "TOR",
         "close_time": "2025-12-19T00:30:00Z",
         "sport": "basketball",
-        "home_prob": 45,
-        "home_raw_price": 46,
+        "home_prob": 46,
+        "home_raw_price": 48,
         "home_ticker": "KXNBAGAME-25DEC04LALTOR-TOR",
-        "away_prob": 55,
+        "away_prob": 54,
         "away_raw_price": 57,
         "away_ticker": "KXNBAGAME-25DEC04LALTOR-LAL",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04LALTOR-LAL",
         "market_id": "KXNBAGAME-25DEC04LALTOR-LAL",
         "end_date": "2025-12-19T00:30:00Z"
       },
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null
     },
     {
       "polymarket": {
@@ -811,246 +830,35 @@
         "home_code": "NOP",
         "close_time": "2025-12-17T01:00:00Z",
         "sport": "basketball",
-        "home_prob": 50,
-        "home_raw_price": 51,
+        "home_prob": 85,
+        "home_raw_price": 84,
         "home_ticker": "KXNBAGAME-25DEC02MINNOP-NOP",
-        "away_prob": 50,
-        "away_raw_price": 50,
-        "away_ticker": "KXNBAGAME-25DEC02MINNOP-MIN",
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MINNOP-MIN",
-        "market_id": "KXNBAGAME-25DEC02MINNOP-MIN",
-        "end_date": "2025-12-17T01:00:00Z"
-      },
-      "match_type": "exact"
-    },
-    {
-      "polymarket": {
-        "platform": "Polymarket",
-        "market_id": "685748",
-        "away_team": "Predators",
-        "home_team": "Avalanche",
-        "away_code": "Predators",
-        "home_code": "Avalanche",
-        "away_prob": 50,
-        "home_prob": 50,
-        "away_raw_price": 49.5,
-        "home_raw_price": 50.5,
-        "slug": "nhl-nsh-col-2025-12-14",
-        "end_date": "2025-12-14T02:00:00Z",
-        "url": "https://polymarket.com/event/nhl-nsh-col-2025-12-14",
-        "sport": "other"
-      },
-      "kalshi": {
-        "platform": "Kalshi",
-        "away_team": "Portland",
-        "home_team": "Cleveland",
-        "away_code": "POR",
-        "home_code": "CLE",
-        "close_time": "2025-12-18T00:00:00Z",
-        "sport": "basketball",
-        "away_prob": 24,
-        "away_raw_price": 24,
-        "away_ticker": "KXNBAGAME-25DEC03PORCLE-POR",
-        "home_prob": 76,
-        "home_raw_price": 79,
-        "home_ticker": "KXNBAGAME-25DEC03PORCLE-CLE",
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03PORCLE-POR",
-        "market_id": "KXNBAGAME-25DEC03PORCLE-POR",
-        "end_date": "2025-12-18T00:00:00Z"
-      },
-      "match_type": "fuzzy"
-    }
-  ],
-  "arb_opportunities": [
-    {
-      "polymarket": {
-        "platform": "Polymarket",
-        "market_id": "705401",
-        "away_team": "Trail Blazers",
-        "home_team": "Raptors",
-        "away_code": "POR",
-        "home_code": "TOR",
-        "away_prob": 6,
-        "home_prob": 94,
-        "away_raw_price": 5.5,
-        "home_raw_price": 94.5,
-        "slug": "nba-por-tor-2025-12-02",
-        "end_date": "2025-12-03T00:30:00Z",
-        "url": "https://polymarket.com/event/nba-por-tor-2025-12-02",
-        "sport": "other"
-      },
-      "kalshi": {
-        "platform": "Kalshi",
-        "away_team": "Portland",
-        "home_team": "Toronto",
-        "away_code": "POR",
-        "home_code": "TOR",
-        "close_time": "2025-12-17T00:30:00Z",
-        "sport": "basketball",
-        "home_prob": 80,
-        "home_raw_price": 80,
-        "home_ticker": "KXNBAGAME-25DEC02PORTOR-TOR",
-        "away_prob": 20,
-        "away_raw_price": 20,
-        "away_ticker": "KXNBAGAME-25DEC02PORTOR-POR",
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02PORTOR-POR",
-        "market_id": "KXNBAGAME-25DEC02PORTOR-POR",
-        "end_date": "2025-12-17T00:30:00Z"
-      },
-      "match_type": "exact",
-      "arb_score": 9.637101195044394
-    },
-    {
-      "polymarket": {
-        "platform": "Polymarket",
-        "market_id": "705404",
-        "away_team": "Knicks",
-        "home_team": "Celtics",
-        "away_code": "NYK",
-        "home_code": "BOS",
-        "away_prob": 38,
-        "home_prob": 62,
-        "away_raw_price": 37.5,
-        "home_raw_price": 62.5,
-        "slug": "nba-nyk-bos-2025-12-02",
-        "end_date": "2025-12-03T01:00:00Z",
-        "url": "https://polymarket.com/event/nba-nyk-bos-2025-12-02",
-        "sport": "other"
-      },
-      "kalshi": {
-        "platform": "Kalshi",
-        "away_team": "New York K",
-        "home_team": "Boston",
-        "away_code": "NYK",
-        "home_code": "BOS",
-        "close_time": "2025-12-17T01:00:00Z",
-        "sport": "basketball",
-        "away_prob": 29,
-        "away_raw_price": 29,
-        "away_ticker": "KXNBAGAME-25DEC02NYKBOS-NYK",
-        "home_prob": 71,
-        "home_raw_price": 72,
-        "home_ticker": "KXNBAGAME-25DEC02NYKBOS-BOS",
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02NYKBOS-NYK",
-        "market_id": "KXNBAGAME-25DEC02NYKBOS-NYK",
-        "end_date": "2025-12-17T01:00:00Z"
-      },
-      "match_type": "exact",
-      "arb_score": 5.507491031863261
-    },
-    {
-      "polymarket": {
-        "platform": "Polymarket",
-        "market_id": "705407",
-        "away_team": "Timberwolves",
-        "home_team": "Pelicans",
-        "away_code": "MIN",
-        "home_code": "NOP",
-        "away_prob": 54,
-        "home_prob": 46,
-        "away_raw_price": 54.50000000000001,
-        "home_raw_price": 45.5,
-        "slug": "nba-min-nop-2025-12-02",
-        "end_date": "2025-12-03T01:00:00Z",
-        "url": "https://polymarket.com/event/nba-min-nop-2025-12-02",
-        "sport": "other"
-      },
-      "kalshi": {
-        "platform": "Kalshi",
-        "away_team": "Minnesota",
-        "home_team": "New Orleans",
-        "away_code": "MIN",
-        "home_code": "NOP",
-        "close_time": "2025-12-17T01:00:00Z",
-        "sport": "basketball",
-        "home_prob": 50,
-        "home_raw_price": 51,
-        "home_ticker": "KXNBAGAME-25DEC02MINNOP-NOP",
-        "away_prob": 50,
-        "away_raw_price": 50,
+        "away_prob": 15,
+        "away_raw_price": 14,
         "away_ticker": "KXNBAGAME-25DEC02MINNOP-MIN",
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MINNOP-MIN",
         "market_id": "KXNBAGAME-25DEC02MINNOP-MIN",
         "end_date": "2025-12-17T01:00:00Z"
       },
       "match_type": "exact",
-      "arb_score": 0.09008107296567251
-    },
-    {
-      "polymarket": {
-        "platform": "Polymarket",
-        "market_id": "705409",
-        "away_team": "Grizzlies",
-        "home_team": "Spurs",
-        "away_code": "MEM",
-        "home_code": "SAS",
-        "away_prob": 33,
-        "home_prob": 67,
-        "away_raw_price": 33.0,
-        "home_raw_price": 67.0,
-        "slug": "nba-mem-sas-2025-12-02",
-        "end_date": "2025-12-03T01:00:00Z",
-        "url": "https://polymarket.com/event/nba-mem-sas-2025-12-02",
-        "sport": "other"
-      },
-      "kalshi": {
-        "platform": "Kalshi",
-        "away_team": "Memphis",
-        "home_team": "San Antonio",
-        "away_code": "MEM",
-        "home_code": "SAS",
-        "close_time": "2025-12-17T01:00:00Z",
-        "sport": "basketball",
-        "home_prob": 77,
-        "home_raw_price": 78,
-        "home_ticker": "KXNBAGAME-25DEC02MEMSAS-SAS",
-        "away_prob": 23,
-        "away_raw_price": 23,
-        "away_ticker": "KXNBAGAME-25DEC02MEMSAS-MEM",
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MEMSAS-MEM",
-        "market_id": "KXNBAGAME-25DEC02MEMSAS-MEM",
-        "end_date": "2025-12-17T01:00:00Z"
-      },
-      "match_type": "exact",
-      "arb_score": 7.58472296933835
-    },
-    {
-      "polymarket": {
-        "platform": "Polymarket",
-        "market_id": "733084",
-        "away_team": "Timberwolves",
-        "home_team": "Pelicans",
-        "away_code": "MIN",
-        "home_code": "NOP",
-        "away_prob": 81,
-        "home_prob": 19,
-        "away_raw_price": 81.0,
-        "home_raw_price": 19.0,
-        "slug": "nba-min-nop-2025-12-04",
-        "end_date": "2025-12-05T01:00:00Z",
-        "url": "https://polymarket.com/event/nba-min-nop-2025-12-04",
-        "sport": "other"
-      },
-      "kalshi": {
-        "platform": "Kalshi",
-        "away_team": "Minnesota",
-        "home_team": "New Orleans",
-        "away_code": "MIN",
-        "home_code": "NOP",
-        "close_time": "2025-12-17T01:00:00Z",
-        "sport": "basketball",
-        "home_prob": 50,
-        "home_raw_price": 51,
-        "home_ticker": "KXNBAGAME-25DEC02MINNOP-NOP",
-        "away_prob": 50,
-        "away_raw_price": 50,
-        "away_ticker": "KXNBAGAME-25DEC02MINNOP-MIN",
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MINNOP-MIN",
-        "market_id": "KXNBAGAME-25DEC02MINNOP-MIN",
-        "end_date": "2025-12-17T01:00:00Z"
-      },
-      "match_type": "exact",
-      "arb_score": 37.211855104281014
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 14.0,
+        "best_home_price": 19.0,
+        "best_away_effective": 15.05,
+        "best_home_effective": 19.475,
+        "gross_cost": 33.0,
+        "gross_edge": 67.0,
+        "total_cost": 34.525,
+        "net_edge": 65.475,
+        "roi_percent": 189.6452,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
     },
     {
       "polymarket": {
@@ -1088,7 +896,326 @@
         "end_date": "2025-12-18T00:00:00Z"
       },
       "match_type": "fuzzy",
-      "arb_score": 29.550459904132666
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 24.0,
+        "best_home_price": 50.5,
+        "best_away_effective": 25.8,
+        "best_home_effective": 51.7625,
+        "gross_cost": 74.5,
+        "gross_edge": 25.5,
+        "total_cost": 77.5625,
+        "net_edge": 22.4375,
+        "roi_percent": 28.9283,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
+    }
+  ],
+  "arb_opportunities": [
+    {
+      "polymarket": {
+        "platform": "Polymarket",
+        "market_id": "705407",
+        "away_team": "Timberwolves",
+        "home_team": "Pelicans",
+        "away_code": "MIN",
+        "home_code": "NOP",
+        "away_prob": 37,
+        "home_prob": 63,
+        "away_raw_price": 36.5,
+        "home_raw_price": 63.5,
+        "slug": "nba-min-nop-2025-12-02",
+        "end_date": "2025-12-03T01:00:00Z",
+        "url": "https://polymarket.com/event/nba-min-nop-2025-12-02",
+        "sport": "other"
+      },
+      "kalshi": {
+        "platform": "Kalshi",
+        "away_team": "Minnesota",
+        "home_team": "New Orleans",
+        "away_code": "MIN",
+        "home_code": "NOP",
+        "close_time": "2025-12-17T01:00:00Z",
+        "sport": "basketball",
+        "home_prob": 85,
+        "home_raw_price": 84,
+        "home_ticker": "KXNBAGAME-25DEC02MINNOP-NOP",
+        "away_prob": 15,
+        "away_raw_price": 14,
+        "away_ticker": "KXNBAGAME-25DEC02MINNOP-MIN",
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MINNOP-MIN",
+        "market_id": "KXNBAGAME-25DEC02MINNOP-MIN",
+        "end_date": "2025-12-17T01:00:00Z"
+      },
+      "match_type": "exact",
+      "arb_score": 24.7855,
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 14.0,
+        "best_home_price": 63.5,
+        "best_away_effective": 15.05,
+        "best_home_effective": 65.0875,
+        "gross_cost": 77.5,
+        "gross_edge": 22.5,
+        "total_cost": 80.1375,
+        "net_edge": 19.8625,
+        "roi_percent": 24.7855,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      },
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 14.0,
+        "bestHomePrice": 63.5,
+        "bestAwayEffective": 15.05,
+        "bestHomeEffective": 65.0875,
+        "totalCost": 80.1375,
+        "edge": 19.8625,
+        "grossCost": 77.5,
+        "grossEdge": 22.5,
+        "roiPercent": 24.7855,
+        "roi": 0.247855,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
+    },
+    {
+      "polymarket": {
+        "platform": "Polymarket",
+        "market_id": "705409",
+        "away_team": "Grizzlies",
+        "home_team": "Spurs",
+        "away_code": "MEM",
+        "home_code": "SAS",
+        "away_prob": 71,
+        "home_prob": 29,
+        "away_raw_price": 71.5,
+        "home_raw_price": 28.499999999999996,
+        "slug": "nba-mem-sas-2025-12-02",
+        "end_date": "2025-12-03T01:00:00Z",
+        "url": "https://polymarket.com/event/nba-mem-sas-2025-12-02",
+        "sport": "other"
+      },
+      "kalshi": {
+        "platform": "Kalshi",
+        "away_team": "Memphis",
+        "home_team": "San Antonio",
+        "away_code": "MEM",
+        "home_code": "SAS",
+        "close_time": "2025-12-17T01:00:00Z",
+        "sport": "basketball",
+        "home_prob": 77,
+        "home_raw_price": 76,
+        "home_ticker": "KXNBAGAME-25DEC02MEMSAS-SAS",
+        "away_prob": 23,
+        "away_raw_price": 22,
+        "away_ticker": "KXNBAGAME-25DEC02MEMSAS-MEM",
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MEMSAS-MEM",
+        "market_id": "KXNBAGAME-25DEC02MEMSAS-MEM",
+        "end_date": "2025-12-17T01:00:00Z"
+      },
+      "match_type": "exact",
+      "arb_score": 89.17,
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 22.0,
+        "best_home_price": 28.5,
+        "best_away_effective": 23.65,
+        "best_home_effective": 29.2125,
+        "gross_cost": 50.5,
+        "gross_edge": 49.5,
+        "total_cost": 52.8625,
+        "net_edge": 47.1375,
+        "roi_percent": 89.17,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      },
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 22.0,
+        "bestHomePrice": 28.5,
+        "bestAwayEffective": 23.65,
+        "bestHomeEffective": 29.2125,
+        "totalCost": 52.8625,
+        "edge": 47.1375,
+        "grossCost": 50.5,
+        "grossEdge": 49.5,
+        "roiPercent": 89.17,
+        "roi": 0.8917,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
+    },
+    {
+      "polymarket": {
+        "platform": "Polymarket",
+        "market_id": "733084",
+        "away_team": "Timberwolves",
+        "home_team": "Pelicans",
+        "away_code": "MIN",
+        "home_code": "NOP",
+        "away_prob": 81,
+        "home_prob": 19,
+        "away_raw_price": 81.0,
+        "home_raw_price": 19.0,
+        "slug": "nba-min-nop-2025-12-04",
+        "end_date": "2025-12-05T01:00:00Z",
+        "url": "https://polymarket.com/event/nba-min-nop-2025-12-04",
+        "sport": "other"
+      },
+      "kalshi": {
+        "platform": "Kalshi",
+        "away_team": "Minnesota",
+        "home_team": "New Orleans",
+        "away_code": "MIN",
+        "home_code": "NOP",
+        "close_time": "2025-12-17T01:00:00Z",
+        "sport": "basketball",
+        "home_prob": 85,
+        "home_raw_price": 84,
+        "home_ticker": "KXNBAGAME-25DEC02MINNOP-NOP",
+        "away_prob": 15,
+        "away_raw_price": 14,
+        "away_ticker": "KXNBAGAME-25DEC02MINNOP-MIN",
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MINNOP-MIN",
+        "market_id": "KXNBAGAME-25DEC02MINNOP-MIN",
+        "end_date": "2025-12-17T01:00:00Z"
+      },
+      "match_type": "exact",
+      "arb_score": 189.6452,
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 14.0,
+        "best_home_price": 19.0,
+        "best_away_effective": 15.05,
+        "best_home_effective": 19.475,
+        "gross_cost": 33.0,
+        "gross_edge": 67.0,
+        "total_cost": 34.525,
+        "net_edge": 65.475,
+        "roi_percent": 189.6452,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      },
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 14.0,
+        "bestHomePrice": 19.0,
+        "bestAwayEffective": 15.05,
+        "bestHomeEffective": 19.475,
+        "totalCost": 34.525,
+        "edge": 65.475,
+        "grossCost": 33.0,
+        "grossEdge": 67.0,
+        "roiPercent": 189.6452,
+        "roi": 1.896452,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
+    },
+    {
+      "polymarket": {
+        "platform": "Polymarket",
+        "market_id": "685748",
+        "away_team": "Predators",
+        "home_team": "Avalanche",
+        "away_code": "Predators",
+        "home_code": "Avalanche",
+        "away_prob": 50,
+        "home_prob": 50,
+        "away_raw_price": 49.5,
+        "home_raw_price": 50.5,
+        "slug": "nhl-nsh-col-2025-12-14",
+        "end_date": "2025-12-14T02:00:00Z",
+        "url": "https://polymarket.com/event/nhl-nsh-col-2025-12-14",
+        "sport": "other"
+      },
+      "kalshi": {
+        "platform": "Kalshi",
+        "away_team": "Portland",
+        "home_team": "Cleveland",
+        "away_code": "POR",
+        "home_code": "CLE",
+        "close_time": "2025-12-18T00:00:00Z",
+        "sport": "basketball",
+        "away_prob": 24,
+        "away_raw_price": 24,
+        "away_ticker": "KXNBAGAME-25DEC03PORCLE-POR",
+        "home_prob": 76,
+        "home_raw_price": 79,
+        "home_ticker": "KXNBAGAME-25DEC03PORCLE-CLE",
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03PORCLE-POR",
+        "market_id": "KXNBAGAME-25DEC03PORCLE-POR",
+        "end_date": "2025-12-18T00:00:00Z"
+      },
+      "match_type": "fuzzy",
+      "arb_score": 28.9283,
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 24.0,
+        "best_home_price": 50.5,
+        "best_away_effective": 25.8,
+        "best_home_effective": 51.7625,
+        "gross_cost": 74.5,
+        "gross_edge": 25.5,
+        "total_cost": 77.5625,
+        "net_edge": 22.4375,
+        "roi_percent": 28.9283,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      },
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 24.0,
+        "bestHomePrice": 50.5,
+        "bestAwayEffective": 25.8,
+        "bestHomeEffective": 51.7625,
+        "totalCost": 77.5625,
+        "edge": 22.4375,
+        "grossCost": 74.5,
+        "grossEdge": 25.5,
+        "roiPercent": 28.9283,
+        "roi": 0.289283,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
     }
   ],
   "unmatched_polymarket": [
@@ -1165,7 +1292,7 @@
       "home_code": "SLT (BO3)",
       "away_prob": 69,
       "home_prob": 0,
-      "away_raw_price": 69.5,
+      "away_raw_price": 69.0,
       "home_raw_price": 0,
       "slug": "val-drx1-slt1-2025-12-03",
       "end_date": "2025-12-03T14:00:00Z",
@@ -1243,9 +1370,9 @@
       "home_team": "Bilibili Gaming (BO3)",
       "away_code": "EDward Gaming",
       "home_code": "Bilibili Gaming (BO3)",
-      "away_prob": 50,
+      "away_prob": 51,
       "home_prob": 0,
-      "away_raw_price": 49.5,
+      "away_raw_price": 51.0,
       "home_raw_price": 0,
       "slug": "val-edg1-blg-2025-12-04",
       "end_date": "2025-12-04T17:00:00Z",
@@ -1291,9 +1418,9 @@
       "home_team": "Vietnam (BO1)",
       "away_code": "Gen.G",
       "home_code": "Vietnam (BO1)",
-      "away_prob": 93,
+      "away_prob": 94,
       "home_prob": 0,
-      "away_raw_price": 93.5,
+      "away_raw_price": 94.0,
       "home_raw_price": 0,
       "slug": "lol-gen-vie-2025-12-06",
       "end_date": "2025-12-06T13:30:00Z",
@@ -1437,7 +1564,7 @@
       "home_code": "OKSavingsBank BRION (BO1)",
       "away_prob": 50,
       "home_prob": 0,
-      "away_raw_price": 50.0,
+      "away_raw_price": 50.5,
       "home_raw_price": 0,
       "slug": "lol-dk-bro2-2025-12-07",
       "end_date": "2025-12-07T13:30:00Z",
@@ -1485,7 +1612,7 @@
       "home_code": "Dplus KIA (BO1)",
       "away_prob": 19,
       "home_prob": 0,
-      "away_raw_price": 18.5,
+      "away_raw_price": 19.0,
       "home_raw_price": 0,
       "slug": "lol-drx-dk-2025-12-07",
       "end_date": "2025-12-07T15:45:00Z",
@@ -1499,9 +1626,9 @@
       "home_team": "OKSavingsBank BRION (BO1)",
       "away_code": "DN Freecs",
       "home_code": "OKSavingsBank BRION (BO1)",
-      "away_prob": 50,
+      "away_prob": 49,
       "home_prob": 0,
-      "away_raw_price": 50.0,
+      "away_raw_price": 48.5,
       "home_raw_price": 0,
       "slug": "lol-dnf-bro2-2025-12-07",
       "end_date": "2025-12-07T16:30:00Z",
@@ -1531,9 +1658,9 @@
       "home_team": "T1 (BO1)",
       "away_code": "Japan",
       "home_code": "T1 (BO1)",
-      "away_prob": 5,
+      "away_prob": 4,
       "home_prob": 0,
-      "away_raw_price": 4.5,
+      "away_raw_price": 4.0,
       "home_raw_price": 0,
       "slug": "lol-jpn-t1-2025-12-07",
       "end_date": "2025-12-07T18:00:00Z",
@@ -1563,9 +1690,9 @@
       "home_team": "Hanwha Life Esports (BO1)",
       "away_code": "Gen.G",
       "home_code": "Hanwha Life Esports (BO1)",
-      "away_prob": 49,
+      "away_prob": 48,
       "home_prob": 0,
-      "away_raw_price": 48.5,
+      "away_raw_price": 48.0,
       "home_raw_price": 0,
       "slug": "lol-gen-hle1-2025-12-08",
       "end_date": "2025-12-08T12:45:00Z",
@@ -1595,9 +1722,9 @@
       "home_team": "BNK FEARX (BO1)",
       "away_code": "Cloud9",
       "home_code": "BNK FEARX (BO1)",
-      "away_prob": 52,
+      "away_prob": 51,
       "home_prob": 0,
-      "away_raw_price": 52.0,
+      "away_raw_price": 51.0,
       "home_raw_price": 0,
       "slug": "lol-c9-fox1-2025-12-08",
       "end_date": "2025-12-08T14:15:00Z",
@@ -1739,9 +1866,9 @@
       "home_team": "MOUZ (BO3)",
       "away_code": "Natus Vincere",
       "home_code": "MOUZ (BO3)",
-      "away_prob": 36,
+      "away_prob": 35,
       "home_prob": 0,
-      "away_raw_price": 35.5,
+      "away_raw_price": 35.0,
       "home_raw_price": 0,
       "slug": "dota2-navi-mouz-2025-12-05",
       "end_date": "2025-12-05T15:00:00Z",
@@ -1893,135 +2020,8 @@
       "sport": "cs2"
     }
   ],
-  "unmatched_kalshi": [
-    {
-      "platform": "Kalshi",
-      "away_team": "Boston",
-      "home_team": "Detroit",
-      "away_code": "BOS",
-      "home_code": "DET",
-      "close_time": "2025-12-17T00:00:00Z",
-      "sport": "hockey",
-      "home_prob": 97,
-      "home_raw_price": 99,
-      "home_ticker": "KXNHLGAME-25DEC02BOSDET-DET",
-      "away_prob": 3,
-      "away_raw_price": 3,
-      "away_ticker": "KXNHLGAME-25DEC02BOSDET-BOS",
-      "url": "https://kalshi.com/markets/KXNHLGAME-25DEC02BOSDET-BOS",
-      "market_id": "KXNHLGAME-25DEC02BOSDET-BOS",
-      "end_date": "2025-12-17T00:00:00Z"
-    }
-  ],
+  "unmatched_kalshi": [],
   "homepage_games": [
-    {
-      "away_team": "Rainbow Six Siege: FURIA Esports",
-      "home_team": "Ninjas in Pyjamas (BO3)",
-      "away_code": "Rainbow Six Siege: FURIA Esports",
-      "home_code": "Ninjas in Pyjamas (BO3)",
-      "away_logo": "",
-      "home_logo": "",
-      "sport": "other",
-      "polymarket": {
-        "away": 0,
-        "home": 0,
-        "raw_away": 0,
-        "raw_home": 0,
-        "url": "https://polymarket.com/event/r6siege-furia-nip-2025-12-04",
-        "market_id": "701178",
-        "away_market_id": null,
-        "home_market_id": null
-      },
-      "kalshi": {
-        "away": 70,
-        "home": 30,
-        "raw_away": 69,
-        "raw_home": 29,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04MINNOP-MIN",
-        "away_ticker": "KXNBAGAME-25DEC04MINNOP-MIN",
-        "home_ticker": "KXNBAGAME-25DEC04MINNOP-NOP"
-      },
-      "diff": {
-        "away": 70,
-        "home": 30,
-        "max": 70
-      },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-05T00:00",
-      "match_type": "fuzzy"
-    },
-    {
-      "away_team": "Rainbow Six Siege: G2 Esports",
-      "home_team": "Falcons Esport (BO3)",
-      "away_code": "Rainbow Six Siege: G2 Esports",
-      "home_code": "Falcons Esport (BO3)",
-      "away_logo": "",
-      "home_logo": "",
-      "sport": "other",
-      "polymarket": {
-        "away": 0,
-        "home": 0,
-        "raw_away": 0,
-        "raw_home": 0,
-        "url": "https://polymarket.com/event/r6siege-g2-flcs-2025-12-06",
-        "market_id": "758976",
-        "away_market_id": null,
-        "home_market_id": null
-      },
-      "kalshi": {
-        "away": 70,
-        "home": 30,
-        "raw_away": 69,
-        "raw_home": 29,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04MINNOP-MIN",
-        "away_ticker": "KXNBAGAME-25DEC04MINNOP-MIN",
-        "home_ticker": "KXNBAGAME-25DEC04MINNOP-NOP"
-      },
-      "diff": {
-        "away": 70,
-        "home": 30,
-        "max": 70
-      },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-06T20:00",
-      "match_type": "fuzzy"
-    },
-    {
-      "away_team": "Rainbow Six Siege: Spacestation Gaming",
-      "home_team": "M80 (BO3)",
-      "away_code": "Rainbow Six Siege: Spacestation Gaming",
-      "home_code": "M80 (BO3)",
-      "away_logo": "",
-      "home_logo": "",
-      "sport": "other",
-      "polymarket": {
-        "away": 0,
-        "home": 0,
-        "raw_away": 0,
-        "raw_home": 0,
-        "url": "https://polymarket.com/event/r6siege-ssg-m80-2025-12-13",
-        "market_id": "768206",
-        "away_market_id": null,
-        "home_market_id": null
-      },
-      "kalshi": {
-        "away": 70,
-        "home": 30,
-        "raw_away": 69,
-        "raw_home": 29,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04MINNOP-MIN",
-        "away_ticker": "KXNBAGAME-25DEC04MINNOP-MIN",
-        "home_ticker": "KXNBAGAME-25DEC04MINNOP-NOP"
-      },
-      "diff": {
-        "away": 70,
-        "home": 30,
-        "max": 70
-      },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-14T03:00",
-      "match_type": "fuzzy"
-    },
     {
       "away_team": "Timberwolves",
       "home_team": "Pelicans",
@@ -2041,22 +2041,132 @@
         "home_market_id": null
       },
       "kalshi": {
-        "away": 50,
-        "home": 50,
-        "raw_away": 50,
-        "raw_home": 51,
+        "away": 15,
+        "home": 85,
+        "raw_away": 14,
+        "raw_home": 84,
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MINNOP-MIN",
         "away_ticker": "KXNBAGAME-25DEC02MINNOP-MIN",
         "home_ticker": "KXNBAGAME-25DEC02MINNOP-NOP"
       },
       "diff": {
-        "away": 31,
-        "home": 31,
-        "max": 31
+        "away": 66,
+        "home": 66,
+        "max": 66
       },
-      "arbitrage_score": 30,
+      "arbitrage_score": 189.65,
       "game_time": "2025-12-05T01:00",
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 14.0,
+        "best_home_price": 19.0,
+        "best_away_effective": 15.05,
+        "best_home_effective": 19.475,
+        "gross_cost": 33.0,
+        "gross_edge": 67.0,
+        "total_cost": 34.525,
+        "net_edge": 65.475,
+        "roi_percent": 189.6452,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      },
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 14.0,
+        "bestHomePrice": 19.0,
+        "bestAwayEffective": 15.05,
+        "bestHomeEffective": 19.475,
+        "totalCost": 34.525,
+        "edge": 65.475,
+        "grossCost": 33.0,
+        "grossEdge": 67.0,
+        "roiPercent": 189.6452,
+        "roi": 1.896452,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
+    },
+    {
+      "away_team": "Grizzlies",
+      "home_team": "Spurs",
+      "away_code": "MEM",
+      "home_code": "SAS",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 71,
+        "home": 29,
+        "raw_away": 71.5,
+        "raw_home": 28.499999999999996,
+        "url": "https://polymarket.com/event/nba-mem-sas-2025-12-02",
+        "market_id": "705409",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 23,
+        "home": 77,
+        "raw_away": 22,
+        "raw_home": 76,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MEMSAS-MEM",
+        "away_ticker": "KXNBAGAME-25DEC02MEMSAS-MEM",
+        "home_ticker": "KXNBAGAME-25DEC02MEMSAS-SAS"
+      },
+      "diff": {
+        "away": 48,
+        "home": 48,
+        "max": 48
+      },
+      "arbitrage_score": 89.17,
+      "game_time": "2025-12-03T01:00",
+      "match_type": "exact",
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 22.0,
+        "best_home_price": 28.5,
+        "best_away_effective": 23.65,
+        "best_home_effective": 29.2125,
+        "gross_cost": 50.5,
+        "gross_edge": 49.5,
+        "total_cost": 52.8625,
+        "net_edge": 47.1375,
+        "roi_percent": 89.17,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      },
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 22.0,
+        "bestHomePrice": 28.5,
+        "bestAwayEffective": 23.65,
+        "bestHomeEffective": 29.2125,
+        "totalCost": 52.8625,
+        "edge": 47.1375,
+        "grossCost": 50.5,
+        "grossEdge": 49.5,
+        "roiPercent": 89.17,
+        "roi": 0.8917,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
     },
     {
       "away_team": "Predators",
@@ -2090,117 +2200,46 @@
         "home": 26,
         "max": 26
       },
-      "arbitrage_score": 30,
+      "arbitrage_score": 28.93,
       "game_time": "2025-12-14T02:00",
-      "match_type": "fuzzy"
-    },
-    {
-      "away_team": "Trail Blazers",
-      "home_team": "Raptors",
-      "away_code": "POR",
-      "home_code": "TOR",
-      "away_logo": "",
-      "home_logo": "",
-      "sport": "other",
-      "polymarket": {
-        "away": 6,
-        "home": 94,
-        "raw_away": 5.5,
-        "raw_home": 94.5,
-        "url": "https://polymarket.com/event/nba-por-tor-2025-12-02",
-        "market_id": "705401",
-        "away_market_id": null,
-        "home_market_id": null
+      "match_type": "fuzzy",
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 24.0,
+        "best_home_price": 50.5,
+        "best_away_effective": 25.8,
+        "best_home_effective": 51.7625,
+        "gross_cost": 74.5,
+        "gross_edge": 25.5,
+        "total_cost": 77.5625,
+        "net_edge": 22.4375,
+        "roi_percent": 28.9283,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
       },
-      "kalshi": {
-        "away": 20,
-        "home": 80,
-        "raw_away": 20,
-        "raw_home": 80,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02PORTOR-POR",
-        "away_ticker": "KXNBAGAME-25DEC02PORTOR-POR",
-        "home_ticker": "KXNBAGAME-25DEC02PORTOR-TOR"
-      },
-      "diff": {
-        "away": 14,
-        "home": 14,
-        "max": 14
-      },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-03T00:30",
-      "match_type": "exact"
-    },
-    {
-      "away_team": "Grizzlies",
-      "home_team": "Spurs",
-      "away_code": "MEM",
-      "home_code": "SAS",
-      "away_logo": "",
-      "home_logo": "",
-      "sport": "other",
-      "polymarket": {
-        "away": 33,
-        "home": 67,
-        "raw_away": 33.0,
-        "raw_home": 67.0,
-        "url": "https://polymarket.com/event/nba-mem-sas-2025-12-02",
-        "market_id": "705409",
-        "away_market_id": null,
-        "home_market_id": null
-      },
-      "kalshi": {
-        "away": 23,
-        "home": 77,
-        "raw_away": 23,
-        "raw_home": 78,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MEMSAS-MEM",
-        "away_ticker": "KXNBAGAME-25DEC02MEMSAS-MEM",
-        "home_ticker": "KXNBAGAME-25DEC02MEMSAS-SAS"
-      },
-      "diff": {
-        "away": 10,
-        "home": 10,
-        "max": 10
-      },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-03T01:00",
-      "match_type": "exact"
-    },
-    {
-      "away_team": "Knicks",
-      "home_team": "Celtics",
-      "away_code": "NYK",
-      "home_code": "BOS",
-      "away_logo": "",
-      "home_logo": "",
-      "sport": "other",
-      "polymarket": {
-        "away": 38,
-        "home": 62,
-        "raw_away": 37.5,
-        "raw_home": 62.5,
-        "url": "https://polymarket.com/event/nba-nyk-bos-2025-12-02",
-        "market_id": "705404",
-        "away_market_id": null,
-        "home_market_id": null
-      },
-      "kalshi": {
-        "away": 29,
-        "home": 71,
-        "raw_away": 29,
-        "raw_home": 72,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02NYKBOS-NYK",
-        "away_ticker": "KXNBAGAME-25DEC02NYKBOS-NYK",
-        "home_ticker": "KXNBAGAME-25DEC02NYKBOS-BOS"
-      },
-      "diff": {
-        "away": 9,
-        "home": 9,
-        "max": 9
-      },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-03T01:00",
-      "match_type": "exact"
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 24.0,
+        "bestHomePrice": 50.5,
+        "bestAwayEffective": 25.8,
+        "bestHomeEffective": 51.7625,
+        "totalCost": 77.5625,
+        "edge": 22.4375,
+        "grossCost": 74.5,
+        "grossEdge": 25.5,
+        "roiPercent": 28.9283,
+        "roi": 0.289283,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
     },
     {
       "away_team": "Timberwolves",
@@ -2211,68 +2250,221 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 54,
-        "home": 46,
-        "raw_away": 54.50000000000001,
-        "raw_home": 45.5,
+        "away": 37,
+        "home": 63,
+        "raw_away": 36.5,
+        "raw_home": 63.5,
         "url": "https://polymarket.com/event/nba-min-nop-2025-12-02",
         "market_id": "705407",
         "away_market_id": null,
         "home_market_id": null
       },
       "kalshi": {
-        "away": 50,
-        "home": 50,
-        "raw_away": 50,
-        "raw_home": 51,
+        "away": 15,
+        "home": 85,
+        "raw_away": 14,
+        "raw_home": 84,
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MINNOP-MIN",
         "away_ticker": "KXNBAGAME-25DEC02MINNOP-MIN",
         "home_ticker": "KXNBAGAME-25DEC02MINNOP-NOP"
       },
       "diff": {
-        "away": 4,
-        "home": 4,
-        "max": 4
+        "away": 22,
+        "home": 22,
+        "max": 22
       },
-      "arbitrage_score": 30,
+      "arbitrage_score": 24.79,
       "game_time": "2025-12-03T01:00",
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 14.0,
+        "best_home_price": 63.5,
+        "best_away_effective": 15.05,
+        "best_home_effective": 65.0875,
+        "gross_cost": 77.5,
+        "gross_edge": 22.5,
+        "total_cost": 80.1375,
+        "net_edge": 19.8625,
+        "roi_percent": 24.7855,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      },
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 14.0,
+        "bestHomePrice": 63.5,
+        "bestAwayEffective": 15.05,
+        "bestHomeEffective": 65.0875,
+        "totalCost": 80.1375,
+        "edge": 19.8625,
+        "grossCost": 77.5,
+        "grossEdge": 22.5,
+        "roiPercent": 24.7855,
+        "roi": 0.247855,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
     },
     {
-      "away_team": "Celtics",
-      "home_team": "Wizards",
-      "away_code": "BOS",
-      "home_code": "WAS",
+      "away_team": "Rainbow Six Siege: FURIA Esports",
+      "home_team": "Ninjas in Pyjamas (BO3)",
+      "away_code": "Rainbow Six Siege: FURIA Esports",
+      "home_code": "Ninjas in Pyjamas (BO3)",
       "away_logo": "",
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 79,
-        "home": 21,
-        "raw_away": 79.5,
-        "raw_home": 20.5,
-        "url": "https://polymarket.com/event/nba-bos-was-2025-12-04",
-        "market_id": "733073",
+        "away": 0,
+        "home": 0,
+        "raw_away": 0,
+        "raw_home": 0,
+        "url": "https://polymarket.com/event/r6siege-furia-nip-2025-12-04",
+        "market_id": "701178",
         "away_market_id": null,
         "home_market_id": null
       },
       "kalshi": {
-        "away": 77,
-        "home": 23,
-        "raw_away": 82,
-        "raw_home": 24,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04BOSWAS-BOS",
-        "away_ticker": "KXNBAGAME-25DEC04BOSWAS-BOS",
-        "home_ticker": "KXNBAGAME-25DEC04BOSWAS-WAS"
+        "away": 74,
+        "home": 26,
+        "raw_away": 85,
+        "raw_home": 29,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04MINNOP-MIN",
+        "away_ticker": "KXNBAGAME-25DEC04MINNOP-MIN",
+        "home_ticker": "KXNBAGAME-25DEC04MINNOP-NOP"
       },
       "diff": {
-        "away": 2,
-        "home": 2,
-        "max": 2
+        "away": 74,
+        "home": 26,
+        "max": 74
       },
-      "arbitrage_score": 30,
+      "arbitrage_score": 0,
       "game_time": "2025-12-05T00:00",
-      "match_type": "exact"
+      "match_type": "fuzzy",
+      "risk_free_arb": null,
+      "riskFreeArb": null
+    },
+    {
+      "away_team": "Rainbow Six Siege: G2 Esports",
+      "home_team": "Falcons Esport (BO3)",
+      "away_code": "Rainbow Six Siege: G2 Esports",
+      "home_code": "Falcons Esport (BO3)",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 0,
+        "home": 0,
+        "raw_away": 0,
+        "raw_home": 0,
+        "url": "https://polymarket.com/event/r6siege-g2-flcs-2025-12-06",
+        "market_id": "758976",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 74,
+        "home": 26,
+        "raw_away": 85,
+        "raw_home": 29,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04MINNOP-MIN",
+        "away_ticker": "KXNBAGAME-25DEC04MINNOP-MIN",
+        "home_ticker": "KXNBAGAME-25DEC04MINNOP-NOP"
+      },
+      "diff": {
+        "away": 74,
+        "home": 26,
+        "max": 74
+      },
+      "arbitrage_score": 0,
+      "game_time": "2025-12-06T20:00",
+      "match_type": "fuzzy",
+      "risk_free_arb": null,
+      "riskFreeArb": null
+    },
+    {
+      "away_team": "Rainbow Six Siege: Spacestation Gaming",
+      "home_team": "M80 (BO3)",
+      "away_code": "Rainbow Six Siege: Spacestation Gaming",
+      "home_code": "M80 (BO3)",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 0,
+        "home": 0,
+        "raw_away": 0,
+        "raw_home": 0,
+        "url": "https://polymarket.com/event/r6siege-ssg-m80-2025-12-13",
+        "market_id": "768206",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 74,
+        "home": 26,
+        "raw_away": 85,
+        "raw_home": 29,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04MINNOP-MIN",
+        "away_ticker": "KXNBAGAME-25DEC04MINNOP-MIN",
+        "home_ticker": "KXNBAGAME-25DEC04MINNOP-NOP"
+      },
+      "diff": {
+        "away": 74,
+        "home": 26,
+        "max": 74
+      },
+      "arbitrage_score": 0,
+      "game_time": "2025-12-14T03:00",
+      "match_type": "fuzzy",
+      "risk_free_arb": null,
+      "riskFreeArb": null
+    },
+    {
+      "away_team": "Knicks",
+      "home_team": "Celtics",
+      "away_code": "NYK",
+      "home_code": "BOS",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 12,
+        "home": 88,
+        "raw_away": 11.5,
+        "raw_home": 88.5,
+        "url": "https://polymarket.com/event/nba-nyk-bos-2025-12-02",
+        "market_id": "705404",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 19,
+        "home": 81,
+        "raw_away": 19,
+        "raw_home": 83,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02NYKBOS-NYK",
+        "away_ticker": "KXNBAGAME-25DEC02NYKBOS-NYK",
+        "home_ticker": "KXNBAGAME-25DEC02NYKBOS-BOS"
+      },
+      "diff": {
+        "away": 7,
+        "home": 7,
+        "max": 7
+      },
+      "arbitrage_score": 0,
+      "game_time": "2025-12-03T01:00",
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
     },
     {
       "away_team": "Jazz",
@@ -2283,10 +2475,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 60,
-        "home": 40,
-        "raw_away": 60.0,
-        "raw_home": 40.0,
+        "away": 62,
+        "home": 38,
+        "raw_away": 62.0,
+        "raw_home": 38.0,
         "url": "https://polymarket.com/event/nba-uta-bkn-2025-12-04",
         "market_id": "733079",
         "away_market_id": null,
@@ -2302,13 +2494,129 @@
         "home_ticker": "KXNBAGAME-25DEC04UTABKN-BKN"
       },
       "diff": {
+        "away": 4,
+        "home": 4,
+        "max": 4
+      },
+      "arbitrage_score": 0,
+      "game_time": "2025-12-05T00:30",
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
+    },
+    {
+      "away_team": "Celtics",
+      "home_team": "Wizards",
+      "away_code": "BOS",
+      "home_code": "WAS",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 80,
+        "home": 20,
+        "raw_away": 80.5,
+        "raw_home": 19.5,
+        "url": "https://polymarket.com/event/nba-bos-was-2025-12-04",
+        "market_id": "733073",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 83,
+        "home": 17,
+        "raw_away": 83,
+        "raw_home": 17,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04BOSWAS-BOS",
+        "away_ticker": "KXNBAGAME-25DEC04BOSWAS-BOS",
+        "home_ticker": "KXNBAGAME-25DEC04BOSWAS-WAS"
+      },
+      "diff": {
+        "away": 3,
+        "home": 3,
+        "max": 3
+      },
+      "arbitrage_score": 0,
+      "game_time": "2025-12-05T00:00",
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
+    },
+    {
+      "away_team": "Trail Blazers",
+      "home_team": "Cavaliers",
+      "away_code": "POR",
+      "home_code": "CLE",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 22,
+        "home": 78,
+        "raw_away": 22.0,
+        "raw_home": 78.0,
+        "url": "https://polymarket.com/event/nba-por-cle-2025-12-03",
+        "market_id": "715356",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 24,
+        "home": 76,
+        "raw_away": 24,
+        "raw_home": 79,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03PORCLE-POR",
+        "away_ticker": "KXNBAGAME-25DEC03PORCLE-POR",
+        "home_ticker": "KXNBAGAME-25DEC03PORCLE-CLE"
+      },
+      "diff": {
         "away": 2,
         "home": 2,
         "max": 2
       },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-05T00:30",
-      "match_type": "exact"
+      "arbitrage_score": 0,
+      "game_time": "2025-12-04T00:00",
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
+    },
+    {
+      "away_team": "Kings",
+      "home_team": "Rockets",
+      "away_code": "SAC",
+      "home_code": "HOU",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 11,
+        "home": 89,
+        "raw_away": 10.5,
+        "raw_home": 89.5,
+        "url": "https://polymarket.com/event/nba-sac-hou-2025-12-03",
+        "market_id": "715382",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 13,
+        "home": 87,
+        "raw_away": 13,
+        "raw_home": 89,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03SACHOU-SAC",
+        "away_ticker": "KXNBAGAME-25DEC03SACHOU-SAC",
+        "home_ticker": "KXNBAGAME-25DEC03SACHOU-HOU"
+      },
+      "diff": {
+        "away": 2,
+        "home": 2,
+        "max": 2
+      },
+      "arbitrage_score": 0,
+      "game_time": "2025-12-04T01:00",
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
     },
     {
       "away_team": "Thunder",
@@ -2329,10 +2637,10 @@
         "home_market_id": null
       },
       "kalshi": {
-        "away": 83,
-        "home": 17,
+        "away": 81,
+        "home": 19,
         "raw_away": 83,
-        "raw_home": 17,
+        "raw_home": 19,
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02OKCGSW-OKC",
         "away_ticker": "KXNBAGAME-25DEC02OKCGSW-OKC",
         "home_ticker": "KXNBAGAME-25DEC02OKCGSW-GSW"
@@ -2342,9 +2650,49 @@
         "home": 1,
         "max": 1
       },
-      "arbitrage_score": 30,
+      "arbitrage_score": 0,
       "game_time": "2025-12-03T04:00",
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
+    },
+    {
+      "away_team": "Nuggets",
+      "home_team": "Pacers",
+      "away_code": "DEN",
+      "home_code": "IND",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 75,
+        "home": 25,
+        "raw_away": 75.0,
+        "raw_home": 25.0,
+        "url": "https://polymarket.com/event/nba-den-ind-2025-12-03",
+        "market_id": "715366",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 76,
+        "home": 24,
+        "raw_away": 76,
+        "raw_home": 24,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03DENIND-DEN",
+        "away_ticker": "KXNBAGAME-25DEC03DENIND-DEN",
+        "home_ticker": "KXNBAGAME-25DEC03DENIND-IND"
+      },
+      "diff": {
+        "away": 1,
+        "home": 1,
+        "max": 1
+      },
+      "arbitrage_score": 0,
+      "game_time": "2025-12-04T00:00",
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
     },
     {
       "away_team": "Spurs",
@@ -2357,8 +2705,8 @@
       "polymarket": {
         "away": 30,
         "home": 70,
-        "raw_away": 29.5,
-        "raw_home": 70.5,
+        "raw_away": 30.0,
+        "raw_home": 70.0,
         "url": "https://polymarket.com/event/nba-sas-orl-2025-12-03",
         "market_id": "715370",
         "away_market_id": null,
@@ -2378,9 +2726,11 @@
         "home": 1,
         "max": 1
       },
-      "arbitrage_score": 30,
+      "arbitrage_score": 0,
       "game_time": "2025-12-04T00:00",
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
     },
     {
       "away_team": "Nets",
@@ -2414,189 +2764,49 @@
         "home": 1,
         "max": 1
       },
-      "arbitrage_score": 30,
+      "arbitrage_score": 0,
       "game_time": "2025-12-04T01:00",
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
     },
     {
-      "away_team": "Kings",
-      "home_team": "Rockets",
-      "away_code": "SAC",
-      "home_code": "HOU",
+      "away_team": "Lakers",
+      "home_team": "Raptors",
+      "away_code": "LAL",
+      "home_code": "TOR",
       "away_logo": "",
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 11,
-        "home": 89,
-        "raw_away": 10.5,
-        "raw_home": 89.5,
-        "url": "https://polymarket.com/event/nba-sac-hou-2025-12-03",
-        "market_id": "715382",
+        "away": 55,
+        "home": 45,
+        "raw_away": 55.00000000000001,
+        "raw_home": 45.0,
+        "url": "https://polymarket.com/event/nba-lal-tor-2025-12-04",
+        "market_id": "733082",
         "away_market_id": null,
         "home_market_id": null
       },
       "kalshi": {
-        "away": 12,
-        "home": 88,
-        "raw_away": 12,
-        "raw_home": 89,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03SACHOU-SAC",
-        "away_ticker": "KXNBAGAME-25DEC03SACHOU-SAC",
-        "home_ticker": "KXNBAGAME-25DEC03SACHOU-HOU"
+        "away": 54,
+        "home": 46,
+        "raw_away": 57,
+        "raw_home": 48,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04LALTOR-LAL",
+        "away_ticker": "KXNBAGAME-25DEC04LALTOR-LAL",
+        "home_ticker": "KXNBAGAME-25DEC04LALTOR-TOR"
       },
       "diff": {
         "away": 1,
         "home": 1,
         "max": 1
       },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-04T01:00",
-      "match_type": "exact"
-    },
-    {
-      "away_team": "Pistons",
-      "home_team": "Bucks",
-      "away_code": "DET",
-      "home_code": "MIL",
-      "away_logo": "",
-      "home_logo": "",
-      "sport": "other",
-      "polymarket": {
-        "away": 60,
-        "home": 40,
-        "raw_away": 60.5,
-        "raw_home": 39.5,
-        "url": "https://polymarket.com/event/nba-det-mil-2025-12-03",
-        "market_id": "715385",
-        "away_market_id": null,
-        "home_market_id": null
-      },
-      "kalshi": {
-        "away": 59,
-        "home": 41,
-        "raw_away": 60,
-        "raw_home": 41,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03DETMIL-DET",
-        "away_ticker": "KXNBAGAME-25DEC03DETMIL-DET",
-        "home_ticker": "KXNBAGAME-25DEC03DETMIL-MIL"
-      },
-      "diff": {
-        "away": 1,
-        "home": 1,
-        "max": 1
-      },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-04T01:00",
-      "match_type": "exact"
-    },
-    {
-      "away_team": "Heat",
-      "home_team": "Mavericks",
-      "away_code": "MIA",
-      "home_code": "DAL",
-      "away_logo": "",
-      "home_logo": "",
-      "sport": "other",
-      "polymarket": {
-        "away": 63,
-        "home": 37,
-        "raw_away": 63.0,
-        "raw_home": 37.0,
-        "url": "https://polymarket.com/event/nba-mia-dal-2025-12-03",
-        "market_id": "715389",
-        "away_market_id": null,
-        "home_market_id": null
-      },
-      "kalshi": {
-        "away": 62,
-        "home": 38,
-        "raw_away": 63,
-        "raw_home": 38,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03MIADAL-MIA",
-        "away_ticker": "KXNBAGAME-25DEC03MIADAL-MIA",
-        "home_ticker": "KXNBAGAME-25DEC03MIADAL-DAL"
-      },
-      "diff": {
-        "away": 1,
-        "home": 1,
-        "max": 1
-      },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-04T01:30",
-      "match_type": "exact"
-    },
-    {
-      "away_team": "Trail Blazers",
-      "home_team": "Cavaliers",
-      "away_code": "POR",
-      "home_code": "CLE",
-      "away_logo": "",
-      "home_logo": "",
-      "sport": "other",
-      "polymarket": {
-        "away": 24,
-        "home": 76,
-        "raw_away": 23.5,
-        "raw_home": 76.5,
-        "url": "https://polymarket.com/event/nba-por-cle-2025-12-03",
-        "market_id": "715356",
-        "away_market_id": null,
-        "home_market_id": null
-      },
-      "kalshi": {
-        "away": 24,
-        "home": 76,
-        "raw_away": 24,
-        "raw_home": 79,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03PORCLE-POR",
-        "away_ticker": "KXNBAGAME-25DEC03PORCLE-POR",
-        "home_ticker": "KXNBAGAME-25DEC03PORCLE-CLE"
-      },
-      "diff": {
-        "away": 0,
-        "home": 0,
-        "max": 0
-      },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-04T00:00",
-      "match_type": "exact"
-    },
-    {
-      "away_team": "Nuggets",
-      "home_team": "Pacers",
-      "away_code": "DEN",
-      "home_code": "IND",
-      "away_logo": "",
-      "home_logo": "",
-      "sport": "other",
-      "polymarket": {
-        "away": 76,
-        "home": 24,
-        "raw_away": 76.5,
-        "raw_home": 23.5,
-        "url": "https://polymarket.com/event/nba-den-ind-2025-12-03",
-        "market_id": "715366",
-        "away_market_id": null,
-        "home_market_id": null
-      },
-      "kalshi": {
-        "away": 76,
-        "home": 24,
-        "raw_away": 77,
-        "raw_home": 24,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03DENIND-DEN",
-        "away_ticker": "KXNBAGAME-25DEC03DENIND-DEN",
-        "home_ticker": "KXNBAGAME-25DEC03DENIND-IND"
-      },
-      "diff": {
-        "away": 0,
-        "home": 0,
-        "max": 0
-      },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-04T00:00",
-      "match_type": "exact"
+      "arbitrage_score": 0,
+      "game_time": "2025-12-05T00:30",
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
     },
     {
       "away_team": "Clippers",
@@ -2607,20 +2817,20 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 36,
-        "home": 64,
-        "raw_away": 35.5,
-        "raw_home": 64.5,
+        "away": 37,
+        "home": 63,
+        "raw_away": 36.5,
+        "raw_home": 63.5,
         "url": "https://polymarket.com/event/nba-lac-atl-2025-12-03",
         "market_id": "715373",
         "away_market_id": null,
         "home_market_id": null
       },
       "kalshi": {
-        "away": 36,
-        "home": 64,
-        "raw_away": 36,
-        "raw_home": 66,
+        "away": 37,
+        "home": 63,
+        "raw_away": 38,
+        "raw_home": 65,
         "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03LACATL-LAC",
         "away_ticker": "KXNBAGAME-25DEC03LACATL-LAC",
         "home_ticker": "KXNBAGAME-25DEC03LACATL-ATL"
@@ -2630,9 +2840,11 @@
         "home": 0,
         "max": 0
       },
-      "arbitrage_score": 30,
+      "arbitrage_score": 0,
       "game_time": "2025-12-04T00:30",
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
     },
     {
       "away_team": "Hornets",
@@ -2666,9 +2878,87 @@
         "home": 0,
         "max": 0
       },
-      "arbitrage_score": 30,
+      "arbitrage_score": 0,
       "game_time": "2025-12-04T00:30",
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
+    },
+    {
+      "away_team": "Pistons",
+      "home_team": "Bucks",
+      "away_code": "DET",
+      "home_code": "MIL",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 57,
+        "home": 43,
+        "raw_away": 57.49999999999999,
+        "raw_home": 42.5,
+        "url": "https://polymarket.com/event/nba-det-mil-2025-12-03",
+        "market_id": "715385",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 57,
+        "home": 43,
+        "raw_away": 58,
+        "raw_home": 43,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03DETMIL-DET",
+        "away_ticker": "KXNBAGAME-25DEC03DETMIL-DET",
+        "home_ticker": "KXNBAGAME-25DEC03DETMIL-MIL"
+      },
+      "diff": {
+        "away": 0,
+        "home": 0,
+        "max": 0
+      },
+      "arbitrage_score": 0,
+      "game_time": "2025-12-04T01:00",
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
+    },
+    {
+      "away_team": "Heat",
+      "home_team": "Mavericks",
+      "away_code": "MIA",
+      "home_code": "DAL",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 61,
+        "home": 39,
+        "raw_away": 61.5,
+        "raw_home": 38.5,
+        "url": "https://polymarket.com/event/nba-mia-dal-2025-12-03",
+        "market_id": "715389",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 61,
+        "home": 39,
+        "raw_away": 63,
+        "raw_home": 39,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03MIADAL-MIA",
+        "away_ticker": "KXNBAGAME-25DEC03MIADAL-MIA",
+        "home_ticker": "KXNBAGAME-25DEC03MIADAL-DAL"
+      },
+      "diff": {
+        "away": 0,
+        "home": 0,
+        "max": 0
+      },
+      "arbitrage_score": 0,
+      "game_time": "2025-12-04T01:30",
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
     },
     {
       "away_team": "Warriors",
@@ -2702,45 +2992,11 @@
         "home": 0,
         "max": 0
       },
-      "arbitrage_score": 30,
+      "arbitrage_score": 0,
       "game_time": "2025-12-05T00:00",
-      "match_type": "exact"
-    },
-    {
-      "away_team": "Lakers",
-      "home_team": "Raptors",
-      "away_code": "LAL",
-      "home_code": "TOR",
-      "away_logo": "",
-      "home_logo": "",
-      "sport": "other",
-      "polymarket": {
-        "away": 55,
-        "home": 45,
-        "raw_away": 55.50000000000001,
-        "raw_home": 44.5,
-        "url": "https://polymarket.com/event/nba-lal-tor-2025-12-04",
-        "market_id": "733082",
-        "away_market_id": null,
-        "home_market_id": null
-      },
-      "kalshi": {
-        "away": 55,
-        "home": 45,
-        "raw_away": 57,
-        "raw_home": 46,
-        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC04LALTOR-LAL",
-        "away_ticker": "KXNBAGAME-25DEC04LALTOR-LAL",
-        "home_ticker": "KXNBAGAME-25DEC04LALTOR-TOR"
-      },
-      "diff": {
-        "away": 0,
-        "home": 0,
-        "max": 0
-      },
-      "arbitrage_score": 30,
-      "game_time": "2025-12-05T00:30",
-      "match_type": "exact"
+      "match_type": "exact",
+      "risk_free_arb": null,
+      "riskFreeArb": null
     },
     {
       "away_team": "Counter-Strike: EYEBALLERS",
@@ -2768,7 +3024,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-10-11T14:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "MOUZ",
@@ -2796,7 +3053,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-10-15T15:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "MOUZ",
@@ -2824,7 +3082,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-10-16T15:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "MOUZ",
@@ -2852,7 +3111,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-10-17T15:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "DRX",
@@ -2865,7 +3125,7 @@
       "polymarket": {
         "away": 69,
         "home": 0,
-        "raw_away": 69.5,
+        "raw_away": 69.0,
         "raw_home": 0,
         "url": "https://polymarket.com/event/val-drx1-slt1-2025-12-03",
         "market_id": "694826",
@@ -2880,7 +3140,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-03T14:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Rex Regum Qeon",
@@ -2908,7 +3169,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-03T16:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Rainbow Six Siege: W7M Gaming",
@@ -2936,7 +3198,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T21:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Rainbow Six Siege: Team Liquid",
@@ -2964,7 +3227,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-05T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "FunPlus Phoenix",
@@ -2992,7 +3256,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T13:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "EDward Gaming",
@@ -3003,9 +3268,9 @@
       "home_logo": "",
       "sport": "valorant",
       "polymarket": {
-        "away": 50,
+        "away": 51,
         "home": 0,
-        "raw_away": 49.5,
+        "raw_away": 51.0,
         "raw_home": 0,
         "url": "https://polymarket.com/event/val-edg1-blg-2025-12-04",
         "market_id": "717468",
@@ -3020,7 +3285,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T17:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Cloud9",
@@ -3048,7 +3314,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T12:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "OKSavingsBank BRION",
@@ -3076,7 +3343,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T12:45",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Gen.G",
@@ -3087,9 +3355,9 @@
       "home_logo": "",
       "sport": "lol",
       "polymarket": {
-        "away": 93,
+        "away": 94,
         "home": 0,
-        "raw_away": 93.5,
+        "raw_away": 94.0,
         "raw_home": 0,
         "url": "https://polymarket.com/event/lol-gen-vie-2025-12-06",
         "market_id": "737796",
@@ -3104,7 +3372,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T13:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Hanwha Life Esports",
@@ -3132,7 +3401,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T14:15",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "BNK FEARX",
@@ -3160,7 +3430,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T15:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "DN Freecs",
@@ -3188,7 +3459,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T15:45",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Hanwha Life Esports",
@@ -3216,7 +3488,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T16:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "KT Rolster",
@@ -3244,7 +3517,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T17:15",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Nongshim Red Force",
@@ -3272,7 +3546,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "BNK FEARX",
@@ -3300,7 +3575,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T12:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "KT Rolster",
@@ -3328,7 +3604,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T12:45",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Dplus KIA",
@@ -3341,7 +3618,7 @@
       "polymarket": {
         "away": 50,
         "home": 0,
-        "raw_away": 50.0,
+        "raw_away": 50.5,
         "raw_home": 0,
         "url": "https://polymarket.com/event/lol-dk-bro2-2025-12-07",
         "market_id": "737805",
@@ -3356,7 +3633,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T13:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Vietnam",
@@ -3384,7 +3662,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T14:15",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "OKSavingsBank BRION",
@@ -3412,7 +3691,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T15:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "DRX",
@@ -3425,7 +3705,7 @@
       "polymarket": {
         "away": 19,
         "home": 0,
-        "raw_away": 18.5,
+        "raw_away": 19.0,
         "raw_home": 0,
         "url": "https://polymarket.com/event/lol-drx-dk-2025-12-07",
         "market_id": "737808",
@@ -3440,7 +3720,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T15:45",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "DN Freecs",
@@ -3451,9 +3732,9 @@
       "home_logo": "",
       "sport": "lol",
       "polymarket": {
-        "away": 50,
+        "away": 49,
         "home": 0,
-        "raw_away": 50.0,
+        "raw_away": 48.5,
         "raw_home": 0,
         "url": "https://polymarket.com/event/lol-dnf-bro2-2025-12-07",
         "market_id": "737809",
@@ -3468,7 +3749,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T16:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Vietnam",
@@ -3496,7 +3778,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T17:15",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Japan",
@@ -3507,9 +3790,9 @@
       "home_logo": "",
       "sport": "lol",
       "polymarket": {
-        "away": 5,
+        "away": 4,
         "home": 0,
-        "raw_away": 4.5,
+        "raw_away": 4.0,
         "raw_home": 0,
         "url": "https://polymarket.com/event/lol-jpn-t1-2025-12-07",
         "market_id": "737811",
@@ -3524,7 +3807,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "T1",
@@ -3552,7 +3836,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T12:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Gen.G",
@@ -3563,9 +3848,9 @@
       "home_logo": "",
       "sport": "lol",
       "polymarket": {
-        "away": 49,
+        "away": 48,
         "home": 0,
-        "raw_away": 48.5,
+        "raw_away": 48.0,
         "raw_home": 0,
         "url": "https://polymarket.com/event/lol-gen-hle1-2025-12-08",
         "market_id": "737813",
@@ -3580,7 +3865,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T12:45",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Nongshim Red Force",
@@ -3608,7 +3894,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T13:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Cloud9",
@@ -3619,9 +3906,9 @@
       "home_logo": "",
       "sport": "lol",
       "polymarket": {
-        "away": 52,
+        "away": 51,
         "home": 0,
-        "raw_away": 52.0,
+        "raw_away": 51.0,
         "raw_home": 0,
         "url": "https://polymarket.com/event/lol-c9-fox1-2025-12-08",
         "market_id": "737815",
@@ -3636,7 +3923,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T14:15",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Team Liquid",
@@ -3664,7 +3952,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T15:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "DRX",
@@ -3692,7 +3981,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T15:45",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Japan",
@@ -3720,7 +4010,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T16:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Dplus KIA",
@@ -3748,7 +4039,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T17:15",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Counter-Strike: kONO.ECF",
@@ -3776,7 +4068,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-11-30T20:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Honor of Kings: FULL SENSE",
@@ -3804,7 +4097,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T11:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Honor of Kings: Flash Wolves",
@@ -3832,7 +4126,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T15:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "OG",
@@ -3860,7 +4155,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-05T12:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Natus Vincere",
@@ -3871,9 +4167,9 @@
       "home_logo": "",
       "sport": "dota2",
       "polymarket": {
-        "away": 36,
+        "away": 35,
         "home": 0,
-        "raw_away": 35.5,
+        "raw_away": 35.0,
         "raw_home": 0,
         "url": "https://polymarket.com/event/dota2-navi-mouz-2025-12-05",
         "market_id": "780327",
@@ -3888,7 +4184,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-05T15:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Fnatic",
@@ -3916,7 +4213,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T11:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "FULL SENSE",
@@ -3944,7 +4242,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T13:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Counter-Strike: Imperial",
@@ -3972,7 +4271,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Counter-Strike: MOUZ",
@@ -4000,7 +4300,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Counter-Strike: Spirit",
@@ -4028,7 +4329,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Counter-Strike: Passion UA",
@@ -4056,7 +4358,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Counter-Strike: Vitality",
@@ -4084,7 +4387,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T20:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Counter-Strike: paiN",
@@ -4112,7 +4416,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T20:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Counter-Strike: B8",
@@ -4140,7 +4445,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T21:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Counter-Strike: FURIA",
@@ -4168,7 +4474,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T21:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Cowboys",
@@ -4196,7 +4503,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-05T01:15",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Seahawks",
@@ -4224,7 +4532,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Steelers",
@@ -4252,7 +4561,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Titans",
@@ -4280,7 +4590,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Bears",
@@ -4308,7 +4619,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T21:25",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Colts",
@@ -4336,7 +4648,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Commanders",
@@ -4364,7 +4677,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Dolphins",
@@ -4392,7 +4706,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Saints",
@@ -4420,7 +4735,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Broncos",
@@ -4448,7 +4764,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T21:05",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "LAR",
@@ -4476,7 +4793,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T21:25",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Bengals",
@@ -4504,7 +4822,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Texans",
@@ -4532,7 +4851,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T01:20",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Eagles",
@@ -4560,7 +4880,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T20:15",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Falcons",
@@ -4588,7 +4909,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-11T20:15",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Browns",
@@ -4616,7 +4938,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T13:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Ravens",
@@ -4644,7 +4967,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T13:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Cardinals",
@@ -4657,8 +4981,8 @@
       "polymarket": {
         "away": 47,
         "home": 53,
-        "raw_away": 46.5,
-        "raw_home": 53.5,
+        "raw_away": 47.0,
+        "raw_home": 53.0,
         "url": "https://polymarket.com/event/nfl-ari-hou-2025-12-14",
         "market_id": "773048",
         "away_market_id": null,
@@ -4672,7 +4996,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T13:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Jets",
@@ -4683,10 +5008,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 28,
-        "home": 72,
-        "raw_away": 27.500000000000004,
-        "raw_home": 72.5,
+        "away": 29,
+        "home": 71,
+        "raw_away": 28.999999999999996,
+        "raw_home": 71.0,
         "url": "https://polymarket.com/event/nfl-nyj-jax-2025-12-14",
         "market_id": "773049",
         "away_market_id": null,
@@ -4700,7 +5025,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T13:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Chargers",
@@ -4728,7 +5054,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T13:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Bills",
@@ -4739,10 +5066,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 54,
-        "home": 46,
-        "raw_away": 54.50000000000001,
-        "raw_home": 45.5,
+        "away": 67,
+        "home": 33,
+        "raw_away": 67.5,
+        "raw_home": 32.5,
         "url": "https://polymarket.com/event/nfl-buf-ne-2025-12-14",
         "market_id": "773051",
         "away_market_id": null,
@@ -4756,7 +5083,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T13:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Commanders",
@@ -4767,10 +5095,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 53,
-        "home": 47,
-        "raw_away": 53.5,
-        "raw_home": 46.5,
+        "away": 52,
+        "home": 48,
+        "raw_away": 52.0,
+        "raw_home": 48.0,
         "url": "https://polymarket.com/event/nfl-was-nyg-2025-12-14",
         "market_id": "773052",
         "away_market_id": null,
@@ -4784,7 +5112,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T13:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Raiders",
@@ -4812,7 +5141,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T13:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Packers",
@@ -4840,7 +5170,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T16:25",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Lions",
@@ -4868,7 +5199,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T16:25",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Panthers",
@@ -4896,7 +5228,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T16:25",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Colts",
@@ -4924,7 +5257,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T16:25",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Titans",
@@ -4935,10 +5269,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 28,
-        "home": 72,
-        "raw_away": 28.000000000000004,
-        "raw_home": 72.0,
+        "away": 32,
+        "home": 68,
+        "raw_away": 32.0,
+        "raw_home": 68.0,
         "url": "https://polymarket.com/event/nfl-ten-sf-2025-12-14",
         "market_id": "786288",
         "away_market_id": null,
@@ -4952,7 +5286,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T16:25",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Vikings",
@@ -4980,7 +5315,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T20:20",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Dolphins",
@@ -4991,10 +5327,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 49,
-        "home": 51,
-        "raw_away": 48.5,
-        "raw_home": 51.5,
+        "away": 48,
+        "home": 52,
+        "raw_away": 47.5,
+        "raw_home": 52.5,
         "url": "https://polymarket.com/event/nfl-mia-pit-2025-12-15",
         "market_id": "796957",
         "away_market_id": null,
@@ -5008,7 +5344,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-15T20:15",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Wizards",
@@ -5036,7 +5373,37 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-03T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
+    },
+    {
+      "away_team": "Trail Blazers",
+      "home_team": "Raptors",
+      "away_code": "POR",
+      "home_code": "TOR",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 1,
+        "home": 99,
+        "raw_away": 0.05,
+        "raw_home": 99.95,
+        "url": "https://polymarket.com/event/nba-por-tor-2025-12-02",
+        "market_id": "705401",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": null,
+      "diff": {
+        "away": 0,
+        "home": 0,
+        "max": 0
+      },
+      "arbitrage_score": 0,
+      "game_time": "2025-12-03T00:30",
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Lakers",
@@ -5064,7 +5431,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Heat",
@@ -5075,10 +5443,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 45,
-        "home": 55,
-        "raw_away": 45.0,
-        "raw_home": 55.00000000000001,
+        "away": 44,
+        "home": 56,
+        "raw_away": 43.0,
+        "raw_home": 56.99999999999999,
         "url": "https://polymarket.com/event/nba-mia-orl-2025-12-05",
         "market_id": "756431",
         "away_market_id": null,
@@ -5092,7 +5460,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Nuggets",
@@ -5103,10 +5472,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 65,
-        "home": 35,
-        "raw_away": 65.0,
-        "raw_home": 35.0,
+        "away": 62,
+        "home": 38,
+        "raw_away": 62.0,
+        "raw_home": 38.0,
         "url": "https://polymarket.com/event/nba-den-atl-2025-12-05",
         "market_id": "756434",
         "away_market_id": null,
@@ -5120,7 +5489,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Spurs",
@@ -5131,10 +5501,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 38,
-        "home": 62,
-        "raw_away": 38.0,
-        "raw_home": 62.0,
+        "away": 41,
+        "home": 59,
+        "raw_away": 40.5,
+        "raw_home": 59.5,
         "url": "https://polymarket.com/event/nba-sas-cle-2025-12-05",
         "market_id": "756437",
         "away_market_id": null,
@@ -5148,7 +5518,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Trail Blazers",
@@ -5159,10 +5530,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 30,
-        "home": 70,
-        "raw_away": 30.0,
-        "raw_home": 70.0,
+        "away": 25,
+        "home": 75,
+        "raw_away": 24.5,
+        "raw_home": 75.5,
         "url": "https://polymarket.com/event/nba-por-det-2025-12-05",
         "market_id": "756440",
         "away_market_id": null,
@@ -5176,7 +5547,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Jazz",
@@ -5187,10 +5559,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 19,
-        "home": 81,
-        "raw_away": 18.5,
-        "raw_home": 81.5,
+        "away": 18,
+        "home": 82,
+        "raw_away": 18.0,
+        "raw_home": 82.0,
         "url": "https://polymarket.com/event/nba-uta-nyk-2025-12-05",
         "market_id": "756443",
         "away_market_id": null,
@@ -5204,7 +5576,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Hornets",
@@ -5215,10 +5588,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 24,
-        "home": 76,
-        "raw_away": 23.5,
-        "raw_home": 76.5,
+        "away": 21,
+        "home": 79,
+        "raw_away": 21.0,
+        "raw_home": 79.0,
         "url": "https://polymarket.com/event/nba-cha-tor-2025-12-05",
         "market_id": "756446",
         "away_market_id": null,
@@ -5232,7 +5605,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Pacers",
@@ -5243,10 +5617,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 38,
-        "home": 62,
-        "raw_away": 38.0,
-        "raw_home": 62.0,
+        "away": 37,
+        "home": 63,
+        "raw_away": 37.0,
+        "raw_home": 63.0,
         "url": "https://polymarket.com/event/nba-ind-chi-2025-12-05",
         "market_id": "756450",
         "away_market_id": null,
@@ -5260,7 +5634,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Suns",
@@ -5271,10 +5646,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 33,
-        "home": 67,
-        "raw_away": 32.5,
-        "raw_home": 67.5,
+        "away": 31,
+        "home": 69,
+        "raw_away": 31.0,
+        "raw_home": 69.0,
         "url": "https://polymarket.com/event/nba-phx-hou-2025-12-05",
         "market_id": "756454",
         "away_market_id": null,
@@ -5288,7 +5663,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Clippers",
@@ -5299,10 +5675,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 45,
-        "home": 55,
-        "raw_away": 44.5,
-        "raw_home": 55.50000000000001,
+        "away": 46,
+        "home": 54,
+        "raw_away": 45.5,
+        "raw_home": 54.50000000000001,
         "url": "https://polymarket.com/event/nba-lac-mem-2025-12-05",
         "market_id": "756457",
         "away_market_id": null,
@@ -5316,7 +5692,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "76ers",
@@ -5327,10 +5704,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 44,
-        "home": 56,
-        "raw_away": 43.0,
-        "raw_home": 56.99999999999999,
+        "away": 41,
+        "home": 59,
+        "raw_away": 41.0,
+        "raw_home": 59.0,
         "url": "https://polymarket.com/event/nba-phi-mil-2025-12-05",
         "market_id": "756460",
         "away_market_id": null,
@@ -5344,7 +5721,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Mavericks",
@@ -5372,7 +5750,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T02:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Pelicans",
@@ -5400,7 +5779,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T22:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Hawks",
@@ -5413,8 +5793,8 @@
       "polymarket": {
         "away": 73,
         "home": 27,
-        "raw_away": 73.0,
-        "raw_home": 27.0,
+        "raw_away": 73.5,
+        "raw_home": 26.5,
         "url": "https://polymarket.com/event/nba-atl-was-2025-12-06",
         "market_id": "774407",
         "away_market_id": null,
@@ -5428,7 +5808,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Warriors",
@@ -5456,7 +5837,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Bucks",
@@ -5467,10 +5849,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 28,
-        "home": 72,
-        "raw_away": 28.000000000000004,
-        "raw_home": 72.0,
+        "away": 29,
+        "home": 71,
+        "raw_away": 28.999999999999996,
+        "raw_home": 71.0,
         "url": "https://polymarket.com/event/nba-mil-det-2025-12-06",
         "market_id": "774413",
         "away_market_id": null,
@@ -5484,7 +5866,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kings",
@@ -5512,7 +5895,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Clippers",
@@ -5540,7 +5924,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Rockets",
@@ -5568,7 +5953,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T01:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Magic",
@@ -5596,7 +5982,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T17:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Celtics",
@@ -5624,7 +6011,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T20:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Nuggets",
@@ -5652,7 +6040,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T23:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Trail Blazers",
@@ -5680,7 +6069,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T23:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Warriors",
@@ -5708,7 +6098,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Lakers",
@@ -5736,7 +6127,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Thunder",
@@ -5764,7 +6156,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kings",
@@ -5775,10 +6168,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 50,
-        "home": 50,
-        "raw_away": 50.0,
-        "raw_home": 50.0,
+        "away": 49,
+        "home": 51,
+        "raw_away": 49.0,
+        "raw_home": 51.0,
         "url": "https://polymarket.com/event/nba-sac-ind-2025-12-08",
         "market_id": "797772",
         "away_market_id": null,
@@ -5792,7 +6185,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-09T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Suns",
@@ -5820,7 +6214,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-09T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Spurs",
@@ -5848,7 +6243,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-09T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Oilers",
@@ -5876,7 +6272,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-09-22T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Maple Leafs",
@@ -5887,10 +6284,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 68,
-        "home": 32,
-        "raw_away": 68.5,
-        "raw_home": 31.5,
+        "away": 99,
+        "home": 1,
+        "raw_away": 99.95,
+        "raw_home": 0.05,
         "url": "https://polymarket.com/event/nhl-tor-fla-2025-12-02",
         "market_id": "666565",
         "away_market_id": null,
@@ -5904,7 +6301,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-02T19:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Stars",
@@ -5915,10 +6313,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 86,
-        "home": 14,
-        "raw_away": 86.5,
-        "raw_home": 13.5,
+        "away": 1,
+        "home": 99,
+        "raw_away": 0.05,
+        "raw_home": 99.95,
         "url": "https://polymarket.com/event/nhl-dal-nyr-2025-12-02",
         "market_id": "666566",
         "away_market_id": null,
@@ -5932,7 +6330,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-02T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Lightning",
@@ -5945,8 +6344,8 @@
       "polymarket": {
         "away": 1,
         "home": 99,
-        "raw_away": 0.5,
-        "raw_home": 99.5,
+        "raw_away": 0.05,
+        "raw_home": 99.95,
         "url": "https://polymarket.com/event/nhl-tb-nyi-2025-12-02",
         "market_id": "666567",
         "away_market_id": null,
@@ -5960,7 +6359,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-02T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Senators",
@@ -5973,8 +6373,8 @@
       "polymarket": {
         "away": 99,
         "home": 1,
-        "raw_away": 99.5,
-        "raw_home": 0.5,
+        "raw_away": 99.95,
+        "raw_home": 0.05,
         "url": "https://polymarket.com/event/nhl-ott-mon-2025-12-02",
         "market_id": "666568",
         "away_market_id": null,
@@ -5988,7 +6388,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-02T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Bruins",
@@ -6001,8 +6402,8 @@
       "polymarket": {
         "away": 1,
         "home": 99,
-        "raw_away": 0.4,
-        "raw_home": 99.6,
+        "raw_away": 0.05,
+        "raw_home": 99.95,
         "url": "https://polymarket.com/event/nhl-bos-det-2025-12-02",
         "market_id": "666569",
         "away_market_id": null,
@@ -6016,7 +6417,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-02T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Flames",
@@ -6027,10 +6429,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 6,
-        "home": 94,
-        "raw_away": 5.5,
-        "raw_home": 94.5,
+        "away": 1,
+        "home": 99,
+        "raw_away": 0.3,
+        "raw_home": 99.7,
         "url": "https://polymarket.com/event/nhl-cal-nsh-2025-12-02",
         "market_id": "666570",
         "away_market_id": null,
@@ -6044,7 +6446,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-02T20:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canucks",
@@ -6055,10 +6458,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 42,
-        "home": 58,
-        "raw_away": 41.5,
-        "raw_home": 58.5,
+        "away": 30,
+        "home": 70,
+        "raw_away": 29.5,
+        "raw_home": 70.5,
         "url": "https://polymarket.com/event/nhl-van-col-2025-12-02",
         "market_id": "666571",
         "away_market_id": null,
@@ -6072,7 +6475,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-02T21:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Wild",
@@ -6083,10 +6487,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 46,
-        "home": 54,
-        "raw_away": 46.0,
-        "raw_home": 54.0,
+        "away": 63,
+        "home": 37,
+        "raw_away": 63.5,
+        "raw_home": 36.5,
         "url": "https://polymarket.com/event/nhl-min-edm-2025-12-02",
         "market_id": "666572",
         "away_market_id": null,
@@ -6100,7 +6504,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-02T21:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blackhawks",
@@ -6111,10 +6516,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 30,
-        "home": 70,
-        "raw_away": 29.5,
-        "raw_home": 70.5,
+        "away": 31,
+        "home": 69,
+        "raw_away": 30.5,
+        "raw_home": 69.5,
         "url": "https://polymarket.com/event/nhl-chi-las-2025-12-02",
         "market_id": "666573",
         "away_market_id": null,
@@ -6128,7 +6533,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-02T22:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Capitals",
@@ -6156,7 +6562,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-02T22:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Stars",
@@ -6169,8 +6576,8 @@
       "polymarket": {
         "away": 49,
         "home": 51,
-        "raw_away": 49.0,
-        "raw_home": 51.0,
+        "raw_away": 48.5,
+        "raw_home": 51.5,
         "url": "https://polymarket.com/event/nhl-dal-nj-2025-12-03",
         "market_id": "667942",
         "away_market_id": null,
@@ -6184,7 +6591,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-03T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sabres",
@@ -6212,7 +6620,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-03T19:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Jets",
@@ -6240,7 +6649,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-03T19:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Utah",
@@ -6268,7 +6678,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-03T22:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Capitals",
@@ -6296,7 +6707,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-03T22:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Predators",
@@ -6324,7 +6736,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Red Wings",
@@ -6352,7 +6765,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T19:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Penguins",
@@ -6380,7 +6794,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Rangers",
@@ -6391,10 +6806,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 48,
-        "home": 52,
-        "raw_away": 47.5,
-        "raw_home": 52.5,
+        "away": 46,
+        "home": 54,
+        "raw_away": 46.0,
+        "raw_home": 54.0,
         "url": "https://polymarket.com/event/nhl-nyr-ott-2025-12-04",
         "market_id": "669528",
         "away_market_id": null,
@@ -6408,7 +6823,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Avalanche",
@@ -6436,7 +6852,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Maple Leafs",
@@ -6464,7 +6881,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blues",
@@ -6492,7 +6910,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kraken",
@@ -6503,10 +6922,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 38,
-        "home": 62,
-        "raw_away": 37.5,
-        "raw_home": 62.5,
+        "away": 37,
+        "home": 63,
+        "raw_away": 36.5,
+        "raw_home": 63.5,
         "url": "https://polymarket.com/event/nhl-sea-edm-2025-12-04",
         "market_id": "669532",
         "away_market_id": null,
@@ -6520,7 +6939,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T21:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Wild",
@@ -6531,10 +6951,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 54,
-        "home": 46,
-        "raw_away": 54.0,
-        "raw_home": 46.0,
+        "away": 53,
+        "home": 47,
+        "raw_away": 53.5,
+        "raw_home": 46.5,
         "url": "https://polymarket.com/event/nhl-min-cal-2025-12-04",
         "market_id": "669533",
         "away_market_id": null,
@@ -6548,7 +6968,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T21:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blackhawks",
@@ -6559,9 +6980,9 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 40,
+        "away": 37,
         "home": 0,
-        "raw_away": 39.5,
+        "raw_away": 37.0,
         "raw_home": 0,
         "url": "https://polymarket.com/event/nhl-chi-lak-2025-12-04",
         "market_id": "669534",
@@ -6576,7 +6997,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-04T22:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sabres",
@@ -6604,7 +7026,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Golden Knights",
@@ -6632,7 +7055,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sharks",
@@ -6660,7 +7084,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Utah",
@@ -6688,7 +7113,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Capitals",
@@ -6716,7 +7142,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Avalanche",
@@ -6744,7 +7171,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T17:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blue Jackets",
@@ -6772,7 +7200,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-06T20:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canadiens",
@@ -6800,7 +7229,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Islanders",
@@ -6811,10 +7241,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 50,
-        "home": 50,
-        "raw_away": 50.5,
-        "raw_home": 49.5,
+        "away": 51,
+        "home": 49,
+        "raw_away": 51.5,
+        "raw_home": 48.5,
         "url": "https://polymarket.com/event/nhl-nyi-tb-2025-12-07",
         "market_id": "672836",
         "away_market_id": null,
@@ -6828,7 +7258,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blues",
@@ -6841,8 +7272,8 @@
       "polymarket": {
         "away": 50,
         "home": 50,
-        "raw_away": 49.5,
-        "raw_home": 50.5,
+        "raw_away": 50.0,
+        "raw_home": 50.0,
         "url": "https://polymarket.com/event/nhl-stl-ott-2025-12-07",
         "market_id": "672837",
         "away_market_id": null,
@@ -6856,7 +7287,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Predators",
@@ -6884,7 +7316,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Utah",
@@ -6912,7 +7345,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Devils",
@@ -6940,7 +7374,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blackhawks",
@@ -6968,7 +7403,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Red Wings",
@@ -6996,7 +7432,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Wild",
@@ -7024,7 +7461,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Jets",
@@ -7052,7 +7490,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Avalanche",
@@ -7080,7 +7519,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Islanders",
@@ -7108,7 +7548,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T22:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sharks",
@@ -7136,7 +7577,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T22:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Penguins",
@@ -7164,7 +7606,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-07T23:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blue Jackets",
@@ -7177,8 +7620,8 @@
       "polymarket": {
         "away": 50,
         "home": 50,
-        "raw_away": 50.0,
-        "raw_home": 50.0,
+        "raw_away": 49.5,
+        "raw_home": 50.5,
         "url": "https://polymarket.com/event/nhl-cbj-wsh-2025-12-08",
         "market_id": "674486",
         "away_market_id": null,
@@ -7192,7 +7635,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Golden Knights",
@@ -7220,7 +7664,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blues",
@@ -7248,7 +7693,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blackhawks",
@@ -7276,7 +7722,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-08T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Lightning",
@@ -7304,7 +7751,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-09T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kings",
@@ -7332,7 +7780,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-09T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sabres",
@@ -7360,7 +7809,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-09T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Wild",
@@ -7388,7 +7838,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-09T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Red Wings",
@@ -7416,7 +7867,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-09T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Ducks",
@@ -7444,7 +7896,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-10T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Bruins",
@@ -7472,7 +7925,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-10T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sharks",
@@ -7500,7 +7954,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-10T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Devils",
@@ -7528,7 +7983,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-10T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Golden Knights",
@@ -7556,7 +8012,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-10T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Lightning",
@@ -7584,7 +8041,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-10T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blue Jackets",
@@ -7612,7 +8070,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-10T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Stars",
@@ -7640,7 +8099,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-10T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sabres",
@@ -7668,7 +8128,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-10T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Avalanche",
@@ -7696,7 +8157,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-10T02:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Rangers",
@@ -7724,7 +8186,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-11T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Red Wings",
@@ -7752,7 +8215,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-11T01:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Panthers",
@@ -7780,7 +8244,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-11T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kings",
@@ -7808,7 +8273,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-11T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Hurricanes",
@@ -7836,7 +8302,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Senators",
@@ -7864,7 +8331,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sharks",
@@ -7892,7 +8360,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canadiens",
@@ -7920,7 +8389,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Golden Knights",
@@ -7948,7 +8418,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Ducks",
@@ -7976,7 +8447,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Lightning",
@@ -7987,10 +8459,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 51,
-        "home": 49,
-        "raw_away": 51.0,
-        "raw_home": 49.0,
+        "away": 50,
+        "home": 50,
+        "raw_away": 50.5,
+        "raw_home": 49.5,
         "url": "https://polymarket.com/event/nhl-tb-nj-2025-12-12",
         "market_id": "682449",
         "away_market_id": null,
@@ -8004,7 +8476,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Stars",
@@ -8032,7 +8505,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Bruins",
@@ -8045,8 +8519,8 @@
       "polymarket": {
         "away": 50,
         "home": 50,
-        "raw_away": 50.0,
-        "raw_home": 50.0,
+        "raw_away": 49.5,
+        "raw_home": 50.5,
         "url": "https://polymarket.com/event/nhl-bos-wpg-2025-12-12",
         "market_id": "682451",
         "away_market_id": null,
@@ -8060,7 +8534,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blues",
@@ -8088,7 +8563,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Panthers",
@@ -8116,7 +8592,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T02:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Red Wings",
@@ -8144,7 +8621,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sabres",
@@ -8172,7 +8650,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-12T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blackhawks",
@@ -8200,7 +8679,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-13T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kraken",
@@ -8228,7 +8708,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-13T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Ducks",
@@ -8256,7 +8737,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-13T17:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Senators",
@@ -8284,7 +8766,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-13T19:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sharks",
@@ -8312,7 +8795,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-13T20:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Lightning",
@@ -8340,7 +8824,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-13T20:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Golden Knights",
@@ -8368,7 +8853,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Capitals",
@@ -8381,8 +8867,8 @@
       "polymarket": {
         "away": 50,
         "home": 50,
-        "raw_away": 50.0,
-        "raw_home": 50.0,
+        "raw_away": 49.5,
+        "raw_home": 50.5,
         "url": "https://polymarket.com/event/nhl-wsh-wpg-2025-12-14",
         "market_id": "685742",
         "away_market_id": null,
@@ -8396,7 +8882,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Oilers",
@@ -8424,7 +8911,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Hurricanes",
@@ -8452,7 +8940,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canadiens",
@@ -8480,7 +8969,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Panthers",
@@ -8508,7 +8998,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Red Wings",
@@ -8521,8 +9012,8 @@
       "polymarket": {
         "away": 50,
         "home": 50,
-        "raw_away": 50.0,
-        "raw_home": 50.0,
+        "raw_away": 50.5,
+        "raw_home": 49.5,
         "url": "https://polymarket.com/event/nhl-det-chi-2025-12-14",
         "market_id": "685747",
         "away_market_id": null,
@@ -8536,7 +9027,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Flames",
@@ -8564,7 +9056,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canucks",
@@ -8592,7 +9085,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T17:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Utah",
@@ -8620,7 +9114,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T20:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Flyers",
@@ -8648,7 +9143,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T22:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Bruins",
@@ -8676,7 +9172,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-14T23:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Oilers",
@@ -8704,7 +9201,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-15T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sabres",
@@ -8732,7 +9230,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-15T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Panthers",
@@ -8760,7 +9259,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-16T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Ducks",
@@ -8788,7 +9288,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-16T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Senators",
@@ -8816,7 +9317,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-16T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Predators",
@@ -8844,7 +9346,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-16T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kings",
@@ -8858,7 +9361,7 @@
         "away": 0,
         "home": 50,
         "raw_away": 0,
-        "raw_home": 50.0,
+        "raw_home": 50.5,
         "url": "https://polymarket.com/event/nhl-lak-dal-2025-12-16",
         "market_id": "689376",
         "away_market_id": null,
@@ -8872,7 +9375,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-16T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blackhawks",
@@ -8900,7 +9404,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-17T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Ducks",
@@ -8928,7 +9433,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-17T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Oilers",
@@ -8956,7 +9462,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-17T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canucks",
@@ -8984,7 +9491,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-17T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Flyers",
@@ -9012,7 +9520,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-17T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Islanders",
@@ -9040,7 +9549,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-17T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Utah",
@@ -9068,7 +9578,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-17T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Capitals",
@@ -9096,7 +9607,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-17T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Avalanche",
@@ -9124,7 +9636,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-17T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Flames",
@@ -9152,7 +9665,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-17T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kings",
@@ -9180,7 +9694,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-18T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Utah",
@@ -9208,7 +9723,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-18T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Hurricanes",
@@ -9236,7 +9752,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-18T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Jets",
@@ -9264,7 +9781,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-18T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Devils",
@@ -9292,7 +9810,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-18T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Maple Leafs",
@@ -9320,7 +9839,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-19T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Wild",
@@ -9348,7 +9868,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-19T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kings",
@@ -9376,7 +9897,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-19T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Penguins",
@@ -9404,7 +9926,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-19T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blackhawks",
@@ -9432,7 +9955,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-19T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Flyers",
@@ -9460,7 +9984,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-19T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Oilers",
@@ -9488,7 +10013,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-19T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Rangers",
@@ -9516,7 +10042,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-19T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kraken",
@@ -9544,7 +10071,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-19T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Stars",
@@ -9572,7 +10100,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-19T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Hurricanes",
@@ -9600,7 +10129,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-20T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canucks",
@@ -9628,7 +10158,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-20T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Devils",
@@ -9656,7 +10187,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-20T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Jets",
@@ -9684,7 +10216,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-20T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Stars",
@@ -9712,7 +10245,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-20T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Red Wings",
@@ -9740,7 +10274,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-20T17:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Flyers",
@@ -9768,7 +10303,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-20T17:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Oilers",
@@ -9779,10 +10315,10 @@
       "home_logo": "",
       "sport": "other",
       "polymarket": {
-        "away": 65,
-        "home": 35,
-        "raw_away": 65.5,
-        "raw_home": 34.5,
+        "away": 69,
+        "home": 31,
+        "raw_away": 69.5,
+        "raw_home": 30.5,
         "url": "https://polymarket.com/event/nhl-edm-min-2025-12-20",
         "market_id": "698654",
         "away_market_id": null,
@@ -9796,7 +10332,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-20T20:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blackhawks",
@@ -9824,7 +10361,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-20T20:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Islanders",
@@ -9852,7 +10390,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-20T22:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blues",
@@ -9880,7 +10419,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-20T23:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Maple Leafs",
@@ -9908,7 +10448,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-21T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Hurricanes",
@@ -9936,7 +10477,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-21T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Penguins",
@@ -9964,7 +10506,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-21T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canucks",
@@ -9992,7 +10535,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-21T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blue Jackets",
@@ -10020,7 +10564,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-21T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kraken",
@@ -10048,7 +10593,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-21T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Golden Knights",
@@ -10076,7 +10622,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-21T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Capitals",
@@ -10104,7 +10651,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-21T18:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Avalanche",
@@ -10132,7 +10680,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-21T23:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Jets",
@@ -10160,7 +10709,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-22T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Rangers",
@@ -10188,7 +10738,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-22T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canadiens",
@@ -10216,7 +10767,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-22T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sabres",
@@ -10244,7 +10796,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-22T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Maple Leafs",
@@ -10257,8 +10810,8 @@
       "polymarket": {
         "away": 49,
         "home": 51,
-        "raw_away": 49.0,
-        "raw_home": 51.0,
+        "raw_away": 48.5,
+        "raw_home": 51.5,
         "url": "https://polymarket.com/event/nhl-tor-dal-2025-12-21",
         "market_id": "701032",
         "away_market_id": null,
@@ -10272,7 +10825,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-22T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Senators",
@@ -10300,7 +10854,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-22T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Golden Knights",
@@ -10328,7 +10883,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-22T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blues",
@@ -10356,7 +10912,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-23T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canucks",
@@ -10384,7 +10941,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-23T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kraken",
@@ -10412,7 +10970,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-23T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blue Jackets",
@@ -10440,7 +10999,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-23T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Penguins",
@@ -10468,7 +11028,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-23T21:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Rangers",
@@ -10496,7 +11057,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-24T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sabres",
@@ -10524,7 +11086,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-24T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Devils",
@@ -10552,7 +11115,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-24T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Panthers",
@@ -10580,7 +11144,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-24T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Stars",
@@ -10608,7 +11173,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-23T23:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canadiens",
@@ -10636,7 +11202,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-24T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Predators",
@@ -10664,7 +11231,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-24T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Utah",
@@ -10692,7 +11260,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-24T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Flames",
@@ -10720,7 +11289,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-24T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Flyers",
@@ -10748,7 +11318,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-24T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sharks",
@@ -10776,7 +11347,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-24T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kraken",
@@ -10804,7 +11376,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-24T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Rangers",
@@ -10832,7 +11405,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-27T23:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Wild",
@@ -10860,7 +11434,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Lightning",
@@ -10888,7 +11463,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Senators",
@@ -10916,7 +11492,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Capitals",
@@ -10944,7 +11521,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Red Wings",
@@ -10972,7 +11550,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Bruins",
@@ -11000,7 +11579,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Predators",
@@ -11028,7 +11608,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blackhawks",
@@ -11056,7 +11637,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Ducks",
@@ -11084,7 +11666,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Avalanche",
@@ -11112,7 +11695,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sharks",
@@ -11140,7 +11724,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Oilers",
@@ -11168,7 +11753,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canadiens",
@@ -11196,7 +11782,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T22:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Islanders",
@@ -11224,7 +11811,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-28T22:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Maple Leafs",
@@ -11237,8 +11825,8 @@
       "polymarket": {
         "away": 50,
         "home": 50,
-        "raw_away": 49.5,
-        "raw_home": 50.5,
+        "raw_away": 50.0,
+        "raw_home": 50.0,
         "url": "https://polymarket.com/event/nhl-tor-det-2025-12-28",
         "market_id": "787945",
         "away_market_id": null,
@@ -11252,7 +11840,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-29T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Penguins",
@@ -11265,8 +11854,8 @@
       "polymarket": {
         "away": 50,
         "home": 50,
-        "raw_away": 50.5,
-        "raw_home": 49.5,
+        "raw_away": 50.0,
+        "raw_home": 50.0,
         "url": "https://polymarket.com/event/nhl-pit-chi-2025-12-28",
         "market_id": "787946",
         "away_market_id": null,
@@ -11280,7 +11869,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-29T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Flyers",
@@ -11308,7 +11898,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-29T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Capitals",
@@ -11336,7 +11927,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-30T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Blue Jackets",
@@ -11364,7 +11956,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-30T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Rangers",
@@ -11392,7 +11985,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-30T00:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Oilers",
@@ -11420,7 +12014,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-30T00:30",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sabres",
@@ -11448,7 +12043,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-30T01:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Predators",
@@ -11476,7 +12072,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-30T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Kings",
@@ -11504,7 +12101,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-30T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Bruins",
@@ -11532,7 +12130,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-30T02:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Canucks",
@@ -11560,7 +12159,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-30T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Wild",
@@ -11588,7 +12188,8 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-30T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
     },
     {
       "away_team": "Sharks",
@@ -11616,7 +12217,302 @@
       },
       "arbitrage_score": 0,
       "game_time": "2025-12-30T03:00",
-      "match_type": "unmatched"
+      "match_type": "unmatched",
+      "risk_free_arb": null
+    }
+  ],
+  "homepage_arb_games": [
+    {
+      "away_team": "Timberwolves",
+      "home_team": "Pelicans",
+      "away_code": "MIN",
+      "home_code": "NOP",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 37,
+        "home": 63,
+        "raw_away": 36.5,
+        "raw_home": 63.5,
+        "url": "https://polymarket.com/event/nba-min-nop-2025-12-02",
+        "market_id": "705407",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 15,
+        "home": 85,
+        "raw_away": 14,
+        "raw_home": 84,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MINNOP-MIN",
+        "away_ticker": "KXNBAGAME-25DEC02MINNOP-MIN",
+        "home_ticker": "KXNBAGAME-25DEC02MINNOP-NOP"
+      },
+      "diff": {
+        "away": 22,
+        "home": 22,
+        "max": 22
+      },
+      "arbitrage_score": 24.79,
+      "game_time": "2025-12-03T01:00",
+      "match_type": "exact",
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 14.0,
+        "best_home_price": 63.5,
+        "best_away_effective": 15.05,
+        "best_home_effective": 65.0875,
+        "gross_cost": 77.5,
+        "gross_edge": 22.5,
+        "total_cost": 80.1375,
+        "net_edge": 19.8625,
+        "roi_percent": 24.7855,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      },
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 14.0,
+        "bestHomePrice": 63.5,
+        "bestAwayEffective": 15.05,
+        "bestHomeEffective": 65.0875,
+        "totalCost": 80.1375,
+        "edge": 19.8625,
+        "grossCost": 77.5,
+        "grossEdge": 22.5,
+        "roiPercent": 24.7855,
+        "roi": 0.247855,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
+    },
+    {
+      "away_team": "Grizzlies",
+      "home_team": "Spurs",
+      "away_code": "MEM",
+      "home_code": "SAS",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 71,
+        "home": 29,
+        "raw_away": 71.5,
+        "raw_home": 28.499999999999996,
+        "url": "https://polymarket.com/event/nba-mem-sas-2025-12-02",
+        "market_id": "705409",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 23,
+        "home": 77,
+        "raw_away": 22,
+        "raw_home": 76,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MEMSAS-MEM",
+        "away_ticker": "KXNBAGAME-25DEC02MEMSAS-MEM",
+        "home_ticker": "KXNBAGAME-25DEC02MEMSAS-SAS"
+      },
+      "diff": {
+        "away": 48,
+        "home": 48,
+        "max": 48
+      },
+      "arbitrage_score": 89.17,
+      "game_time": "2025-12-03T01:00",
+      "match_type": "exact",
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 22.0,
+        "best_home_price": 28.5,
+        "best_away_effective": 23.65,
+        "best_home_effective": 29.2125,
+        "gross_cost": 50.5,
+        "gross_edge": 49.5,
+        "total_cost": 52.8625,
+        "net_edge": 47.1375,
+        "roi_percent": 89.17,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      },
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 22.0,
+        "bestHomePrice": 28.5,
+        "bestAwayEffective": 23.65,
+        "bestHomeEffective": 29.2125,
+        "totalCost": 52.8625,
+        "edge": 47.1375,
+        "grossCost": 50.5,
+        "grossEdge": 49.5,
+        "roiPercent": 89.17,
+        "roi": 0.8917,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
+    },
+    {
+      "away_team": "Timberwolves",
+      "home_team": "Pelicans",
+      "away_code": "MIN",
+      "home_code": "NOP",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 81,
+        "home": 19,
+        "raw_away": 81.0,
+        "raw_home": 19.0,
+        "url": "https://polymarket.com/event/nba-min-nop-2025-12-04",
+        "market_id": "733084",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 15,
+        "home": 85,
+        "raw_away": 14,
+        "raw_home": 84,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC02MINNOP-MIN",
+        "away_ticker": "KXNBAGAME-25DEC02MINNOP-MIN",
+        "home_ticker": "KXNBAGAME-25DEC02MINNOP-NOP"
+      },
+      "diff": {
+        "away": 66,
+        "home": 66,
+        "max": 66
+      },
+      "arbitrage_score": 189.65,
+      "game_time": "2025-12-05T01:00",
+      "match_type": "exact",
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 14.0,
+        "best_home_price": 19.0,
+        "best_away_effective": 15.05,
+        "best_home_effective": 19.475,
+        "gross_cost": 33.0,
+        "gross_edge": 67.0,
+        "total_cost": 34.525,
+        "net_edge": 65.475,
+        "roi_percent": 189.6452,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      },
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 14.0,
+        "bestHomePrice": 19.0,
+        "bestAwayEffective": 15.05,
+        "bestHomeEffective": 19.475,
+        "totalCost": 34.525,
+        "edge": 65.475,
+        "grossCost": 33.0,
+        "grossEdge": 67.0,
+        "roiPercent": 189.6452,
+        "roi": 1.896452,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
+    },
+    {
+      "away_team": "Predators",
+      "home_team": "Avalanche",
+      "away_code": "Predators",
+      "home_code": "Avalanche",
+      "away_logo": "",
+      "home_logo": "",
+      "sport": "other",
+      "polymarket": {
+        "away": 50,
+        "home": 50,
+        "raw_away": 49.5,
+        "raw_home": 50.5,
+        "url": "https://polymarket.com/event/nhl-nsh-col-2025-12-14",
+        "market_id": "685748",
+        "away_market_id": null,
+        "home_market_id": null
+      },
+      "kalshi": {
+        "away": 24,
+        "home": 76,
+        "raw_away": 24,
+        "raw_home": 79,
+        "url": "https://kalshi.com/markets/KXNBAGAME-25DEC03PORCLE-POR",
+        "away_ticker": "KXNBAGAME-25DEC03PORCLE-POR",
+        "home_ticker": "KXNBAGAME-25DEC03PORCLE-CLE"
+      },
+      "diff": {
+        "away": 26,
+        "home": 26,
+        "max": 26
+      },
+      "arbitrage_score": 28.93,
+      "game_time": "2025-12-14T02:00",
+      "match_type": "fuzzy",
+      "risk_free_arb": {
+        "best_away_platform": "Kalshi",
+        "best_home_platform": "Polymarket",
+        "best_away_price": 24.0,
+        "best_home_price": 50.5,
+        "best_away_effective": 25.8,
+        "best_home_effective": 51.7625,
+        "gross_cost": 74.5,
+        "gross_edge": 25.5,
+        "total_cost": 77.5625,
+        "net_edge": 22.4375,
+        "roi_percent": 28.9283,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      },
+      "riskFreeArb": {
+        "bestAwayFrom": "Kalshi",
+        "bestHomeFrom": "Polymarket",
+        "bestAwayPrice": 24.0,
+        "bestHomePrice": 50.5,
+        "bestAwayEffective": 25.8,
+        "bestHomeEffective": 51.7625,
+        "totalCost": 77.5625,
+        "edge": 22.4375,
+        "grossCost": 74.5,
+        "grossEdge": 25.5,
+        "roiPercent": 28.9283,
+        "roi": 0.289283,
+        "fees": {
+          "polymarket": 0.02,
+          "kalshi": 0.07,
+          "slippage": 0.005
+        }
+      }
     }
   ]
 }
