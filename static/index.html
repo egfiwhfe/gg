@@ -881,7 +881,7 @@ function createGameCard(game) {
                     // 使用后端提供的homepage格式数据
                     allGames = data.homepage_games || [];
                     stats = {
-                        total_games: allGames.length,
+                        total_games: data.stats.matched_games,  // 修正：比赛总数应该是两个平台匹配上的总数
                         poly_total: data.stats.total_polymarket_games,
                         kalshi_total: data.stats.total_kalshi_games,
                         matched: data.stats.matched_games

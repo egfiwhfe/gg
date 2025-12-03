@@ -1003,6 +1003,10 @@ def get_multi_sport_odds():
 def paper_trading_page():
     return send_from_directory('static', 'paper_trading.html')
 
+@app.route('/test-stats')
+def test_stats_page():
+    return send_from_directory('.', 'test_stats.html')
+
 @app.route('/api/paper/state')
 def get_paper_state():
     return jsonify(paper_trader.get_state())
