@@ -939,6 +939,8 @@ function createGameCard(game) {
                 if (url === '/api/odds/multi') {
                     // MULTI视图：只显示NBA/NFL/NHL中满足套利条件的市场
                     allGames = data.homepage_arb_games || [];
+                    // 但是计算最大差异时使用所有匹配的游戏
+                    const allGamesForMaxDiff = data.games || [];
                     stats = {
                         poly_total: data.stats.poly_total,
                         kalshi_total: data.stats.kalshi_total,
@@ -946,6 +948,15 @@ function createGameCard(game) {
                         arb_games: allGames.length,
                         homepage_games: allGames.length
                     };
+                    
+                    // 计算最大概率差 - 使用所有游戏而不是只有套利游戏
+                    let maxDiff = 0;
+                    if (allGamesForMaxDiff.length > 0) {
+                        maxDiff = Math.max(...allGamesForMaxDiff.map(g => (g.diff && g.diff.max) || 0));
+                    }
+                    if (document.getElementById('max-diff')) {
+                        document.getElementById('max-diff').textContent = maxDiff.toFixed(1) + '%';
+                    }
                 } else {
                     // 单个体育项目的数据保持原有逻辑
                     stats = data.stats || {};
@@ -996,13 +1007,15 @@ function createGameCard(game) {
                     }
                 }
 
-                // 计算最大概率差
-                let maxDiff = 0;
-                if (allGames.length > 0) {
-                    maxDiff = Math.max(...allGames.map(g => (g.diff && g.diff.max) || 0));
-                }
-                if (document.getElementById('max-diff')) {
-                    document.getElementById('max-diff').textContent = maxDiff.toFixed(1) + '%';
+                // 对于非multi视图，计算最大概率差
+                if (url !== '/api/odds/multi') {
+                    let maxDiff = 0;
+                    if (allGames.length > 0) {
+                        maxDiff = Math.max(...allGames.map(g => (g.diff && g.diff.max) || 0));
+                    }
+                    if (document.getElementById('max-diff')) {
+                        document.getElementById('max-diff').textContent = maxDiff.toFixed(1) + '%';
+                    }
                 }
 
                 // ✅ 只保留「扣掉双边手续费+滑点后仍为正」的无风险净套利
