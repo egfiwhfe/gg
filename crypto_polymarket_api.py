@@ -1,6 +1,7 @@
 import requests
 import json
 import math
+import re
 from typing import List, Dict, Optional
 
 class CryptoPolymarketAPI:
@@ -11,6 +12,101 @@ class CryptoPolymarketAPI:
     
     def __init__(self):
         self.session = requests.Session()
+    
+    @staticmethod
+    def _normalize_crypto_question(question: str) -> str:
+        """
+        Normalize crypto market questions for cross-platform matching.
+        Examples:
+        - "Will Bitcoin be above $100,000 on December 31, 2024?" -> "BTC_100000_2024-12-31"
+        - "Will ETH close above $5000 on Jan 1?" -> "ETH_5000_2025-01-01"
+        """
+        if not question:
+            return ""
+        
+        # Normalize text
+        q = question.lower().strip()
+        
+        # Extract crypto symbol
+        crypto = None
+        if 'bitcoin' in q or 'btc' in q:
+            crypto = 'BTC'
+        elif 'ethereum' in q or 'eth' in q:
+            crypto = 'ETH'
+        elif 'solana' in q or 'sol' in q:
+            crypto = 'SOL'
+        elif 'cardano' in q or 'ada' in q:
+            crypto = 'ADA'
+        elif 'dogecoin' in q or 'doge' in q:
+            crypto = 'DOGE'
+        
+        if not crypto:
+            # Fallback: use first word
+            words = q.split()
+            crypto = words[0].upper() if words else 'CRYPTO'
+        
+        # Extract price threshold
+        price_match = re.search(r'\$?(\d+[,\d]*k?)', q)
+        price = None
+        if price_match:
+            price_str = price_match.group(1).replace(',', '')
+            if 'k' in price_str.lower():
+                price = int(float(price_str.lower().replace('k', '')) * 1000)
+            else:
+                price = int(price_str)
+        
+        # Extract date
+        date_patterns = [
+            r'(\d{4})-(\d{1,2})-(\d{1,2})',  # 2024-12-31
+            r'(\d{1,2})/(\d{1,2})/(\d{4})',  # 12/31/2024
+            r'(january|february|march|april|may|june|july|august|september|october|november|december)\s+(\d{1,2}),?\s*(\d{4})?',
+            r'(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\.?\s+(\d{1,2}),?\s*(\d{4})?'
+        ]
+        
+        date = None
+        for pattern in date_patterns:
+            match = re.search(pattern, q)
+            if match:
+                groups = match.groups()
+                if len(groups) == 3:
+                    if groups[0].isalpha():
+                        # Month name format
+                        month_map = {
+                            'january': 1, 'jan': 1, 'february': 2, 'feb': 2,
+                            'march': 3, 'mar': 3, 'april': 4, 'apr': 4,
+                            'may': 5, 'june': 6, 'jun': 6, 'july': 7, 'jul': 7,
+                            'august': 8, 'aug': 8, 'september': 9, 'sep': 9,
+                            'october': 10, 'oct': 10, 'november': 11, 'nov': 11,
+                            'december': 12, 'dec': 12
+                        }
+                        month = month_map.get(groups[0].lower(), 1)
+                        day = int(groups[1])
+                        year = int(groups[2]) if groups[2] else 2024
+                        date = f"{year:04d}-{month:02d}-{day:02d}"
+                    else:
+                        # Numeric format
+                        if '-' in match.group(0):
+                            year, month, day = int(groups[0]), int(groups[1]), int(groups[2])
+                        else:
+                            month, day, year = int(groups[0]), int(groups[1]), int(groups[2])
+                        date = f"{year:04d}-{month:02d}-{day:02d}"
+                break
+        
+        # Extract direction (above/below)
+        direction = 'ABOVE'
+        if 'below' in q or 'under' in q or 'less than' in q:
+            direction = 'BELOW'
+        
+        # Build normalized key
+        parts = [crypto]
+        if direction:
+            parts.append(direction)
+        if price:
+            parts.append(str(price))
+        if date:
+            parts.append(date)
+        
+        return '_'.join(parts)
 
     def get_crypto_markets(self, limit: int = 100) -> List[Dict]:
         """
@@ -133,13 +229,20 @@ class CryptoPolymarketAPI:
                 # For now, I will create unique codes based on the question to allow them to exist in the system.
                 # If they happen to match, great.
                 
+                # Normalize the question for matching
+                normalized_key = self._normalize_crypto_question(question)
+                
+                # Create human-readable team names
+                yes_team = f"✓ {question}"
+                no_team = f"✗ {question}"
+                
                 game_data = {
                     'platform': 'Polymarket',
                     'market_id': market_id,
-                    'away_team': 'No',
-                    'home_team': 'Yes',
-                    'away_code': f"NO_{market_id}", # Unique code to avoid collision/false matching
-                    'home_code': f"YES_{market_id}",
+                    'away_team': no_team,
+                    'home_team': yes_team,
+                    'away_code': f"NO_{normalized_key}" if normalized_key else f"NO_{market_id}",
+                    'home_code': f"YES_{normalized_key}" if normalized_key else f"YES_{market_id}",
                     'away_prob': final_no,
                     'home_prob': final_yes,
                     'away_raw_price': no_price,
@@ -149,16 +252,10 @@ class CryptoPolymarketAPI:
                     'start_date': event.get('startDate', ''),
                     'url': f'https://polymarket.com/event/{slug}',
                     'sport': 'CRYPTO',
-                    'title': question # Store the question
+                    'title': question,
+                    'question': question,
+                    'normalized_key': normalized_key
                 }
-                
-                # Adjust team names to be more descriptive
-                game_data['home_team'] = f"Yes: {question}"
-                game_data['away_team'] = f"No: {question}"
-                
-                # Fix codes to try to match by normalized title if possible?
-                # For now, let's just make them displayable.
-                # If I use title as code, it might be too long or contain chars.
                 
                 processed_markets.append(game_data)
                 

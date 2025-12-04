@@ -19,6 +19,8 @@ from nhl_kalshi_api import NHLKalshiAPI
 from nhl_team_mapping import NHL_TEAM_LOGOS
 from crypto_polymarket_api import CryptoPolymarketAPI
 from crypto_kalshi_api import CryptoKalshiAPI
+from crypto_mapping import get_crypto_logo
+from general_markets_api import GeneralPolymarketAPI, GeneralKalshiAPI
 from odds_api_aggregator import OddsAPIAggregator
 from manifold_api import ManifoldAPI
 from config import PLATFORMS
@@ -673,6 +675,26 @@ def fetch_all_sports_data(force_refresh=False):
             priority_kalshi.extend(nhl_kalshi)
         except Exception as e:
             print(f"NHL Kalshi fetch error: {e}")
+        
+        # Additional general markets (Soccer, Esports, Politics, etc.)
+        general_categories = ['SOCCER', 'ESPORTS', 'POLITICS']
+        for category in general_categories:
+            try:
+                general_poly_api = GeneralPolymarketAPI()
+                general_poly = general_poly_api.get_markets_by_category(category, limit=20)
+                _update_sport(general_poly, category)
+                priority_poly.extend(general_poly)
+            except Exception as e:
+                print(f"{category} Polymarket fetch error: {e}")
+            
+            try:
+                general_kalshi_api = GeneralKalshiAPI()
+                general_kalshi = general_kalshi_api.get_markets_by_category(category, limit=20)
+                _update_sport(general_kalshi, category)
+                priority_kalshi.extend(general_kalshi)
+            except Exception as e:
+                print(f"{category} Kalshi fetch error: {e}")
+        
         return priority_poly, priority_kalshi
     
     def _build_games_from_kalshi_markets(markets):
@@ -951,6 +973,29 @@ def _normalize_sport_label(value, default='UNKNOWN'):
     return str(value).upper()
 
 
+def _get_logo_for_game(game, sport_label):
+    """Get logo URL for a game based on sport type and team info"""
+    if sport_label == 'NBA':
+        return TEAM_LOGOS.get(game.get('away_code', ''), ''), TEAM_LOGOS.get(game.get('home_code', ''), '')
+    elif sport_label == 'NFL':
+        return NFL_TEAM_LOGOS.get(game.get('away_code', ''), ''), NFL_TEAM_LOGOS.get(game.get('home_code', ''), '')
+    elif sport_label == 'NHL':
+        return NHL_TEAM_LOGOS.get(game.get('away_code', ''), ''), NHL_TEAM_LOGOS.get(game.get('home_code', ''), '')
+    elif sport_label == 'CRYPTO':
+        # Extract crypto symbol from normalized_key or question
+        normalized_key = game.get('normalized_key', '')
+        if normalized_key:
+            # Extract first part (crypto symbol) from normalized_key like "BTC_ABOVE_100000_2024-12-31"
+            parts = normalized_key.split('_')
+            if parts:
+                crypto_symbol = parts[0]
+                logo = get_crypto_logo(crypto_symbol)
+                # For crypto, both away and home represent the same crypto asset (Yes/No on same proposition)
+                return logo, logo
+        return '', ''
+    return '', ''
+
+
 def _calculate_arb_score(poly_game, kalshi_game):
     """
     Calculate arbitrage opportunity score
@@ -1030,14 +1075,17 @@ def _build_all_sports_summary(poly_games, kalshi_games, now, min_matches, min_ar
         game_time = _format_game_time(raw_time)
         
         sport_label = _normalize_sport_label(poly.get('sport') or kalshi.get('sport'))
+        
+        # Get logos based on sport type
+        away_logo, home_logo = _get_logo_for_game(poly, sport_label)
 
         homepage_game = {
             'away_team': poly['away_team'],
             'home_team': poly['home_team'],
             'away_code': poly['away_code'],
             'home_code': poly['home_code'],
-            'away_logo': '',
-            'home_logo': '',
+            'away_logo': away_logo,
+            'home_logo': home_logo,
             'sport': sport_label,
             'polymarket': {
                 'away': round(poly['away_prob'], 1),
@@ -1091,14 +1139,17 @@ def _build_all_sports_summary(poly_games, kalshi_games, now, min_matches, min_ar
 
         game_time = poly_game.get('end_date', '')[:16] if poly_game.get('end_date') else ''
         sport_label = _normalize_sport_label(poly_game.get('sport'))
+        
+        # Get logos based on sport type
+        away_logo, home_logo = _get_logo_for_game(poly_game, sport_label)
 
         homepage_game = {
             'away_team': poly_game['away_team'],
             'home_team': poly_game['home_team'],
             'away_code': poly_game['away_code'],
             'home_code': poly_game['home_code'],
-            'away_logo': '',
-            'home_logo': '',
+            'away_logo': away_logo,
+            'home_logo': home_logo,
             'sport': sport_label,
             'polymarket': {
                 'away': round(poly_game['away_prob'], 1),
