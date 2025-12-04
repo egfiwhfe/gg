@@ -442,23 +442,25 @@ class PaperTradingSystem:
         - NBA (Basketball): High liquidity, 2-way markets
         - NHL (Hockey): High liquidity, 2-way markets  
         - NFL (Football): High liquidity, 2-way markets
+        - CRYPTO: Binary prediction markets (Above/Below price thresholds)
         
         Markets excluded:
         - SOCCER: 3-way markets (Win/Loss/Draw) cannot be properly handled by binary arbitrage logic
+        - ESPORTS: Insufficient market data
         
         Returns:
             bool: True if sport is eligible for paper trading
         """
-        # Eligible sports for paper trading - NBA, NHL, NFL
+        # Eligible sports for paper trading - NBA, NHL, NFL, CRYPTO
         eligible_sports = [
-            'BASKETBALL', 'FOOTBALL', 'HOCKEY',  # Sport names from APIs
+            'BASKETBALL', 'FOOTBALL', 'HOCKEY', 'CRYPTO',  # Sport names from APIs
             'NBA', 'NFL', 'NHL',  # Explicit sport codes
-            'basketball', 'football', 'hockey'  # Lowercase variations
+            'basketball', 'football', 'hockey', 'crypto'  # Lowercase variations
         ]
         
         # Explicitly excluded sports
         excluded_sports = [
-            'SOCCER', 'soccer', 'FOOTBALL'  # Football soccer (3-way markets)
+            'SOCCER', 'soccer', 'ESPORTS', 'esports'  # Soccer (3-way markets), Esports (insufficient data)
         ]
         
         sport = game.get('sport', '').upper()
@@ -496,6 +498,12 @@ class PaperTradingSystem:
                     'name': 'National Hockey League', 
                     'market_type': '2-way (Win/Loss)',
                     'description': 'High liquidity hockey markets',
+                    'platforms': ['Polymarket', 'Kalshi']
+                },
+                'CRYPTO': {
+                    'name': 'Cryptocurrency Price Predictions',
+                    'market_type': '2-way (Above/Below price threshold)',
+                    'description': 'Binary prediction markets for cryptocurrency prices',
                     'platforms': ['Polymarket', 'Kalshi']
                 },
                 'NFL': {

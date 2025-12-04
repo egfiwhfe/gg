@@ -676,8 +676,8 @@ def fetch_all_sports_data(force_refresh=False):
         except Exception as e:
             print(f"NHL Kalshi fetch error: {e}")
         
-        # Additional general markets (Soccer, Esports, Politics, etc.)
-        general_categories = ['SOCCER', 'ESPORTS', 'POLITICS']
+        # Additional general markets (Politics only - Soccer and Esports removed due to insufficient market data)
+        general_categories = ['POLITICS']
         for category in general_categories:
             try:
                 general_poly_api = GeneralPolymarketAPI()
@@ -775,6 +775,12 @@ def fetch_all_sports_data(force_refresh=False):
     _update_sport(poly_games)
     _update_sport(kalshi_games)
     
+    # ALWAYS fetch priority games (NBA, NFL, NHL, CRYPTO, POLITICS) to ensure crypto markets are included
+    print("🔍 Fetching priority sports feeds (NBA, NFL, NHL, CRYPTO, POLITICS)...")
+    priority_poly, priority_kalshi = _fetch_priority_games()
+    poly_games = _merge_games(poly_games, priority_poly)
+    kalshi_games = _merge_games(kalshi_games, priority_kalshi)
+    
     search_iterations = 1
     result = _build_all_sports_summary(poly_games, kalshi_games, now, MIN_MATCHED_GAMES, MIN_ARB_OPPORTUNITIES)
     
@@ -782,10 +788,10 @@ def fetch_all_sports_data(force_refresh=False):
     max_iterations = 2  # Prevent infinite loops and timeouts
     while not result.get('requirements_met') and search_iterations < max_iterations:
         if search_iterations == 1:
-            print("🔍 Expanding dataset with priority sports feeds...")
-            priority_poly, priority_kalshi = _fetch_priority_games()
-            poly_games = _merge_games(poly_games, priority_poly)
-            kalshi_games = _merge_games(kalshi_games, priority_kalshi)
+            print("🔄 Expanding dataset with full market sweep...")
+            sweep_poly, sweep_kalshi = _fetch_full_sweep()
+            poly_games = _merge_games(poly_games, sweep_poly)
+            kalshi_games = _merge_games(kalshi_games, sweep_kalshi)
             search_iterations += 1
             result = _build_all_sports_summary(poly_games, kalshi_games, now, MIN_MATCHED_GAMES, MIN_ARB_OPPORTUNITIES)
         elif search_iterations == 2:
