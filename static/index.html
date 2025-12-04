@@ -912,7 +912,7 @@ function createGameCard(game) {
         async function fetchData() {
             try {
                 // 使用纸面交易系统的数据源，确保数据一致性
-                let url = '/api/odds/all-sports';
+                let url = '/api/odds/multi';
                 if (currentSport === 'nba') {
                     url = '/api/odds/nba';
                 } else if (currentSport === 'nfl') {
@@ -932,15 +932,15 @@ function createGameCard(game) {
                 let allGames = [];
                 let stats = {};
 
-                if (url === '/api/odds/all-sports') {
-                    // 使用后端提供的homepage格式数据
-                    allGames = data.homepage_games || [];
+                if (url === '/api/odds/multi') {
+                    // MULTI视图：只显示NBA/NFL/NHL中满足套利条件的市场
+                    allGames = data.homepage_arb_games || [];
                     stats = {
-                        poly_total: data.stats.total_polymarket_games,
-                        kalshi_total: data.stats.total_kalshi_games,
-                        matched: data.stats.matched_games,
-                        arb_games: data.stats.arb_homepage_games,
-                        homepage_games: data.stats.homepage_games
+                        poly_total: data.stats.poly_total,
+                        kalshi_total: data.stats.kalshi_total,
+                        matched: data.stats.matched,
+                        arb_games: allGames.length,
+                        homepage_games: allGames.length
                     };
                 } else {
                     // 单个体育项目的数据保持原有逻辑

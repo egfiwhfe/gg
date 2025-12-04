@@ -1334,7 +1334,7 @@ def refresh_all_sports_odds():
 
 @app.route('/api/odds/multi')
 def get_multi_sport_odds():
-    """Aggregate NBA, NFL, NHL, and Football markets into a single feed with explicit tradable market indicators"""
+    """Aggregate NBA, NFL, NHL markets and return only games with arbitrage opportunities"""
     now = datetime.now()
     try:
         nba_data = fetch_nba_data()
@@ -1348,7 +1348,7 @@ def get_multi_sport_odds():
         }
 
         combined_games = []
-        tradable_games = []
+        homepage_arb_games = []
         overall_stats = {
             'total_games': 0,
             'poly_total': 0,
@@ -1402,13 +1402,14 @@ def get_multi_sport_odds():
                         if roi_percent is not None and roi_percent > min_roi:
                             is_tradable = True
                             overall_stats['tradable_markets'] += 1
-                            tradable_games.append(enriched)
+                            homepage_arb_games.append(enriched)
                 
                 enriched['is_tradable'] = is_tradable
                 enriched['meets_paper_trade_conditions'] = is_tradable
                 combined_games.append(enriched)
 
         combined_games.sort(key=lambda g: (g.get('arbitrage_score', 0), g.get('diff', {}).get('max', 0)), reverse=True)
+        homepage_arb_games.sort(key=lambda g: (g.get('arbitrage_score', 0), g.get('diff', {}).get('max', 0)), reverse=True)
 
         result = {
             'success': True,
@@ -1417,7 +1418,7 @@ def get_multi_sport_odds():
             'stats': overall_stats,
             'by_sport': per_sport_stats,
             'games': combined_games,
-            'tradable_games': tradable_games  # Explicitly show tradable markets
+            'homepage_arb_games': homepage_arb_games  # Only games with positive ROI after fees
         }
         return jsonify(result)
     except Exception as e:
@@ -1564,7 +1565,7 @@ def check_paper_trading_settlements():
         print(f"Error checking settlements: {e}")
 
 def monitor_job():
-    """Background job to check for arbs and execute paper trades"""
+    """Background job to check for arbs and execute paper trades - NBA, NFL, NHL only"""
     # print(f"[{datetime.now().strftime('%H:%M:%S')}] Running monitor job...")
     
     # Check if paper trading is enabled
@@ -1572,103 +1573,33 @@ def monitor_job():
         return
 
     try:
-        # Use comprehensive all-sports data for maximum coverage
-        all_sports_data = fetch_all_sports_data()
+        # Fetch only NBA, NFL, NHL data (not all-sports)
+        print("Fetching NBA, NFL, NHL data for paper trading...")
+        nba = fetch_nba_data()
+        nfl = fetch_nfl_data()
+        nhl = fetch_nhl_data()
         
-        if not all_sports_data.get('success'):
-            print("Failed to fetch all-sports data, falling back to individual sports")
-            # Fallback to individual sports
-            nba = fetch_nba_data()
-            nfl = fetch_nfl_data()
-            nhl = fetch_nhl_data()
-            
-            all_games = []
-            
-            # Helper to extract games list
-            def extract_games(payload, sport_name):
-                if not payload or not payload.get('success'):
-                    return []
-                games = []
-                if sport_name == 'nba':
-                    games.extend(payload.get('games', {}).get('today', []))
-                    games.extend(payload.get('games', {}).get('tomorrow', []))
-                else:
-                    games.extend(payload.get('games', []))
-                
-                # Enriched with sport name
-                for g in games:
-                    g['sport'] = sport_name.upper()
-                return games
-
-            all_games.extend(extract_games(nba, 'nba'))
-            all_games.extend(extract_games(nfl, 'nfl'))
-            all_games.extend(extract_games(nhl, 'nhl'))
-        else:
-            # Use the comprehensive data - prioritize homepage_games for consistency with frontend
-            all_games = []
-            
-            # Use homepage_games directly - these are pre-formatted and include arb calculations
-            homepage_games = all_sports_data.get('homepage_games', [])
-            if homepage_games:
-                print(f"✅ Using {len(homepage_games)} homepage_games from all_sports_data")
-                all_games = homepage_games
+        all_games = []
+        
+        # Helper to extract games list
+        def extract_games(payload, sport_name):
+            if not payload or not payload.get('success'):
+                return []
+            games = []
+            if sport_name == 'nba':
+                games.extend(payload.get('games', {}).get('today', []))
+                games.extend(payload.get('games', {}).get('tomorrow', []))
             else:
-                # Fallback: Convert matched games to the expected format for paper trading
-                print("⚠️ No homepage_games found, falling back to matched_games conversion")
-                for match in all_sports_data.get('matched_games', []):
-                    poly = match['polymarket']
-                    kalshi = match['kalshi']
-                    
-                    game = {
-                        'away_team': poly['away_team'],
-                        'home_team': poly['home_team'],
-                        'away_code': poly['away_code'],
-                        'home_code': poly['home_code'],
-                        'sport': poly.get('sport', 'unknown'),
-                        'polymarket': {
-                            'away': poly['away_prob'],
-                            'home': poly['home_prob'],
-                            'raw_away': poly['away_raw_price'],
-                            'raw_home': poly['home_raw_price'],
-                            'market_id': poly['market_id'],
-                            'url': poly['url']
-                        },
-                        'kalshi': {
-                            'away': kalshi['away_prob'],
-                            'home': kalshi['home_prob'],
-                            'raw_away': kalshi['away_raw_price'],
-                            'raw_home': kalshi['home_raw_price'],
-                            'away_ticker': kalshi.get('ticker'),
-                            'home_ticker': kalshi.get('ticker'),
-                            'url': kalshi['url']
-                        }
-                    }
-                    all_games.append(game)
-                
-                # Also include unmatched games that might have arbitrage opportunities within the same platform
-                for poly_game in all_sports_data.get('unmatched_polymarket', []):
-                    # Skip games without proper data
-                    if not all([poly_game.get('away_prob'), poly_game.get('home_prob'), 
-                               poly_game.get('away_raw_price'), poly_game.get('home_raw_price')]):
-                        continue
-                        
-                    game = {
-                        'away_team': poly_game['away_team'],
-                        'home_team': poly_game['home_team'],
-                        'away_code': poly_game['away_code'],
-                        'home_code': poly_game['home_code'],
-                        'sport': poly_game.get('sport', 'unknown'),
-                        'polymarket': {
-                            'away': poly_game['away_prob'],
-                            'home': poly_game['home_prob'],
-                            'raw_away': poly_game['away_raw_price'],
-                            'raw_home': poly_game['home_raw_price'],
-                            'market_id': poly_game['market_id'],
-                            'url': poly_game['url']
-                        },
-                        'kalshi': {}  # Empty kalshi data
-                    }
-                    all_games.append(game)
+                games.extend(payload.get('games', []))
+            
+            # Enrich with sport name
+            for g in games:
+                g['sport'] = sport_name.upper()
+            return games
+
+        all_games.extend(extract_games(nba, 'nba'))
+        all_games.extend(extract_games(nfl, 'nfl'))
+        all_games.extend(extract_games(nhl, 'nhl'))
         
         print(f"Processing {len(all_games)} games for arbitrage opportunities...")
         
