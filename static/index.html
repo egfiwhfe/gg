@@ -190,21 +190,61 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             background: rgba(255, 255, 255, 0.08);
+            display: inline-block;
         }
 
-        .sport-chip.nba { color: #f97316; }
-        .sport-chip.nfl { color: #10b981; }
-        .sport-chip.nhl { color: #38bdf8; }
-        .sport-chip.crypto { color: #f59e0b; }
-        .sport-chip.soccer { color: #22c55e; }
-        .sport-chip.esports { color: #a855f7; }
-        .sport-chip.politics { color: #ef4444; }
-        .sport-chip.entertainment { color: #ec4899; }
-        .sport-chip.mlb { color: #3b82f6; }
-        .sport-chip.mma { color: #dc2626; }
-        .sport-chip.tennis { color: #84cc16; }
-        .sport-chip.golf { color: #14b8a6; }
-        .sport-chip.unknown { color: #9ca3af; }
+        .sport-chip.nba { 
+            color: #f97316;
+            background: rgba(249, 115, 22, 0.15);
+        }
+        .sport-chip.nfl { 
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.15);
+        }
+        .sport-chip.nhl { 
+            color: #38bdf8;
+            background: rgba(56, 189, 248, 0.15);
+        }
+        .sport-chip.crypto { 
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.15);
+        }
+        .sport-chip.soccer { 
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.15);
+        }
+        .sport-chip.esports { 
+            color: #a855f7;
+            background: rgba(168, 85, 247, 0.15);
+        }
+        .sport-chip.politics { 
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.15);
+        }
+        .sport-chip.entertainment { 
+            color: #ec4899;
+            background: rgba(236, 72, 153, 0.15);
+        }
+        .sport-chip.mlb { 
+            color: #3b82f6;
+            background: rgba(59, 130, 246, 0.15);
+        }
+        .sport-chip.mma { 
+            color: #dc2626;
+            background: rgba(220, 38, 38, 0.15);
+        }
+        .sport-chip.tennis { 
+            color: #84cc16;
+            background: rgba(132, 204, 22, 0.15);
+        }
+        .sport-chip.golf { 
+            color: #14b8a6;
+            background: rgba(20, 184, 166, 0.15);
+        }
+        .sport-chip.unknown { 
+            color: #9ca3af;
+            background: rgba(156, 163, 175, 0.15);
+        }
 
         /* Multi-Platform Comparison Table */
         .comparison-table {
@@ -569,9 +609,12 @@
 
             <div class="sport-tabs">
                 <button class="sport-tab active" data-sport="multi">🔥 综合</button>
-                <button class="sport-tab" data-sport="nba">NBA</button>
-                <button class="sport-tab" data-sport="nfl">NFL</button>
-                <button class="sport-tab" data-sport="nhl">NHL</button>
+                <button class="sport-tab" data-sport="nba">🏀 NBA</button>
+                <button class="sport-tab" data-sport="nfl">🏈 NFL</button>
+                <button class="sport-tab" data-sport="nhl">🏒 NHL</button>
+                <button class="sport-tab" data-sport="crypto">₿ 加密</button>
+                <button class="sport-tab" data-sport="soccer">⚽ 足球</button>
+                <button class="sport-tab" data-sport="esports">🎮 电竞</button>
             </div>
 
             <div class="betting-controls" style="margin-top: 20px; background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px;">
@@ -921,7 +964,7 @@ function createGameCard(game) {
 
         async function fetchData() {
             try {
-                // 使用专门的数据源，确保NBA,NHL,NFL满足条件的市场在MULTI里显示
+                // 使用专门的数据源，确保所有市场在MULTI里正确显示
                 let url = '/api/odds/multi';
                 if (currentSport === 'nba') {
                     url = '/api/odds/nba';
@@ -929,6 +972,9 @@ function createGameCard(game) {
                     url = '/api/odds/nfl';
                 } else if (currentSport === 'nhl') {
                     url = '/api/odds/nhl';
+                } else if (['crypto', 'soccer', 'esports', 'politics', 'entertainment'].includes(currentSport)) {
+                    // 这些是通过 /api/odds/multi 返回的市场，需要在前端过滤
+                    url = '/api/odds/multi';
                 }
 
                 const response = await fetch(url);
@@ -944,7 +990,17 @@ function createGameCard(game) {
 
                 if (url === '/api/odds/multi') {
                     // MULTI端点返回的数据结构：包含所有游戏和可交易游戏
-                    allGames = data.tradable_games || []; // 只显示满足套利条件的游戏
+                    let allMultiGames = data.tradable_games || []; // 只显示满足套利条件的游戏
+                    
+                    // 如果选中的是特定体育类型，过滤到该类型
+                    if (currentSport !== 'multi') {
+                        allGames = allMultiGames.filter(game => 
+                            (game.sport && game.sport.toLowerCase() === currentSport.toLowerCase())
+                        );
+                    } else {
+                        allGames = allMultiGames;
+                    }
+                    
                     stats = data.stats || {};
                 } else {
                     // 单个体育项目的数据保持原有逻辑

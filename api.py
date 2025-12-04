@@ -1385,60 +1385,40 @@ def refresh_all_sports_odds():
 
 @app.route('/api/odds/multi')
 def get_multi_sport_odds():
-    """Aggregate NBA, NFL, NHL, and Football markets into a single feed with explicit tradable market indicators"""
+    """Aggregate all markets (NBA, NFL, NHL, CRYPTO, SOCCER, ESPORTS, POLITICS) into a single feed with explicit tradable market indicators"""
     now = datetime.now()
     try:
-        nba_data = fetch_nba_data()
-        nfl_data = fetch_nfl_data()
-        nhl_data = fetch_nhl_data()
-
-        sport_payloads = {
-            'nba': nba_data,
-            'nfl': nfl_data,
-            'nhl': nhl_data,
-        }
-
-        combined_games = []
-        tradable_games = []
-        overall_stats = {
-            'total_games': 0,
-            'poly_total': 0,
-            'kalshi_total': 0,
-            'matched': 0,
-            'tradable_markets': 0
-        }
-        per_sport_stats = {}
-
-        for sport, payload in sport_payloads.items():
-            stats = payload.get('stats', {})
-            per_sport_stats[sport] = stats
-            overall_stats['poly_total'] += stats.get('poly_total', 0)
-            overall_stats['kalshi_total'] += stats.get('kalshi_total', 0)
-            overall_stats['matched'] += stats.get('matched', 0)
-
-            if sport == 'nba':
-                game_groups = payload.get('games', {})
-                sport_games = (game_groups.get('today') or []) + (game_groups.get('tomorrow') or [])
-            else:
-                sport_games = payload.get('games', []) or []
-
-            overall_stats['total_games'] += len(sport_games)
-
-            for game in sport_games:
-                enriched = dict(game)
-                enriched['sport'] = sport.upper()
+        # Use fetch_all_sports_data to get comprehensive data including CRYPTO and other markets
+        all_sports_data = fetch_all_sports_data()
+        
+        if all_sports_data.get('success'):
+            # Use homepage_arb_games which includes all sports with arbitrage opportunities
+            # This ensures we show games that have positive ROI after fees
+            arb_games = all_sports_data.get('homepage_arb_games', [])
+            
+            # Extract stats from the comprehensive data
+            overall_stats = all_sports_data.get('stats', {})
+            
+            # Ensure proper formatting and mark games
+            combined_games = []
+            sports_in_data = set()
+            
+            for game in arb_games:
+                sport = game.get('sport', 'UNKNOWN').upper()
+                sports_in_data.add(sport)
                 
-                # Calculate risk-free arbitrage details if not already present
-                poly = game.get('polymarket', {})
-                kalshi = game.get('kalshi', {})
-                if poly and kalshi and not enriched.get('riskFreeArb'):
-                    arb_details = _calculate_risk_free_details(poly, kalshi)
-                    if arb_details:
-                        enriched['risk_free_arb'] = arb_details
-                        enriched['riskFreeArb'] = _format_risk_free_details(arb_details)
+                # Ensure risk-free arb details are present
+                if not game.get('riskFreeArb') and not game.get('risk_free_arb'):
+                    poly = game.get('polymarket', {})
+                    kalshi = game.get('kalshi', {})
+                    if poly and kalshi:
+                        arb_details = _calculate_risk_free_details(poly, kalshi)
+                        if arb_details:
+                            game['risk_free_arb'] = arb_details
+                            game['riskFreeArb'] = _format_risk_free_details(arb_details)
                 
-                # Mark as tradable if it meets paper trading conditions
-                risk_detail = enriched.get('riskFreeArb') or enriched.get('risk_free_arb')
+                # Mark as having passed arbitrage check
+                risk_detail = game.get('riskFreeArb') or game.get('risk_free_arb')
                 is_tradable = False
                 if risk_detail:
                     edge = risk_detail.get('edge') if isinstance(risk_detail, dict) and 'edge' in risk_detail else risk_detail.get('net_edge')
@@ -1452,25 +1432,110 @@ def get_multi_sport_odds():
                         
                         if roi_percent is not None and roi_percent > min_roi:
                             is_tradable = True
-                            overall_stats['tradable_markets'] += 1
-                            tradable_games.append(enriched)
                 
-                enriched['is_tradable'] = is_tradable
-                enriched['meets_paper_trade_conditions'] = is_tradable
-                combined_games.append(enriched)
+                game['is_tradable'] = is_tradable
+                game['meets_paper_trade_conditions'] = is_tradable
+                combined_games.append(game)
+            
+            # Sort by arbitrage score
+            combined_games.sort(key=lambda g: (g.get('arbitrage_score', 0), g.get('diff', {}).get('max', 0)), reverse=True)
+            
+            result = {
+                'success': True,
+                'timestamp': now.isoformat(),
+                'sports': sorted(list(sports_in_data)),
+                'stats': overall_stats,
+                'games': combined_games,
+                'tradable_games': combined_games,
+                'total_displayed': len(combined_games)
+            }
+            return jsonify(result)
+        else:
+            # Fallback to individual sports if comprehensive fetch fails
+            nba_data = fetch_nba_data()
+            nfl_data = fetch_nfl_data()
+            nhl_data = fetch_nhl_data()
 
-        combined_games.sort(key=lambda g: (g.get('arbitrage_score', 0), g.get('diff', {}).get('max', 0)), reverse=True)
+            sport_payloads = {
+                'nba': nba_data,
+                'nfl': nfl_data,
+                'nhl': nhl_data,
+            }
 
-        result = {
-            'success': True,
-            'timestamp': now.isoformat(),
-            'sports': list(sport_payloads.keys()),
-            'stats': overall_stats,
-            'by_sport': per_sport_stats,
-            'games': combined_games,
-            'tradable_games': tradable_games  # Explicitly show tradable markets
-        }
-        return jsonify(result)
+            combined_games = []
+            tradable_games = []
+            overall_stats = {
+                'total_games': 0,
+                'poly_total': 0,
+                'kalshi_total': 0,
+                'matched': 0,
+                'tradable_markets': 0
+            }
+            per_sport_stats = {}
+
+            for sport, payload in sport_payloads.items():
+                stats = payload.get('stats', {})
+                per_sport_stats[sport] = stats
+                overall_stats['poly_total'] += stats.get('poly_total', 0)
+                overall_stats['kalshi_total'] += stats.get('kalshi_total', 0)
+                overall_stats['matched'] += stats.get('matched', 0)
+
+                if sport == 'nba':
+                    game_groups = payload.get('games', {})
+                    sport_games = (game_groups.get('today') or []) + (game_groups.get('tomorrow') or [])
+                else:
+                    sport_games = payload.get('games', []) or []
+
+                overall_stats['total_games'] += len(sport_games)
+
+                for game in sport_games:
+                    enriched = dict(game)
+                    enriched['sport'] = sport.upper()
+                    
+                    # Calculate risk-free arbitrage details if not already present
+                    poly = game.get('polymarket', {})
+                    kalshi = game.get('kalshi', {})
+                    if poly and kalshi and not enriched.get('riskFreeArb'):
+                        arb_details = _calculate_risk_free_details(poly, kalshi)
+                        if arb_details:
+                            enriched['risk_free_arb'] = arb_details
+                            enriched['riskFreeArb'] = _format_risk_free_details(arb_details)
+                    
+                    # Mark as tradable if it meets paper trading conditions
+                    risk_detail = enriched.get('riskFreeArb') or enriched.get('risk_free_arb')
+                    is_tradable = False
+                    if risk_detail:
+                        edge = risk_detail.get('edge') if isinstance(risk_detail, dict) and 'edge' in risk_detail else risk_detail.get('net_edge')
+                        roi_percent = risk_detail.get('roiPercent') if isinstance(risk_detail, dict) and 'roiPercent' in risk_detail else risk_detail.get('roi_percent')
+                        
+                        if edge is not None and edge > 0:
+                            try:
+                                min_roi = float(os.environ.get('PAPER_TRADING_MIN_ROI', 0))
+                            except:
+                                min_roi = 0.0
+                            
+                            if roi_percent is not None and roi_percent > min_roi:
+                                is_tradable = True
+                                overall_stats['tradable_markets'] += 1
+                                tradable_games.append(enriched)
+                    
+                    enriched['is_tradable'] = is_tradable
+                    enriched['meets_paper_trade_conditions'] = is_tradable
+                    combined_games.append(enriched)
+
+            combined_games.sort(key=lambda g: (g.get('arbitrage_score', 0), g.get('diff', {}).get('max', 0)), reverse=True)
+
+            result = {
+                'success': True,
+                'timestamp': now.isoformat(),
+                'sports': list(sport_payloads.keys()),
+                'stats': overall_stats,
+                'by_sport': per_sport_stats,
+                'games': combined_games,
+                'tradable_games': tradable_games,
+                'fallback': True
+            }
+            return jsonify(result)
     except Exception as e:
         return jsonify({
             'success': False,
