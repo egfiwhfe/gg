@@ -678,57 +678,61 @@ function calcRiskFreeArb(game) {
                 return null;
             }
 
-            function pickBestSide(polyPrice, kalshiPrice) {
-                const polyEffective = polyPrice * (1 + POLY_FEE + SLIPPAGE_ESTIMATE);
-                const kalshiEffective = kalshiPrice * (1 + KALSHI_FEE + SLIPPAGE_ESTIMATE);
-
-                if (polyEffective <= kalshiEffective) {
-                    return {
-                        platform: 'Polymarket',
-                        price: polyPrice,
-                        effectivePrice: polyEffective
-                    };
-                }
-
-                return {
-                    platform: 'Kalshi',
-                    price: kalshiPrice,
-                    effectivePrice: kalshiEffective
-                };
-            }
-
-            const away = pickBestSide(polyAway, kalshiAway);
-            const home = pickBestSide(polyHome, kalshiHome);
-
-            // CRITICAL VALIDATION: Prevent same-platform bets
-            if (away.platform === home.platform) {
+            // 与后端保持一致：忽略 0 价或无效盘口
+            if (
+                polyAway <= 0 || polyHome <= 0 ||
+                kalshiAway <= 0 || kalshiHome <= 0
+            ) {
                 return null;
             }
 
-            const grossCost = away.price + home.price;               // 未扣手续费成本（例如 96）
-            const grossEdge = 100 - grossCost;                        // 未扣手续费理论毛利
+            const polyAwayEff = polyAway * (1 + POLY_FEE + SLIPPAGE_ESTIMATE);
+            const polyHomeEff = polyHome * (1 + POLY_FEE + SLIPPAGE_ESTIMATE);
+            const kalshiAwayEff = kalshiAway * (1 + KALSHI_FEE + SLIPPAGE_ESTIMATE);
+            const kalshiHomeEff = kalshiHome * (1 + KALSHI_FEE + SLIPPAGE_ESTIMATE);
 
-            const totalEffectiveCost = away.effectivePrice + home.effectivePrice; // 含手续费成本
-            if (totalEffectiveCost <= 0) return null;
-            const netEdge = 100 - totalEffectiveCost;                 // 含手续费净收益
+            const strategy1 = {
+                away: { platform: 'Polymarket', price: polyAway, effectivePrice: polyAwayEff },
+                home: { platform: 'Kalshi', price: kalshiHome, effectivePrice: kalshiHomeEff },
+                totalEffective: polyAwayEff + kalshiHomeEff,
+                grossCost: polyAway + kalshiHome
+            };
 
-            // ROI Check: Require Net Yield > 0%
-            const roi = netEdge / totalEffectiveCost;
+            const strategy2 = {
+                away: { platform: 'Kalshi', price: kalshiAway, effectivePrice: kalshiAwayEff },
+                home: { platform: 'Polymarket', price: polyHome, effectivePrice: polyHomeEff },
+                totalEffective: kalshiAwayEff + polyHomeEff,
+                grossCost: kalshiAway + polyHome
+            };
+
+            const bestStrategy = strategy1.totalEffective <= strategy2.totalEffective
+                ? strategy1
+                : strategy2;
+
+            if (bestStrategy.totalEffective <= 0) {
+                return null;
+            }
+
+            const netEdge = 100 - bestStrategy.totalEffective;
+            const roi = netEdge / bestStrategy.totalEffective;
+
             if (roi <= 0) {
                 return null;
             }
 
+            const grossEdge = 100 - bestStrategy.grossCost;
+
             return {
-                bestAwayPrice: away.price,
-                bestHomePrice: home.price,
-                bestAwayEffective: away.effectivePrice,
-                bestHomeEffective: home.effectivePrice,
-                bestAwayFrom: away.platform,
-                bestHomeFrom: home.platform,
-                totalCost: totalEffectiveCost,
+                bestAwayPrice: bestStrategy.away.price,
+                bestHomePrice: bestStrategy.home.price,
+                bestAwayEffective: bestStrategy.away.effectivePrice,
+                bestHomeEffective: bestStrategy.home.effectivePrice,
+                bestAwayFrom: bestStrategy.away.platform,
+                bestHomeFrom: bestStrategy.home.platform,
+                totalCost: bestStrategy.totalEffective,
                 edge: netEdge,
                 roi,
-                grossCost,
+                grossCost: bestStrategy.grossCost,
                 grossEdge
             };
         }
