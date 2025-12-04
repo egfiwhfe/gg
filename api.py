@@ -1640,6 +1640,15 @@ def monitor_job():
             if kalshi and (kalshi.get('raw_away', 0) <= 0 or kalshi.get('raw_home', 0) <= 0):
                 continue
             
+            # Calculate risk-free arbitrage details if not already present (like in /api/odds/multi)
+            poly = game.get('polymarket', {})
+            kalshi = game.get('kalshi', {})
+            if poly and kalshi and not game.get('riskFreeArb') and not game.get('risk_free_arb'):
+                arb_details = _calculate_risk_free_details(poly, kalshi)
+                if arb_details:
+                    game['risk_free_arb'] = arb_details
+                    game['riskFreeArb'] = _format_risk_free_details(arb_details)
+            
             risk_detail = game.get('riskFreeArb')
             if not risk_detail and game.get('risk_free_arb'):
                 risk_detail = _format_risk_free_details(game.get('risk_free_arb'))
