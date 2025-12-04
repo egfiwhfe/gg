@@ -613,8 +613,6 @@
                 <button class="sport-tab" data-sport="nfl">🏈 NFL</button>
                 <button class="sport-tab" data-sport="nhl">🏒 NHL</button>
                 <button class="sport-tab" data-sport="crypto">₿ 加密</button>
-                <button class="sport-tab" data-sport="soccer">⚽ 足球</button>
-                <button class="sport-tab" data-sport="esports">🎮 电竞</button>
             </div>
 
             <div class="betting-controls" style="margin-top: 20px; background: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 12px; display: flex; align-items: center; gap: 15px;">
@@ -972,7 +970,7 @@ function createGameCard(game) {
                     url = '/api/odds/nfl';
                 } else if (currentSport === 'nhl') {
                     url = '/api/odds/nhl';
-                } else if (['crypto', 'soccer', 'esports', 'politics', 'entertainment'].includes(currentSport)) {
+                } else if (['crypto', 'politics', 'entertainment'].includes(currentSport)) {
                     // 这些是通过 /api/odds/multi 返回的市场，需要在前端过滤
                     url = '/api/odds/multi';
                 }
