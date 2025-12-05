@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PolyMix - 纸面交易模拟</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            background: rgba(20, 20, 30, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1 {
+            font-size: 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stats-panel {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .stat-label { font-size: 12px; color: #aaa; text-transform: uppercase; margin-bottom: 5px; }
+        .stat-value { font-size: 28px; font-weight: 700; color: #fff; }
+        .green { color: #10b981; }
+        .red { color: #ff4d4d; }
+        
+        .section-title { font-size: 20px; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        th { color: #888; font-size: 12px; text-transform: uppercase; }
+        tr:hover { background: rgba(255,255,255,0.02); }
+        
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge-locked { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        
+        .nav-link {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 20px;
+            font-weight: 500;
+        }
+        .nav-link:hover { text-decoration: underline; }
+        
+        .vertical-game {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            line-height: 1.4;
+            text-align: center;
+        }
+        .vertical-game .team { font-weight: 600; }
+        .vertical-game .separator { font-size: 11px; color: #888; letter-spacing: 1px; }
+        
+        .time-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .time-cell > div:first-child { font-weight: 500; }
+        .time-sub { 
+            font-size: 11px; 
+            color: #999; 
+            padding-top: 4px; 
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .muted { color: #666; font-size: 11px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>纸面交易模拟 (Paper Trading)</h1>
+                <div style="margin-top: 10px;">
+                    <a href="/" class="nav-link">← 返回主页</a>
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 12px; color: #888;">自动无风险套利系统运行中</div>
+                <div style="font-size: 12px; color: #888;">Strategy: Risk-Free Arb</div>
+            </div>
+        </div>
+
+        <div class="stats-panel">
+            <div class="stat-card">
+                <div class="stat-label">当前余额 (Balance)</div>
+                <div class="stat-value" id="balance">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">初始资金 (Initial)</div>
+                <div class="stat-value" id="initial">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">总利润 (Total Profit)</div>
+                <div class="stat-value green" id="profit">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">预估利润 (Est. Profit)</div>
+                <div class="stat-value green" id="estimated-profit">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">总交易次数 (Trades)</div>
+                <div class="stat-value" id="trades-count">-</div>
+            </div>
+        </div>
+
+        <div>
+            <div class="section-title">交易记录 (Trade History)</div>
+            <table id="trades-table">
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>比赛</th>
+                        <th>市场</th>
+                        <th>策略</th>
+                        <th>详细下注 (Legs)</th>
+                        <th>成本</th>
+                        <th>预计回报</th>
+                        <th>净利润</th>
+                        <th>ROI</th>
+                        <th>状态</th>
+                    </tr>
+                </thead>
+                <tbody id="trades-body">
+                    <!-- Rows will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function fetchState() {
+            try {
+                const response = await fetch('/api/paper/state');
+                const data = await response.json();
+                
+                const formatProfit = (val) => {
+                     const sign = val >= 0 ? '+' : '-';
+                     return `${sign}$${Math.abs(val).toFixed(2)}`;
+                };
+                
+                document.getElementById('balance').textContent = '$' + data.balance.toFixed(2);
+                document.getElementById('initial').textContent = '$' + data.initial_balance.toFixed(2);
+                
+                const profitEl = document.getElementById('profit');
+                profitEl.textContent = formatProfit(data.total_profit);
+                profitEl.className = 'stat-value ' + (data.total_profit >= 0 ? 'green' : 'red');
+                
+                const estProfitEl = document.getElementById('estimated-profit');
+                estProfitEl.textContent = formatProfit(data.estimated_profit);
+                estProfitEl.className = 'stat-value ' + (data.estimated_profit >= 0 ? 'green' : 'red');
+
+                document.getElementById('trades-count').textContent = data.total_trades;
+                
+                const tbody = document.getElementById('trades-body');
+                tbody.innerHTML = '';
+                
+                data.bets.forEach(bet => {
+                    const row = document.createElement('tr');
+                    const date = new Date(bet.timestamp).toLocaleString('zh-CN');
+                    
+                    // Format game name vertically (Team A / vs / Team B)
+                    let gameDisplay = bet.game;
+                    const vsMatch = bet.game.match(/(.+?)\s+(vs|@)\s+(.+)/i);
+                    if (vsMatch) {
+                        const teamA = vsMatch[1].trim();
+                        const separator = vsMatch[2].trim();
+                        const teamB = vsMatch[3].trim();
+                        gameDisplay = `<div class="vertical-game">
+                            <div class="team">${teamA}</div>
+                            <div class="separator">${separator}</div>
+                            <div class="team">${teamB}</div>
+                        </div>`;
+                    }
+                    
+                    // Format game time (show real game start/end time)
+                    let gameTimeDisplay = '';
+                    if (bet.game_time) {
+                        const gameTime = bet.game_time.replace('T', ' ').substring(0, 16);
+                        gameTimeDisplay = `<div class="time-sub">真实开赛/完赛时间：${gameTime}</div>`;
+                    }
+                    
+                    // Format legs
+                    let legsHtml = '';
+                    if (bet.legs && bet.legs.length > 0) {
+                        legsHtml = bet.legs.map(leg => {
+                            let detail = '';
+                            if (leg.cost_usd !== undefined) {
+                                detail = `<div style="color:#666; font-size:10px;">
+                                    Cost: $${leg.cost_usd.toFixed(2)} | Fee: $${(leg.fee_usd||0).toFixed(2)}
+                                </div>`;
+                            }
+                            return `<div style="font-size:11px; margin-bottom:6px; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:4px;">
+                                <div style="margin-bottom:2px;">
+                                    <span style="color:#aaa; font-weight:bold">${leg.platform}</span>: 
+                                    ${leg.url ? `<a href="${leg.url}" target="_blank" style="color:#fff; text-decoration:underline;">${leg.team}</a>` : `<span style="color:#fff">${leg.team}</span>`}
+                                </div>
+                                <div>
+                                    Price: <span style="color:#667eea">${leg.price}¢</span>
+                                </div>
+                                ${detail}
+                            </div>`
+                        }).join('');
+                        
+                        // Add total fee info if available
+                        if (bet.fees_total_usd !== undefined) {
+                            legsHtml += `<div style="font-size:10px; color:#888; margin-top:4px;">Total Fees: $${bet.fees_total_usd.toFixed(2)}</div>`;
+                        }
+                    }
+                    
+                    const profitClass = bet.profit >= 0 ? 'green' : 'red';
+                    const profitText = formatProfit(bet.profit);
+                    const roiClass = bet.roi_percent >= 0 ? 'green' : 'red';
+
+                    row.innerHTML = `
+                        <td class="time-cell">
+                            <div>${date}</div>
+                            ${gameTimeDisplay}
+                        </td>
+                        <td>${gameDisplay}</td>
+                        <td><span class="badge" style="background:rgba(255,255,255,0.1)">${bet.sport}</span></td>
+                        <td>Risk-Free Arb</td>
+                        <td>${legsHtml}</td>
+                        <td>$${bet.cost.toFixed(2)}</td>
+                        <td>$${bet.payout.toFixed(2)}</td>
+                        <td class="${profitClass}">${profitText}</td>
+                        <td class="${roiClass}">${bet.roi_percent.toFixed(2)}%</td>
+                        <td><span class="badge badge-locked">${bet.status}</span></td>
+                    `;
+                    tbody.appendChild(row);
+                });
+                
+            } catch (e) {
+                console.error("Error fetching state:", e);
+            }
+        }
+
+        fetchState();
+        setInterval(fetchState, 5000); // Update every 5 seconds
+    </script>
+</body>
+</html>
