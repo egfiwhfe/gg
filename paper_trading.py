@@ -4,6 +4,27 @@ from datetime import datetime
 
 DATA_FILE = 'paper_trading_data.json'
 
+def _extract_price_value(game, side):
+    """Extract the most precise available price for a given side."""
+    if not game:
+        return None
+    candidates = [
+        f"{side}_raw_price",
+        f"raw_{side}",
+        f"{side}_raw",
+        f"{side}_prob",
+        side
+    ]
+    for key in candidates:
+        value = game.get(key)
+        if value is None:
+            continue
+        try:
+            return float(value)
+        except (TypeError, ValueError):
+            continue
+    return None
+
 class PaperTradingSystem:
     def __init__(self):
         self.load_data()
@@ -113,7 +134,12 @@ class PaperTradingSystem:
             poly = game.get('polymarket', {})
             kalshi = game.get('kalshi', {})
             
-            if not poly or not kalshi or poly.get('away') is None or poly.get('home') is None:
+            if not poly or not kalshi:
+                return False, "Missing platform data"
+            
+            if _extract_price_value(poly, 'away') is None or _extract_price_value(poly, 'home') is None:
+                return False, "Missing platform data"
+            if _extract_price_value(kalshi, 'away') is None or _extract_price_value(kalshi, 'home') is None:
                 return False, "Missing platform data"
             
             try:
@@ -234,10 +260,10 @@ class PaperTradingSystem:
         if not poly or not kalshi:
             return False, "Missing platform data for arbitrage"
             
-        poly_away = poly.get('raw_away', poly.get('away'))
-        poly_home = poly.get('raw_home', poly.get('home'))
-        kalshi_away = kalshi.get('raw_away', kalshi.get('away'))
-        kalshi_home = kalshi.get('raw_home', kalshi.get('home'))
+        poly_away = _extract_price_value(poly, 'away')
+        poly_home = _extract_price_value(poly, 'home')
+        kalshi_away = _extract_price_value(kalshi, 'away')
+        kalshi_home = _extract_price_value(kalshi, 'home')
         
         if None in [poly_away, poly_home, kalshi_away, kalshi_home]:
             return False, "Missing odds"
