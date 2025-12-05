@@ -1434,6 +1434,10 @@ def get_multi_sport_odds():
 def paper_trading_page():
     return send_from_directory('static', 'paper_trading.html')
 
+@app.route('/paper-trading-settled')
+def paper_trading_settled_page():
+    return send_from_directory('static', 'paper_trading_settled.html')
+
 @app.route('/test-stats')
 def test_stats_page():
     return send_from_directory('.', 'test_stats.html')

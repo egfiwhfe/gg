@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PolyMix - 纸面交易模拟</title>
+    <title>PolyMix - 纸面交易已结算</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -27,7 +27,7 @@
         }
         h1 {
             font-size: 32px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -62,7 +62,7 @@
             font-size: 11px;
             font-weight: 600;
         }
-        .badge-locked { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .badge-settled { background: rgba(16, 185, 129, 0.2); color: #10b981; }
         
         .nav-link {
             color: #667eea;
@@ -96,16 +96,21 @@
             border-top: 1px solid rgba(255,255,255,0.05);
         }
         .muted { color: #666; font-size: 11px; }
+        
+        .settled-row {
+            opacity: 0.85;
+            background: rgba(16, 185, 129, 0.05);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <div>
-                <h1>纸面交易模拟 (Paper Trading) - 待处理交易</h1>
+                <h1>纸面交易模拟 (Paper Trading) - 已结算交易</h1>
                 <div style="margin-top: 10px;">
                     <a href="/" class="nav-link">← 返回主页</a>
-                    <a href="/paper-trading-settled" class="nav-link">已结算交易 →</a>
+                    <a href="/paper-trading" class="nav-link">← 待处理交易</a>
                 </div>
             </div>
             <div style="text-align: right;">
@@ -124,21 +129,21 @@
                 <div class="stat-value" id="initial">-</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">总利润 (Total Profit)</div>
+                <div class="stat-label">已实现利润 (Realized Profit)</div>
                 <div class="stat-value green" id="profit">-</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">预估利润 (Est. Profit)</div>
-                <div class="stat-value green" id="estimated-profit">-</div>
+                <div class="stat-label">已结算交易数 (Settled Trades)</div>
+                <div class="stat-value" id="settled-count">-</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">总交易次数 (Trades)</div>
+                <div class="stat-label">总交易次数 (Total Trades)</div>
                 <div class="stat-value" id="trades-count">-</div>
             </div>
         </div>
 
         <div>
-            <div class="section-title">待处理交易记录 (Pending Trades)</div>
+            <div class="section-title">已结算交易记录 (Settled Trades)</div>
             <table id="trades-table">
                 <thead>
                     <tr>
@@ -148,8 +153,8 @@
                         <th>策略</th>
                         <th>详细下注 (Legs)</th>
                         <th>成本</th>
-                        <th>预计回报</th>
-                        <th>净利润</th>
+                        <th>实际回报</th>
+                        <th>已实现利润</th>
                         <th>ROI</th>
                         <th>状态</th>
                     </tr>
@@ -178,28 +183,27 @@
                 const profitEl = document.getElementById('profit');
                 profitEl.textContent = formatProfit(data.total_profit);
                 profitEl.className = 'stat-value ' + (data.total_profit >= 0 ? 'green' : 'red');
-                
-                const estProfitEl = document.getElementById('estimated-profit');
-                estProfitEl.textContent = formatProfit(data.estimated_profit);
-                estProfitEl.className = 'stat-value ' + (data.estimated_profit >= 0 ? 'green' : 'red');
 
                 document.getElementById('trades-count').textContent = data.total_trades;
                 
                 const tbody = document.getElementById('trades-body');
                 tbody.innerHTML = '';
                 
-                // Filter only pending trades
-                const pendingBets = data.bets.filter(bet => bet.status === 'pending');
+                // Filter only settled trades
+                const settledBets = data.bets.filter(bet => bet.status === 'settled');
                 
-                if (pendingBets.length === 0) {
+                document.getElementById('settled-count').textContent = settledBets.length;
+                
+                if (settledBets.length === 0) {
                     const row = document.createElement('tr');
-                    row.innerHTML = '<td colspan="10" style="text-align: center; color: #888;">暂无待处理交易</td>';
+                    row.innerHTML = '<td colspan="10" style="text-align: center; color: #888;">暂无已结算交易</td>';
                     tbody.appendChild(row);
                     return;
                 }
                 
-                pendingBets.forEach(bet => {
+                settledBets.forEach(bet => {
                     const row = document.createElement('tr');
+                    row.className = 'settled-row';
                     const date = new Date(bet.timestamp).toLocaleString('zh-CN');
                     
                     // Format game name vertically (Team A / vs / Team B)
@@ -251,8 +255,11 @@
                         }
                     }
                     
-                    const profitClass = bet.profit >= 0 ? 'green' : 'red';
-                    const profitText = formatProfit(bet.profit);
+                    // Use realized profit for settled trades
+                    const realizedProfit = bet.realized_profit || bet.profit || 0;
+                    const settledAmount = bet.settled_amount || bet.payout || 0;
+                    const profitClass = realizedProfit >= 0 ? 'green' : 'red';
+                    const profitText = formatProfit(realizedProfit);
                     const roiClass = bet.roi_percent >= 0 ? 'green' : 'red';
 
                     row.innerHTML = `
@@ -265,10 +272,10 @@
                         <td>Risk-Free Arb</td>
                         <td>${legsHtml}</td>
                         <td>$${bet.cost.toFixed(2)}</td>
-                        <td>$${bet.payout.toFixed(2)}</td>
+                        <td>$${settledAmount.toFixed(2)}</td>
                         <td class="${profitClass}">${profitText}</td>
                         <td class="${roiClass}">${bet.roi_percent.toFixed(2)}%</td>
-                        <td><span class="badge badge-locked">${bet.status}</span></td>
+                        <td><span class="badge badge-settled">${bet.status}</span></td>
                     `;
                     tbody.appendChild(row);
                 });
