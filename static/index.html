@@ -592,7 +592,7 @@
                     <div class="stat-value" id="displayed-count" style="color: #667eea;">-</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">最大差异</div>
+                    <div class="stat-label">最大成本差异 (¢)</div>
                     <div class="stat-value" id="max-diff">-</div>
                 </div>
             </div>
@@ -619,10 +619,15 @@
         const KALSHI_FEE = 0.07; // Kalshi ~7%
         const SLIPPAGE_ESTIMATE = 0.005; // 额外 0.5% 滑点容忍
 
-        function extractPrice(source, key) {
+        function extractPrice(source, side) {
             if (!source) return null;
-            const rawKey = key === 'away' ? 'raw_away' : 'raw_home';
-            const candidates = [rawKey, key];
+            const candidates = [
+                `${side}_raw_price`,
+                `raw_${side}`,
+                `${side}_raw`,
+                `${side}_prob`,
+                side
+            ];
             for (const candidate of candidates) {
                 const value = source[candidate];
                 if (value === undefined || value === null || value === '') continue;
@@ -632,6 +637,23 @@
                 }
             }
             return null;
+        }
+
+        function computeCostDiff(game) {
+            if (!game || !game.polymarket || !game.kalshi) {
+                return 0;
+            }
+
+            const diffs = [];
+            for (const side of ['away', 'home']) {
+                const polyPrice = extractPrice(game.polymarket, side);
+                const kalshiPrice = extractPrice(game.kalshi, side);
+                if (Number.isFinite(polyPrice) && Number.isFinite(kalshiPrice)) {
+                    diffs.push(Math.abs(polyPrice - kalshiPrice));
+                }
+            }
+
+            return diffs.length ? Math.max(...diffs) : 0;
         }
 
         function formatPrice(value) {
@@ -747,18 +769,22 @@ function createGameCard(game) {
 
             const sportTag = game.sport ? `<span class="sport-chip ${game.sport.toLowerCase()}">${game.sport}</span>` : '';
 
-            // Calculate differences from Polymarket
-            const polyAway = game.polymarket.away;
-            const polyHome = game.polymarket.home;
-            const kalshiAway = game.kalshi ? game.kalshi.away : 0;
-            const kalshiHome = game.kalshi ? game.kalshi.home : 0;
+            // 使用真实成本(¢)进行对比
+            const polyAway = extractPrice(game.polymarket || {}, 'away');
+            const polyHome = extractPrice(game.polymarket || {}, 'home');
+            const kalshiAway = extractPrice(game.kalshi || {}, 'away');
+            const kalshiHome = extractPrice(game.kalshi || {}, 'home');
 
-            const kalshiDiffAway = game.kalshi ? Math.abs(polyAway - kalshiAway) : 0;
-            const kalshiDiffHome = game.kalshi ? Math.abs(polyHome - kalshiHome) : 0;
+            if (![polyAway, polyHome, kalshiAway, kalshiHome].every(Number.isFinite)) {
+                return '';
+            }
 
-            // Determine best odds for each team
-            const awayBest = game.kalshi && (polyAway > kalshiAway) ? 'poly' : 'kalshi';
-            const homeBest = game.kalshi && (polyHome > kalshiHome) ? 'poly' : 'kalshi';
+            const kalshiDiffAway = Math.abs(polyAway - kalshiAway);
+            const kalshiDiffHome = Math.abs(polyHome - kalshiHome);
+
+            // Determine best odds for each team (higher cost = higher implied probability)
+            const awayBest = polyAway > kalshiAway ? 'poly' : 'kalshi';
+            const homeBest = polyHome > kalshiHome ? 'poly' : 'kalshi';
 
             // Investment Calculation
             const investInput = document.getElementById('investment-input');
@@ -844,15 +870,15 @@ function createGameCard(game) {
                             <div class="comparison-cell platform-cell platform-polymarket ${awayBest === 'poly' ? 'best-odds' : ''}"
                                  onclick="window.open('${game.polymarket.url}', '_blank')">
                                 <div class="platform-name">Polymarket</div>
-                                <div class="odds-value">${polyAway}%</div>
+                                <div class="odds-value">${formatPrice(polyAway)}¢</div>
                             </div>
                             <div class="comparison-cell platform-cell platform-kalshi ${awayBest === 'kalshi' ? 'best-odds' : ''}"
                                  ${game.kalshi && game.kalshi.url ? `onclick="window.open('${game.kalshi.url}', '_blank')"` : ''}>
                                 <div class="platform-name">Kalshi</div>
-                                <div class="odds-value">${game.kalshi ? kalshiAway + '%' : '暂无数据'}</div>
-                                ${game.kalshi ? `<div class="diff-badge ${getDiffClass(kalshiDiffAway)}">
-                                    Δ ${kalshiDiffAway.toFixed(1)}%
-                                </div>` : ''}
+                                <div class="odds-value">${formatPrice(kalshiAway)}¢</div>
+                                <div class="diff-badge ${getDiffClass(kalshiDiffAway)}">
+                                    Δ ${kalshiDiffAway.toFixed(2)}¢
+                                </div>
                             </div>
                             <div class="comparison-cell platform-cell platform-odds" ${game.odds_api && game.odds_api.url ? `onclick="window.open('${game.odds_api.url}', '_blank')"` : ''}>
                                 ${game.odds_api && game.odds_api.away ?
@@ -880,15 +906,15 @@ function createGameCard(game) {
                             <div class="comparison-cell platform-cell platform-polymarket ${homeBest === 'poly' ? 'best-odds' : ''}"
                                  onclick="window.open('${game.polymarket.url}', '_blank')">
                                 <div class="platform-name">Polymarket</div>
-                                <div class="odds-value">${polyHome}%</div>
+                                <div class="odds-value">${formatPrice(polyHome)}¢</div>
                             </div>
                             <div class="comparison-cell platform-cell platform-kalshi ${homeBest === 'kalshi' ? 'best-odds' : ''}"
                                  ${game.kalshi && game.kalshi.url ? `onclick="window.open('${game.kalshi.url}', '_blank')"` : ''}>
                                 <div class="platform-name">Kalshi</div>
-                                <div class="odds-value">${game.kalshi ? kalshiHome + '%' : '暂无数据'}</div>
-                                ${game.kalshi ? `<div class="diff-badge ${getDiffClass(kalshiDiffHome)}">
-                                    Δ ${kalshiDiffHome.toFixed(1)}%
-                                </div>` : ''}
+                                <div class="odds-value">${formatPrice(kalshiHome)}¢</div>
+                                <div class="diff-badge ${getDiffClass(kalshiDiffHome)}">
+                                    Δ ${kalshiDiffHome.toFixed(2)}¢
+                                </div>
                             </div>
                             <div class="comparison-cell platform-cell platform-odds" ${game.odds_api && game.odds_api.url ? `onclick="window.open('${game.odds_api.url}', '_blank')"` : ''}>
                                 ${game.odds_api && game.odds_api.home ?
@@ -996,13 +1022,11 @@ function createGameCard(game) {
                     }
                 }
 
-                // 计算最大概率差
-                let maxDiff = 0;
-                if (allGames.length > 0) {
-                    maxDiff = Math.max(...allGames.map(g => (g.diff && g.diff.max) || 0));
-                }
+                // 计算真实成本最大差异
+                const diffValues = allGames.map(computeCostDiff);
+                const maxDiff = diffValues.length ? Math.max(...diffValues) : 0;
                 if (document.getElementById('max-diff')) {
-                    document.getElementById('max-diff').textContent = maxDiff.toFixed(1) + '%';
+                    document.getElementById('max-diff').textContent = maxDiff.toFixed(2) + '¢';
                 }
 
                 // ✅ 只保留「扣掉双边手续费+滑点后仍为正」的无风险净套利
