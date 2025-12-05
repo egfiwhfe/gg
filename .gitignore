@@ -1,0 +1,33 @@
+# Python cache and artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.env/
+.venv/
+venv/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test and coverage reports
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE / editor settings
+.vscode/
+.idea/
+
+# Logs and local data
+*.log
+*.sqlite3
+*.db
+
+# macOS
+.DS_Store

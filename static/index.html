@@ -619,10 +619,15 @@
         const KALSHI_FEE = 0.07; // Kalshi ~7%
         const SLIPPAGE_ESTIMATE = 0.005; // 额外 0.5% 滑点容忍
 
-        function extractPrice(source, key) {
+        function extractPrice(source, side) {
             if (!source) return null;
-            const rawKey = key === 'away' ? 'raw_away' : 'raw_home';
-            const candidates = [rawKey, key];
+            const candidates = [
+                `${side}_raw_price`,
+                `raw_${side}`,
+                `${side}_raw`,
+                `${side}_prob`,
+                side
+            ];
             for (const candidate of candidates) {
                 const value = source[candidate];
                 if (value === undefined || value === null || value === '') continue;
