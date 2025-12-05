@@ -509,7 +509,60 @@
             background: rgba(255, 255, 255, 0.06);
             color: rgba(255, 255, 255, 0.9);
         }
-</style>
+
+        /* Settled badge styles */
+        .settled-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border: 1px solid rgba(76, 175, 80, 0.4);
+            margin-left: 8px;
+        }
+
+        /* Settled market card styling */
+        .settled-market {
+            opacity: 0.75;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .settled-market:hover {
+            opacity: 0.85;
+            border-color: rgba(76, 175, 80, 0.5);
+        }
+
+        /* Section headers for settled/unsettled groups */
+        .market-section-header {
+            padding: 15px 25px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .market-section-header.unsettled {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .market-section-header.settled {
+            border-color: #4caf50;
+            color: #4caf50;
+        }
+
+        .market-section {
+            margin-bottom: 30px;
+        }
+        </style>
 </head>
 <body>
     <div class="container">
@@ -739,15 +792,22 @@ function calcRiskFreeArb(game) {
 
 
 function createGameCard(game) {
-            if (isDegenerateMarket(game)) { return ''; }
-            const arb = calcRiskFreeArb(game);
-            if (!arb) {
-                return '';
-            }
+             if (isDegenerateMarket(game)) { return ''; }
+             const arb = calcRiskFreeArb(game);
+             if (!arb) {
+                 return '';
+             }
 
-            const sportTag = game.sport ? `<span class="sport-chip ${game.sport.toLowerCase()}">${game.sport}</span>` : '';
+             const sportTag = game.sport ? `<span class="sport-chip ${game.sport.toLowerCase()}">${game.sport}</span>` : '';
 
-            // Calculate differences from Polymarket
+             // Add settled badge if market is settled
+             const isSettled = game.is_settled;
+             const settledBadge = isSettled ? `<span class="settled-badge" title="Market settled on ${game.settled_platform}">✓ Settled</span>` : '';
+
+             // Format trade time
+             const tradeTime = game.trade_time ? new Date(game.trade_time).toLocaleString() : 'N/A';
+
+             // Calculate differences from Polymarket
             const polyAway = game.polymarket.away;
             const polyHome = game.polymarket.home;
             const kalshiAway = game.kalshi ? game.kalshi.away : 0;
@@ -787,7 +847,7 @@ function createGameCard(game) {
             if (!Number.isFinite(roiPercent)) { return ''; }
 
             return `
-                <div class="game-card">
+                <div class="game-card ${isSettled ? 'settled-market' : ''}">
                     <div class="game-header" style="display:block;">
                         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 15px;">
                             <div class="matchup">
@@ -797,11 +857,13 @@ function createGameCard(game) {
                             </div>
                             <div class="game-meta">
                                 ${sportTag}
+                                ${settledBadge}
                             </div>
                         </div>
-                        
+
                         <div class="arb-score high" style="width: 100%; text-align: left; padding: 15px;">
                             <div style="font-size: 16px; margin-bottom: 5px;">✅ 无风险套利机会 (ROI: ${roiPercent.toFixed(2)}%)</div>
+                            <div style="font-size: 12px; color: #888; margin-bottom: 8px;">🕐 Trading recorded: ${tradeTime}</div>
                             
                             <div class="detailed-bet-info" style="margin-top: 10px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; font-size: 14px;">
                                 <div style="color: #4caf50; font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom:5px;">
@@ -1076,13 +1138,39 @@ function createGameCard(game) {
                     return;
                 }
 
-                // 渲染卡片（使用现有 createGameCard）
-                container.innerHTML = arbGames.map(createGameCard).join('');
+                // Separate settled and unsettled games
+                const settledGames = arbGames.filter(g => g.is_settled);
+                const unsettledGames = arbGames.filter(g => !g.is_settled);
 
-            } catch (error) {
+                // Render games with section headers
+                let html = '';
+
+                // Unsettled games section (shown first)
+                if (unsettledGames.length > 0) {
+                    html += `<div class="market-section">
+                        <div class="market-section-header unsettled">
+                            🔄 Active Markets (${unsettledGames.length})
+                        </div>
+                        ${unsettledGames.map(createGameCard).join('')}
+                    </div>`;
+                }
+
+                // Settled games section
+                if (settledGames.length > 0) {
+                    html += `<div class="market-section">
+                        <div class="market-section-header settled">
+                            ✓ Settled Markets (${settledGames.length})
+                        </div>
+                        ${settledGames.map(createGameCard).join('')}
+                    </div>`;
+                }
+
+                container.innerHTML = html;
+
+                } catch (error) {
                 console.error('Error fetching data:', error);
-            }
-        }
+                }
+                }
 
         // 绑定 sport tab 点击事件 + 初始化
         window.addEventListener('DOMContentLoaded', () => {

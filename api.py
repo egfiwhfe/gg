@@ -92,6 +92,30 @@ nhl_game_history = defaultdict(lambda: {
 })
 
 
+def _is_market_settled(poly_data, kalshi_data):
+    """
+    Detect if a market pair is settled.
+    A market is considered settled if it's closed/resolved on either platform.
+
+    Returns: (is_settled, platform_settled, settlement_status)
+    """
+    try:
+        # Check Polymarket status - check if it's closed
+        if poly_data and poly_data.get('closed') is True:
+            return True, 'polymarket', {'closed': True, 'resolved_status': poly_data.get('umaResolutionStatus')}
+
+        # Check Kalshi status - check if it's finalized or settled
+        if kalshi_data:
+            status = kalshi_data.get('status')
+            if status in ['finalized', 'settled']:
+                return True, 'kalshi', {'status': status}
+
+        return False, None, {}
+    except Exception as e:
+        # If there's any error checking settlement status, treat as unsettled
+        return False, None, {}
+
+
 def _extract_price_value(game, side):
     """Extract the most precise available price for a given side."""
     if not game:
@@ -391,6 +415,17 @@ def calculate_comparisons(matched_games, team_logos, game_history_dict, odds_gam
         odds_game = odds_dict.get(game_key)
         manifold_game = manifold_dict.get(game_key)
 
+        # Check if market is settled
+        is_settled, settled_platform, settlement_info = _is_market_settled(poly_game, kalshi_game)
+
+        # Record time is when this market comparison was first created
+        # Use the first timestamp from history if available, otherwise current time
+        trade_time = None
+        if history['timestamps']:
+            trade_time = history['timestamps'][0] if len(history['timestamps']) > 0 else current_time.isoformat()
+        else:
+            trade_time = current_time.isoformat()
+
         comparison = {
             'away_team': poly_game['away_team'],
             'home_team': poly_game['home_team'],
@@ -406,7 +441,8 @@ def calculate_comparisons(matched_games, team_logos, game_history_dict, odds_gam
                 'url': poly_game.get('url', ''),
                 'market_id': poly_game.get('market_id'),
                 'away_market_id': poly_game.get('away_market_id'),
-                'home_market_id': poly_game.get('home_market_id')
+                'home_market_id': poly_game.get('home_market_id'),
+                'closed': poly_game.get('closed', False)
             },
             'kalshi': {
                 'away': round(kalshi_game['away_prob'], 1),
@@ -415,7 +451,8 @@ def calculate_comparisons(matched_games, team_logos, game_history_dict, odds_gam
                 'raw_home': kalshi_game.get('home_raw_price', kalshi_game['home_prob']),
                 'url': kalshi_game.get('url', ''),
                 'away_ticker': kalshi_game.get('away_ticker'),
-                'home_ticker': kalshi_game.get('home_ticker')
+                'home_ticker': kalshi_game.get('home_ticker'),
+                'status': kalshi_game.get('status', 'open')
             },
             'odds_api': {
                 'away': round(odds_game['away_prob'], 1) if odds_game else None,
@@ -443,6 +480,10 @@ def calculate_comparisons(matched_games, team_logos, game_history_dict, odds_gam
             },
             'arbitrage_score': arb_score,
             'game_time': game_time,
+            'is_settled': is_settled,
+            'settled_platform': settled_platform,
+            'settlement_info': settlement_info,
+            'trade_time': trade_time,
             'history': {
                 'diff': list(history['diff_history']),
                 'timestamps': list(history['timestamps'])
@@ -1411,6 +1452,13 @@ def get_multi_sport_odds():
         combined_games.sort(key=lambda g: (g.get('arbitrage_score', 0), g.get('diff', {}).get('max', 0)), reverse=True)
         homepage_arb_games.sort(key=lambda g: (g.get('arbitrage_score', 0), g.get('diff', {}).get('max', 0)), reverse=True)
 
+        # Separate settled and unsettled markets
+        settled_games = [g for g in combined_games if g.get('is_settled', False)]
+        unsettled_games = [g for g in combined_games if not g.get('is_settled', False)]
+
+        settled_arb_games = [g for g in homepage_arb_games if g.get('is_settled', False)]
+        unsettled_arb_games = [g for g in homepage_arb_games if not g.get('is_settled', False)]
+
         result = {
             'success': True,
             'timestamp': now.isoformat(),
@@ -1418,7 +1466,11 @@ def get_multi_sport_odds():
             'stats': overall_stats,
             'by_sport': per_sport_stats,
             'games': combined_games,
-            'homepage_arb_games': homepage_arb_games  # Only games with positive ROI after fees
+            'settled_games': settled_games,
+            'unsettled_games': unsettled_games,
+            'homepage_arb_games': homepage_arb_games,  # Only games with positive ROI after fees
+            'settled_arb_games': settled_arb_games,
+            'unsettled_arb_games': unsettled_arb_games
         }
         return jsonify(result)
     except Exception as e:
