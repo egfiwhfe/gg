@@ -592,7 +592,7 @@
                     <div class="stat-value" id="displayed-count" style="color: #667eea;">-</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">最大差异</div>
+                    <div class="stat-label">最大成本差</div>
                     <div class="stat-value" id="max-diff">-</div>
                 </div>
             </div>
@@ -609,9 +609,10 @@
 
     <script>
         function getDiffClass(diff) {
-            if (diff >= 5) return 'high';
-            if (diff >= 2) return 'medium';
-            return 'low';
+            // Now working with cent differences instead of percentages
+            if (diff >= 8) return 'high';      // 8¢ or more = high difference
+            if (diff >= 4) return 'medium';    // 4-7¢ = medium difference  
+            return 'low';                       // < 4¢ = low difference
         }
 
         // 费用假设（与后端 ArbitrageDetector 保持一致）
@@ -747,16 +748,19 @@ function createGameCard(game) {
 
             const sportTag = game.sport ? `<span class="sport-chip ${game.sport.toLowerCase()}">${game.sport}</span>` : '';
 
-            // Calculate differences from Polymarket
+            // Calculate differences from Polymarket in cents (real cost comparison)
             const polyAway = game.polymarket.away;
             const polyHome = game.polymarket.home;
             const kalshiAway = game.kalshi ? game.kalshi.away : 0;
             const kalshiHome = game.kalshi ? game.kalshi.home : 0;
 
-            const kalshiDiffAway = game.kalshi ? Math.abs(polyAway - kalshiAway) : 0;
-            const kalshiDiffHome = game.kalshi ? Math.abs(polyHome - kalshiHome) : 0;
+            // Use cent differences from API if available, otherwise calculate
+            const kalshiDiffAway = game.diff && game.diff.away_cents !== undefined ? 
+                game.diff.away_cents : Math.abs(polyAway - kalshiAway);
+            const kalshiDiffHome = game.diff && game.diff.home_cents !== undefined ? 
+                game.diff.home_cents : Math.abs(polyHome - kalshiHome);
 
-            // Determine best odds for each team
+            // Determine best odds for each team based on real costs (lower cost = better odds)
             const awayBest = game.kalshi && (polyAway > kalshiAway) ? 'poly' : 'kalshi';
             const homeBest = game.kalshi && (polyHome > kalshiHome) ? 'poly' : 'kalshi';
 
@@ -851,7 +855,7 @@ function createGameCard(game) {
                                 <div class="platform-name">Kalshi</div>
                                 <div class="odds-value">${game.kalshi ? kalshiAway + '%' : '暂无数据'}</div>
                                 ${game.kalshi ? `<div class="diff-badge ${getDiffClass(kalshiDiffAway)}">
-                                    Δ ${kalshiDiffAway.toFixed(1)}%
+                                    Δ ${kalshiDiffAway.toFixed(1)}¢
                                 </div>` : ''}
                             </div>
                             <div class="comparison-cell platform-cell platform-odds" ${game.odds_api && game.odds_api.url ? `onclick="window.open('${game.odds_api.url}', '_blank')"` : ''}>
@@ -887,7 +891,7 @@ function createGameCard(game) {
                                 <div class="platform-name">Kalshi</div>
                                 <div class="odds-value">${game.kalshi ? kalshiHome + '%' : '暂无数据'}</div>
                                 ${game.kalshi ? `<div class="diff-badge ${getDiffClass(kalshiDiffHome)}">
-                                    Δ ${kalshiDiffHome.toFixed(1)}%
+                                    Δ ${kalshiDiffHome.toFixed(1)}¢
                                 </div>` : ''}
                             </div>
                             <div class="comparison-cell platform-cell platform-odds" ${game.odds_api && game.odds_api.url ? `onclick="window.open('${game.odds_api.url}', '_blank')"` : ''}>
@@ -996,13 +1000,13 @@ function createGameCard(game) {
                     }
                 }
 
-                // 计算最大概率差
+                // 计算最大成本差（以美分为单位）
                 let maxDiff = 0;
                 if (allGames.length > 0) {
-                    maxDiff = Math.max(...allGames.map(g => (g.diff && g.diff.max) || 0));
+                    maxDiff = Math.max(...allGames.map(g => (g.diff && g.diff.max_cents) || 0));
                 }
                 if (document.getElementById('max-diff')) {
-                    document.getElementById('max-diff').textContent = maxDiff.toFixed(1) + '%';
+                    document.getElementById('max-diff').textContent = maxDiff.toFixed(1) + '¢';
                 }
 
                 // ✅ 只保留「扣掉双边手续费+滑点后仍为正」的无风险净套利

@@ -306,7 +306,7 @@ def match_additional_platform(base_games, additional_games):
     return matched_dict
 
 def calculate_comparisons(matched_games, team_logos, game_history_dict, odds_games=None, manifold_games=None):
-    """Calculate odds comparisons with historical tracking and analysis"""
+    """Calculate odds comparisons with historical tracking and analysis using real cost differences in cents"""
     comparisons = []
     current_time = datetime.now()
 
@@ -323,9 +323,21 @@ def calculate_comparisons(matched_games, team_logos, game_history_dict, odds_gam
         manifold_dict = match_additional_platform(base_games, manifold_games)
 
     for poly_game, kalshi_game in matched_games:
-        away_diff = abs(poly_game['away_prob'] - kalshi_game['away_prob'])
-        home_diff = abs(poly_game['home_prob'] - kalshi_game['home_prob'])
-        max_diff = max(away_diff, home_diff)
+        # Extract raw prices in cents for real cost comparison
+        poly_away_cents = _extract_price_value(poly_game, 'away')
+        poly_home_cents = _extract_price_value(poly_game, 'home')
+        kalshi_away_cents = _extract_price_value(kalshi_game, 'away')
+        kalshi_home_cents = _extract_price_value(kalshi_game, 'home')
+
+        # Calculate real cost differences in cents (not percentages)
+        away_diff_cents = abs(poly_away_cents - kalshi_away_cents)
+        home_diff_cents = abs(poly_home_cents - kalshi_home_cents)
+        max_diff_cents = max(away_diff_cents, home_diff_cents)
+
+        # Keep percentage differences for display compatibility but prioritize cent differences
+        away_diff_pct = abs(poly_game['away_prob'] - kalshi_game['away_prob'])
+        home_diff_pct = abs(poly_game['home_prob'] - kalshi_game['home_prob'])
+        max_diff_pct = max(away_diff_pct, home_diff_pct)
 
         # Extract game time from end_date
         game_time = poly_game.get('end_date', '')[:16] if poly_game.get('end_date') else ''
@@ -336,20 +348,20 @@ def calculate_comparisons(matched_games, team_logos, game_history_dict, odds_gam
         # Get historical data for this game
         history = game_history_dict[game_key]
 
-        # Add current data to history
-        history['diff_history'].append(max_diff)
+        # Add current data to history (use both cent and percentage differences)
+        history['diff_history'].append(max_diff_cents)  # Now tracking cents
         history['poly_history'].append((poly_game['away_prob'], poly_game['home_prob']))
         history['kalshi_history'].append((kalshi_game['away_prob'], kalshi_game['home_prob']))
         history['timestamps'].append(current_time.isoformat())
 
-        # Calculate trend (comparing recent 5 points vs older 5 points)
+        # Calculate trend (comparing recent 5 points vs older 5 points) - now based on cent differences
         trend = 'stable'
         trend_value = 0
         if len(history['diff_history']) >= 10:
             recent_avg = sum(list(history['diff_history'])[-5:]) / 5
             older_avg = sum(list(history['diff_history'])[-10:-5]) / 5
             trend_value = recent_avg - older_avg
-            if trend_value > 0.5:
+            if trend_value > 0.5:  # 0.5 cents threshold
                 trend = 'increasing'
             elif trend_value < -0.5:
                 trend = 'decreasing'
@@ -366,22 +378,22 @@ def calculate_comparisons(matched_games, team_logos, game_history_dict, odds_gam
             kalshi_change['away'] = round(kalshi_game['away_prob'] - old_kalshi[0], 1)
             kalshi_change['home'] = round(kalshi_game['home_prob'] - old_kalshi[1], 1)
 
-        # Calculate arbitrage opportunity score (0-100)
+        # Calculate arbitrage opportunity score (0-100) - now based on real cost differences in cents
         arb_score = 0
-        # Base score from difference (0-50)
-        arb_score += min(max_diff * 5, 50)
-        # Bonus for increasing trend (0-20)
+        # Base score from cent difference (0-50 points) - 1¢ = 1 point, max 50¢ = 50 points
+        arb_score += min(max_diff_cents * 1, 50)
+        # Bonus for increasing trend (0-20) - trend measured in cents
         if trend == 'increasing':
-            arb_score += min(abs(trend_value) * 10, 20)
-        # Bonus for volatility (0-15)
+            arb_score += min(abs(trend_value) * 2, 20)  # 2 points per cent increase
+        # Bonus for volatility (0-15) - measured in cents
         if len(history['diff_history']) >= 5:
             recent_diffs = list(history['diff_history'])[-5:]
             volatility = max(recent_diffs) - min(recent_diffs)
-            arb_score += min(volatility * 3, 15)
-        # Bonus for high absolute difference (0-15)
-        if max_diff >= 8:
+            arb_score += min(volatility * 0.5, 15)  # 0.5 points per cent of volatility
+        # Bonus for high absolute cent difference (0-15)
+        if max_diff_cents >= 8:  # 8¢ or more
             arb_score += 15
-        elif max_diff >= 5:
+        elif max_diff_cents >= 5:  # 5-7¢
             arb_score += 10
 
         arb_score = min(round(arb_score), 100)
@@ -429,9 +441,14 @@ def calculate_comparisons(matched_games, team_logos, game_history_dict, odds_gam
                 'url': manifold_game.get('url', '') if manifold_game else ''
             } if manifold_game else None,
             'diff': {
-                'away': round(away_diff, 1),
-                'home': round(home_diff, 1),
-                'max': round(max_diff, 1)
+                # Real cost differences in cents (primary comparison)
+                'away_cents': round(away_diff_cents, 2),
+                'home_cents': round(home_diff_cents, 2),
+                'max_cents': round(max_diff_cents, 2),
+                # Percentage differences (for backward compatibility)
+                'away_pct': round(away_diff_pct, 1),
+                'home_pct': round(home_diff_pct, 1),
+                'max_pct': round(max_diff_pct, 1)
             },
             'trend': {
                 'direction': trend,
@@ -451,8 +468,8 @@ def calculate_comparisons(matched_games, team_logos, game_history_dict, odds_gam
 
         comparisons.append(comparison)
 
-    # Sort by arbitrage score (descending), then by max difference
-    comparisons.sort(key=lambda x: (x['arbitrage_score'], x['diff']['max']), reverse=True)
+    # Sort by arbitrage score (descending), then by max cent difference (descending)
+    comparisons.sort(key=lambda x: (x['arbitrage_score'], x['diff']['max_cents']), reverse=True)
 
     return comparisons
 
@@ -1377,6 +1394,38 @@ def get_multi_sport_odds():
                 enriched = dict(game)
                 enriched['sport'] = sport.upper()
                 
+                # Always ensure cent-based diff structure exists for multi-sport endpoint
+                poly = game.get('polymarket', {})
+                kalshi = game.get('kalshi', {})
+                if poly and kalshi:
+                    # Extract raw prices in cents for real cost comparison
+                    poly_away_cents = _extract_price_value(poly, 'away')
+                    poly_home_cents = _extract_price_value(poly, 'home')
+                    kalshi_away_cents = _extract_price_value(kalshi, 'away')
+                    kalshi_home_cents = _extract_price_value(kalshi, 'home')
+
+                    if all(x is not None for x in [poly_away_cents, poly_home_cents, kalshi_away_cents, kalshi_home_cents]):
+                        # Calculate real cost differences in cents
+                        away_diff_cents = abs(poly_away_cents - kalshi_away_cents)
+                        home_diff_cents = abs(poly_home_cents - kalshi_home_cents)
+                        max_diff_cents = max(away_diff_cents, home_diff_cents)
+
+                        # Also keep percentage differences for display compatibility
+                        away_diff_pct = abs(poly.get('away_prob', 0) - kalshi.get('away_prob', 0))
+                        home_diff_pct = abs(poly.get('home_prob', 0) - kalshi.get('home_prob', 0))
+                        max_diff_pct = max(away_diff_pct, home_diff_pct)
+
+                        enriched['diff'] = {
+                            # Real cost differences in cents (primary comparison)
+                            'away_cents': round(away_diff_cents, 2),
+                            'home_cents': round(home_diff_cents, 2),
+                            'max_cents': round(max_diff_cents, 2),
+                            # Percentage differences (for backward compatibility)
+                            'away_pct': round(away_diff_pct, 1),
+                            'home_pct': round(home_diff_pct, 1),
+                            'max_pct': round(max_diff_pct, 1)
+                        }
+                
                 # Calculate risk-free arbitrage details if not already present
                 poly = game.get('polymarket', {})
                 kalshi = game.get('kalshi', {})
@@ -1389,6 +1438,7 @@ def get_multi_sport_odds():
                 # Mark as tradable if it meets paper trading conditions
                 risk_detail = enriched.get('riskFreeArb') or enriched.get('risk_free_arb')
                 is_tradable = False
+                
                 if risk_detail:
                     edge = risk_detail.get('edge') if isinstance(risk_detail, dict) and 'edge' in risk_detail else risk_detail.get('net_edge')
                     roi_percent = risk_detail.get('roiPercent') if isinstance(risk_detail, dict) and 'roiPercent' in risk_detail else risk_detail.get('roi_percent')
@@ -1404,12 +1454,13 @@ def get_multi_sport_odds():
                             overall_stats['tradable_markets'] += 1
                             homepage_arb_games.append(enriched)
                 
+                
                 enriched['is_tradable'] = is_tradable
                 enriched['meets_paper_trade_conditions'] = is_tradable
                 combined_games.append(enriched)
 
-        combined_games.sort(key=lambda g: (g.get('arbitrage_score', 0), g.get('diff', {}).get('max', 0)), reverse=True)
-        homepage_arb_games.sort(key=lambda g: (g.get('arbitrage_score', 0), g.get('diff', {}).get('max', 0)), reverse=True)
+        combined_games.sort(key=lambda g: (g.get('arbitrage_score', 0), g.get('diff', {}).get('max_cents', 0)), reverse=True)
+        homepage_arb_games.sort(key=lambda g: (g.get('arbitrage_score', 0), g.get('diff', {}).get('max_cents', 0)), reverse=True)
 
         result = {
             'success': True,

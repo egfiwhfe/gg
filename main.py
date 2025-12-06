@@ -41,10 +41,10 @@ def match_games(polymarket_games: List[Dict], kalshi_games: List[Dict]) -> List[
 
 def calculate_diff(matched_games: List[Tuple[Dict, Dict]]) -> List[Dict]:
     """
-    Calculate probability differences for matched games
+    Calculate real cost differences in cents for matched games
 
     Returns:
-        List of comparison dictionaries sorted by largest difference
+        List of comparison dictionaries sorted by largest cent difference
     """
     comparisons = []
 
@@ -52,9 +52,21 @@ def calculate_diff(matched_games: List[Tuple[Dict, Dict]]) -> List[Dict]:
         away_code = poly_game['away_code']
         home_code = poly_game['home_code']
 
-        away_diff = abs(poly_game['away_prob'] - kalshi_game['away_prob'])
-        home_diff = abs(poly_game['home_prob'] - kalshi_game['home_prob'])
-        max_diff = max(away_diff, home_diff)
+        # Extract raw prices in cents for real cost comparison
+        poly_away_cents = poly_game.get('away_raw_price', poly_game['away_prob'])
+        poly_home_cents = poly_game.get('home_raw_price', poly_game['home_prob'])
+        kalshi_away_cents = kalshi_game.get('away_raw_price', kalshi_game['away_prob'])
+        kalshi_home_cents = kalshi_game.get('home_raw_price', kalshi_game['home_prob'])
+
+        # Calculate real cost differences in cents
+        away_diff_cents = abs(poly_away_cents - kalshi_away_cents)
+        home_diff_cents = abs(poly_home_cents - kalshi_home_cents)
+        max_diff_cents = max(away_diff_cents, home_diff_cents)
+
+        # Also keep percentage differences for display
+        away_diff_pct = abs(poly_game['away_prob'] - kalshi_game['away_prob'])
+        home_diff_pct = abs(poly_game['home_prob'] - kalshi_game['home_prob'])
+        max_diff_pct = max(away_diff_pct, home_diff_pct)
 
         comparison = {
             'away_team': poly_game['away_team'],
@@ -65,15 +77,20 @@ def calculate_diff(matched_games: List[Tuple[Dict, Dict]]) -> List[Dict]:
             'polymarket_home': poly_game['home_prob'],
             'kalshi_away': kalshi_game['away_prob'],
             'kalshi_home': kalshi_game['home_prob'],
-            'away_diff': away_diff,
-            'home_diff': home_diff,
-            'max_diff': max_diff,
+            # Real cost differences in cents (primary comparison)
+            'away_diff_cents': away_diff_cents,
+            'home_diff_cents': home_diff_cents,
+            'max_diff_cents': max_diff_cents,
+            # Percentage differences (for backward compatibility)
+            'away_diff_pct': away_diff_pct,
+            'home_diff_pct': home_diff_pct,
+            'max_diff_pct': max_diff_pct,
         }
 
         comparisons.append(comparison)
 
-    # Sort by max difference (descending)
-    comparisons.sort(key=lambda x: x['max_diff'], reverse=True)
+    # Sort by max cent difference (descending)
+    comparisons.sort(key=lambda x: x['max_diff_cents'], reverse=True)
 
     return comparisons
 
@@ -105,21 +122,24 @@ def print_results(comparisons: List[Dict], title: str = "ODDS COMPARISON"):
         # Away team
         poly_away = comp['polymarket_away']
         kalshi_away = comp['kalshi_away']
-        away_diff = comp['away_diff']
+        away_diff_cents = comp['away_diff_cents']
+        away_diff_pct = comp['away_diff_pct']
 
-        print(f"   {away:30} | Polymarket: {poly_away:5.1f}%  |  Kalshi: {kalshi_away:5.1f}%  |  Diff: {away_diff:5.1f}%")
+        print(f"   {away:30} | Polymarket: {poly_away:5.1f}%  |  Kalshi: {kalshi_away:5.1f}%  |  Diff: {away_diff_cents:5.1f}¢ ({away_diff_pct:5.1f}%)")
 
         # Home team
         poly_home = comp['polymarket_home']
         kalshi_home = comp['kalshi_home']
-        home_diff = comp['home_diff']
+        home_diff_cents = comp['home_diff_cents']
+        home_diff_pct = comp['home_diff_pct']
 
-        print(f"   {home:30} | Polymarket: {poly_home:5.1f}%  |  Kalshi: {kalshi_home:5.1f}%  |  Diff: {home_diff:5.1f}%")
+        print(f"   {home:30} | Polymarket: {poly_home:5.1f}%  |  Kalshi: {kalshi_home:5.1f}%  |  Diff: {home_diff_cents:5.1f}¢ ({home_diff_pct:5.1f}%)")
 
-        # Highlight if significant difference (>5%)
-        max_diff = comp['max_diff']
-        if max_diff > 5:
-            print(f"   ⚠️  SIGNIFICANT DIFFERENCE: {max_diff:.1f}%")
+        # Highlight if significant difference (>8 cents)
+        max_diff_cents = comp['max_diff_cents']
+        max_diff_pct = comp['max_diff_pct']
+        if max_diff_cents > 8:
+            print(f"   ⚠️  SIGNIFICANT DIFFERENCE: {max_diff_cents:.1f}¢ ({max_diff_pct:.1f}%)")
 
     print("\n" + "="*100)
     print(f"Total games compared: {len(comparisons)}")
