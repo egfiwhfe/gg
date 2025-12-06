@@ -1158,6 +1158,19 @@ def _build_all_sports_summary(poly_games, kalshi_games, now, min_matches, min_ar
         'match_rate': (matched_count / min(len(poly_games), len(kalshi_games)) * 100) if min(len(poly_games), len(kalshi_games)) > 0 else 0,
     }
 
+    # Store all unmatched games (not limited to 50)
+    all_unmatched_poly = [
+        g for g in poly_games
+        if f"{g['away_code']}@{g['home_code']}".lower() not in matched_keys
+    ]
+    all_unmatched_kalshi = [
+        g for g in kalshi_games
+        if f"{g['away_code']}@{g['home_code']}".lower() not in {
+            f"{match['kalshi']['away_code']}@{match['kalshi']['home_code']}".lower()
+            for match in matched_games
+        }
+    ]
+    
     result = {
         'success': True,
         'timestamp': now.isoformat(),
@@ -1167,22 +1180,16 @@ def _build_all_sports_summary(poly_games, kalshi_games, now, min_matches, min_ar
         'arb_opportunities': arb_opportunities,
         'tradable_markets': tradable_markets,
         'tradable_by_sport': dict(tradable_by_sport),
-        'unmatched_polymarket': [
-            g for g in poly_games
-            if f"{g['away_code']}@{g['home_code']}".lower() not in matched_keys
-        ][:50],
-        'unmatched_kalshi': [
-            g for g in kalshi_games
-            if f"{g['away_code']}@{g['home_code']}".lower() not in {
-                f"{match['kalshi']['away_code']}@{match['kalshi']['home_code']}".lower()
-                for match in matched_games
-            }
-        ][:50],
+        'unmatched_polymarket': all_unmatched_poly[:50],  # Limited for API response
+        'unmatched_kalshi': all_unmatched_kalshi[:50],  # Limited for API response
+        'all_polymarket_games': poly_games,  # Store ALL fetched Polymarket games
+        'all_kalshi_games': kalshi_games,  # Store ALL fetched Kalshi games
         'homepage_games': homepage_games,
         'homepage_arb_games': homepage_arb_games
     }
 
     print(f"📊 Interim stats: {matched_count} matched, {len(arb_opportunities)} arbs, {len(tradable_markets)} tradable")
+    print(f"📊 Total fetched: {len(poly_games)} Polymarket, {len(kalshi_games)} Kalshi games")
     return result
 
 
